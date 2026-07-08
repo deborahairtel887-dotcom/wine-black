@@ -1,8 +1,8 @@
 # Predinex Contract API Reference
 
-> **Contract:** `predinex` · **Version:** 0.1.0 · **SDK:** Soroban SDK 22 · **Network:** Stellar
+> **Contract:** `agegg` · **Version:** 0.1.0 · **SDK:** Soroban SDK 22 · **Network:** Stellar
 
-Complete reference for every public function in `PredinexContract`, the core data types, auth requirements, error codes, and the fee model.
+Complete reference for every public function in `AgeggContract`, the core data types, auth requirements, error codes, and the fee model.
 
 ---
 

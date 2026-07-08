@@ -1,4 +1,4 @@
-# Predinex Stellar
+# AGEGG Stellar
 
 > Next-generation prediction markets on Stellar (via Soroban).
 
@@ -8,14 +8,14 @@
 
 ## 🏗 System Architecture
 
-The project centers around the `predinex`,  Soroban smart contract which manages pool states, betting logic, and fund distribution. It utilizes the Stellar Asset Contract (SAC) for secure token transfers.
+The project centers around the `agegg` Soroban smart contract which manages pool states, betting logic, and fund distribution. It utilizes the Stellar Asset Contract (SAC) for secure token transfers.
 
 ```mermaid
 graph TD
     User[User / Client]
     
     subgraph Stellar_Blockchain [Stellar Blockchain]
-        Contract[predinex.wasm]
+        Contract[agegg.wasm]
         Ledger[Ledger State]
     end
     
@@ -81,7 +81,7 @@ stateDiagram-v2
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd predinex-stellar
+   cd agegg-stellar
    ```
 
 2. **Quick Start (Recommended)**
@@ -93,7 +93,7 @@ stateDiagram-v2
 
 3. **Build the Contract**
    ```bash
-   cd contracts/predinex
+   cd contracts/agegg
    stellar contract build
    ```
 
@@ -104,7 +104,7 @@ stateDiagram-v2
 
 ## 🛣️ Roadmap to Launch
 
-Predinex Stellar follows a phased approach to bring a premium betting experience to the ecosystem.
+AGEGG Stellar follows a phased approach to bring a premium betting experience to the ecosystem.
 
 ### Phase 1: Core Soroban Implementation (COMPLETED)
 - ✅ Core contract logic (Pools, Bets, Settlement).
@@ -158,7 +158,7 @@ npm run build
 
 **Smart Contracts:**
 ```bash
-cd contracts/predinex
+cd contracts/agegg
 cargo fmt
 cargo fmt --check
 cargo clippy -- -D warnings

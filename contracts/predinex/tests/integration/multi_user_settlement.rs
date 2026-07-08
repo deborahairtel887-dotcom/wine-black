@@ -12,7 +12,7 @@
 
 extern crate std;
 
-use predinex::{
+use agegg::{
     ClaimStatus, Pool, PoolStatus, PredinexContract, PredinexContractClient, MIN_CREATOR_DEPOSIT,
 };
 use soroban_sdk::{

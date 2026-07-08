@@ -1,6 +1,6 @@
 # Contract Versioning & Migration Strategy
 
-This document defines how the Predinex smart contract evolves over time, how breaking changes are communicated, and the steps required to deploy and migrate to a new contract version.
+This document defines how the AGEGG smart contract evolves over time, how breaking changes are communicated, and the steps required to deploy and migrate to a new contract version.
 
 > **Reference from contributor docs:** Developers making contract changes must consult this document before opening a PR. Frontend changes that depend on new or modified contract interfaces must be coordinated through the process described here.
 
@@ -8,11 +8,11 @@ This document defines how the Predinex smart contract evolves over time, how bre
 
 ## Versioning model
 
-Predinex uses **semantic versioning** for the contract interface, tracked via the `version` field in the `Cargo.toml` of `contracts/predinex/`:
+AGEGG uses **semantic versioning** for the contract interface, tracked via the `version` field in the `Cargo.toml` of `contracts/agegg/`:
 
 ```toml
 [package]
-name = "predinex"
+name = "agegg"
 version = "0.1.0"
 ```
 
@@ -59,26 +59,26 @@ All contract PRs must reference this document in the PR description and confirm 
 
 ```bash
 # From the repo root
-cd contracts/predinex
+cd contracts/agegg
 cargo test
 cargo build --release --target wasm32-unknown-unknown
 ```
 
-The compiled WASM lives at `target/wasm32-unknown-unknown/release/predinex.wasm`.
+The compiled WASM lives at `target/wasm32-unknown-unknown/release/agegg.wasm`.
 
 ### 2. Optimize (production builds only)
 
 ```bash
-stellar contract optimize --wasm target/wasm32-unknown-unknown/release/predinex.wasm
+stellar contract optimize --wasm target/wasm32-unknown-unknown/release/agegg.wasm
 ```
 
-Output: `predinex.optimized.wasm`
+Output: `agegg.optimized.wasm`
 
 ### 3. Deploy to testnet
 
 ```bash
 stellar contract deploy \
-  --wasm predinex.optimized.wasm \
+  --wasm agegg.optimized.wasm \
   --network testnet \
   --source <deployer-account>
 ```
@@ -154,7 +154,7 @@ stellar contract invoke \
 
 ## Links
 
-- [Contract source](../../contracts/predinex/src/lib.rs)
+- [Contract source](../../contracts/agegg/src/lib.rs)
 - [Event schemas](./CONTRACT_EVENTS.md)
 - [Development guide](../DEVELOPMENT.md)
 - [Release process](../../RELEASE.md)

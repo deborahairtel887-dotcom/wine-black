@@ -1,6 +1,6 @@
 # Wallet and Network Support
 
-This page is the single source of truth for wallet, network, and migration support in the Predinex web app.
+This page is the single source of truth for wallet, network, and migration support in the AGEGG web app.
 
 ## Current Support
 

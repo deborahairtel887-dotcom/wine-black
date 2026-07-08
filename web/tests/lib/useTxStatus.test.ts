@@ -5,7 +5,7 @@ import { useTxStatus } from '../../app/lib/hooks/useTxStatus';
 vi.mock('../../app/lib/runtime-config', () => ({
   getRuntimeConfig: vi.fn(() => ({
     network: 'testnet',
-    contract: { address: 'ST1TEST', name: 'predinex-pool', id: 'ST1TEST.predinex-pool' },
+    contract: { address: 'ST1TEST', name: 'agegg-pool', id: 'ST1TEST.agegg-pool' },
     api: { coreApiUrl: 'https://api.testnet.hiro.so', explorerUrl: '', rpcUrl: '' },
   })),
 }));

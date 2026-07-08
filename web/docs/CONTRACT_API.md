@@ -1,6 +1,6 @@
-# Predinex Contract API Reference
+# AGEGG Contract API Reference
 
-This document serves as the comprehensive API reference for the Predinex Stellar/Soroban smart contract.
+This document serves as the comprehensive API reference for the AGEGG Stellar/Soroban smart contract.
 
 ## Entrypoints
 
@@ -118,7 +118,7 @@ Claims winnings from a settled pool.
 ### Example
 ```json
 {
-  "topics": ["Predinex", "place_bet"],
+  "topics": ["AGEGG", "place_bet"],
   "data": { "user": "GB...", "pool_id": 1, "outcome": 0, "amount": 10000000 }
 }
 ```

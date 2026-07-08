@@ -93,7 +93,7 @@ export function PoolEmbedWidget({ poolId, theme }: Props) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const msg = {
-      type: 'predinex:pool-embed:ready',
+      type: 'agegg:pool-embed:ready',
       poolId,
       height: document.body.scrollHeight,
     };
@@ -104,7 +104,7 @@ export function PoolEmbedWidget({ poolId, theme }: Props) {
     if (!connected || selectedOutcome === null || !betAmount) return;
     try {
       // Dispatch bet via Freighter – integration point with existing transaction helpers
-      window.parent.postMessage({ type: 'predinex:pool-embed:bet', poolId, outcomeId: selectedOutcome, amount: betAmount }, '*');
+      window.parent.postMessage({ type: 'agegg:pool-embed:bet', poolId, outcomeId: selectedOutcome, amount: betAmount }, '*');
     } catch (e: any) {
       setError(e.message);
     }
@@ -219,14 +219,14 @@ export function PoolEmbedWidget({ poolId, theme }: Props) {
         !connected && pool.status === 'open' && (
           <p style={{ fontSize: '0.8em', opacity: 0.6, textAlign: 'center' }}>
             Connect Freighter on{' '}
-            <a href="https://predinex.app" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--embed-primary)' }}>predinex.app</a>
+            <a href="https://agegg.io" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--embed-primary)' }}>agegg.io</a>
             {' '}to place a bet.
           </p>
         )
       )}
 
       <p style={{ fontSize: '0.75em', opacity: 0.4, marginTop: 12, textAlign: 'right' }}>
-        Status: {pool.status} · Powered by Predinex
+        Status: {pool.status} · Powered by AGEGG
       </p>
     </div>
   );

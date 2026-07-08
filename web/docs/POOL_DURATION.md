@@ -1,7 +1,7 @@
 # Pool Duration Policy
 
-> Reference: contract function `PredinexContract::create_pool` and the public
-> constant `MIN_POOL_DURATION_SECS` in `contracts/predinex/src/lib.rs`.
+> Reference: contract function `AgeggContract::create_pool` and the public
+> constant `MIN_POOL_DURATION_SECS` in `contracts/agegg/src/lib.rs`.
 > Issue #151.
 
 This document is the canonical reference for the contract-enforced bounds on
@@ -70,12 +70,12 @@ is a soft frontend cap; the contract does not impose an upper limit.
 | Concern                        | Action                                                                                                     |
 |--------------------------------|------------------------------------------------------------------------------------------------------------|
 | Existing pools created before #151 | No effect. The guard runs only at creation time; already-stored pools retain their original durations. |
-| Future minimum tweaks           | Update both `MIN_POOL_DURATION_SECS` in `contracts/predinex/src/lib.rs` and the same-named export in `web/app/lib/validators.ts`. Bump the contract version and document the change in `web/docs/CONTRACT_VERSIONING.md`. |
+| Future minimum tweaks           | Update both `MIN_POOL_DURATION_SECS` in `contracts/agegg/src/lib.rs` and the same-named export in `web/app/lib/validators.ts`. Bump the contract version and document the change in `web/docs/CONTRACT_VERSIONING.md`. |
 | Indexers                        | A `create_pool` event whose pool record has `expiry - created_at < MIN_POOL_DURATION_SECS` cannot occur on a contract revision running this guard, but historical events from older revisions may. |
 
 ## Test cases
 
-Covered in `contracts/predinex/src/test.rs`:
+Covered in `contracts/agegg/src/test.rs`:
 
 - `issue151_create_pool_below_minimum_duration_is_rejected` — `duration = MIN - 1` panics with `"Duration below minimum"`.
 - `issue151_create_pool_with_zero_duration_is_rejected` — `duration = 0` is rejected by the same guard.

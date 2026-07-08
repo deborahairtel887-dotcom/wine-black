@@ -22,13 +22,13 @@ describe('PWAInstallPrompt', () => {
 
   it('stays hidden until the browser offers an install prompt', () => {
     render(<PWAInstallPrompt />);
-    expect(screen.queryByRole('dialog', { name: /install predinex/i })).toBeNull();
+    expect(screen.queryByRole('dialog', { name: /install agegg/i })).toBeNull();
   });
 
   it('shows the install banner when beforeinstallprompt fires', () => {
     render(<PWAInstallPrompt />);
     fireBeforeInstallPrompt();
-    expect(screen.getByRole('dialog', { name: /install predinex/i })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', { name: /install agegg/i })).toBeInTheDocument();
   });
 
   it('invokes the deferred prompt when Install is clicked', async () => {
@@ -40,7 +40,7 @@ describe('PWAInstallPrompt', () => {
     });
 
     expect(event.prompt).toHaveBeenCalledTimes(1);
-    expect(screen.queryByRole('dialog', { name: /install predinex/i })).toBeNull();
+    expect(screen.queryByRole('dialog', { name: /install agegg/i })).toBeNull();
   });
 
   it('can be dismissed without installing', () => {
@@ -48,6 +48,6 @@ describe('PWAInstallPrompt', () => {
     fireBeforeInstallPrompt();
 
     fireEvent.click(screen.getByRole('button', { name: /dismiss install prompt/i }));
-    expect(screen.queryByRole('dialog', { name: /install predinex/i })).toBeNull();
+    expect(screen.queryByRole('dialog', { name: /install agegg/i })).toBeNull();
   });
 });

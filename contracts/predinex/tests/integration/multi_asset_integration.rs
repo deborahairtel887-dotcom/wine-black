@@ -13,7 +13,7 @@
 
 extern crate std;
 
-use predinex::{ContractError, PredinexContract, PredinexContractClient};
+use agegg::{ContractError, PredinexContract, PredinexContractClient};
 use soroban_sdk::{
     testutils::{Address as _, Ledger},
     token, Address, Env, String, Vec,

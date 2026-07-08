@@ -1,13 +1,13 @@
 # Settlement Bot — Deployment Guide
 
 The settlement bot is a headless Node.js process that periodically scans the
-Predinex contract for expired-but-unsettled pools and calls `settle_pools` on-chain.
+AGEGG contract for expired-but-unsettled pools and calls `settle_pools` on-chain.
 
 ## Prerequisites
 
 - **Node.js 18+** (or Docker)
 - A Stellar account that is the **contract admin** (the bot wallet)
-- The deployed Predinex contract ID
+- The deployed AGEGG contract ID
 
 ---
 
@@ -36,7 +36,7 @@ DRY_RUN=true npm start
 |---|---|---|---|
 | `STELLAR_RPC_URL` | ✅ | — | Soroban RPC endpoint |
 | `STELLAR_NETWORK` | — | `testnet` | `testnet` or `mainnet` |
-| `CONTRACT_ID` | ✅ | — | Predinex contract ID (C… strkey) |
+| `CONTRACT_ID` | ✅ | — | AGEGG contract ID (C… strkey) |
 | `BOT_SECRET_KEY` | ✅ | — | Bot wallet secret key (must be contract admin) |
 | `POLL_INTERVAL_MS` | — | `300000` | Poll interval (ms). 300000 = 5 minutes |
 | `BATCH_SIZE` | — | `100` | Pools read per RPC call (max 100) |
@@ -91,14 +91,14 @@ Return `null` to skip a pool (it will be logged as needing manual settlement).
 
 ```bash
 cd bot
-docker build -t predinex-settlement-bot .
+docker build -t agegg-settlement-bot .
 docker run --rm \
   -e STELLAR_RPC_URL="https://soroban-testnet.stellar.org" \
   -e STELLAR_NETWORK="testnet" \
   -e CONTRACT_ID="C..." \
   -e BOT_SECRET_KEY="S..." \
   -e AUTO_SETTLE_ENABLED="true" \
-  predinex-settlement-bot
+  agegg-settlement-bot
 ```
 
 ### docker-compose
@@ -162,7 +162,7 @@ curl -L https://fly.io/install.sh | sh
 fly auth login
 
 # Launch (creates fly.toml — do this once)
-fly launch --no-deploy --name predinex-settlement-bot
+fly launch --no-deploy --name agegg-settlement-bot
 ```
 
 Fly will create a `fly.toml`. Adjust it:
@@ -232,7 +232,7 @@ Set up alerts in your log aggregator for any `"level":"error"` lines.
 ### Webhook notifications
 
 Set `WEBHOOK_URL` to receive a POST after each cycle that contains settlements.
-Verify the `X-Predinex-Signature` header (HMAC-SHA256 of the request body using
+Verify the `X-AGEGG-Signature` header (HMAC-SHA256 of the request body using
 `WEBHOOK_SECRET`) to authenticate the sender:
 
 ```typescript

@@ -17,7 +17,7 @@ import {
 describe('validateContractId', () => {
   it('accepts a valid mainnet contract identifier', () => {
     const result = validateContractId(
-      'SPENV2J0V4BHRFAZ6FVF97K9ZGQJ0GT19RC3JFN7.predinex-pool',
+      'SPENV2J0V4BHRFAZ6FVF97K9ZGQJ0GT19RC3JFN7.agegg-pool',
       'mainnet'
     );
     expect(result.valid).toBe(true);
@@ -26,7 +26,7 @@ describe('validateContractId', () => {
 
   it('accepts a valid testnet contract identifier', () => {
     const result = validateContractId(
-      'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.predinex-pool',
+      'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.agegg-pool',
       'testnet'
     );
     expect(result.valid).toBe(true);
@@ -40,7 +40,7 @@ describe('validateContractId', () => {
 
   it('rejects a network/address mismatch', () => {
     const result = validateContractId(
-      'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.predinex-pool',
+      'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.agegg-pool',
       'mainnet'
     );
     expect(result.valid).toBe(false);

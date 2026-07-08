@@ -13,8 +13,8 @@ vi.mock('../../app/lib/runtime-config', () => ({
     network: 'testnet',
     contract: {
       address: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM',
-      name: 'predinex-pool',
-      id: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.predinex-pool',
+      name: 'agegg-pool',
+      id: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.agegg-pool',
     },
     api: {
       coreApiUrl: 'https://api.testnet.hiro.so',

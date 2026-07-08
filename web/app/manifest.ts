@@ -7,8 +7,8 @@ import type { MetadataRoute } from 'next';
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Predinex — Prediction Markets on Stellar',
-    short_name: 'Predinex',
+    name: 'AGEGG — Prediction Markets on Stellar',
+    short_name: 'AGEGG',
     description:
       'Decentralized prediction markets on Stellar. Predict, bet, and win with Soroban-powered smart contracts.',
     start_url: '/',

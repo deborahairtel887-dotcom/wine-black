@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Predinex Stellar — Testnet Deployment Script
+# AGEGG Stellar — Testnet Deployment Script
 #
 # Builds the Soroban contract, deploys it to Stellar testnet, and invokes
 # the initialize function with the configured admin and treasury addresses.
@@ -26,7 +26,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-CONTRACT_DIR="$REPO_ROOT/contracts/predinex"
+CONTRACT_DIR="$REPO_ROOT/contracts/agegg"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -65,11 +65,11 @@ fi
 
 SOROBAN_RPC_URL="${SOROBAN_RPC_URL:-https://soroban-testnet.stellar.org}"
 SOROBAN_NETWORK_PASSPHRASE="${SOROBAN_NETWORK_PASSPHRASE:-Test SDF Network ; September 2015}"
-SOROBAN_WASM_PATH="${SOROBAN_WASM_PATH:-$CONTRACT_DIR/target/wasm32-unknown-unknown/release/predinex.optimized.wasm}"
+SOROBAN_WASM_PATH="${SOROBAN_WASM_PATH:-$CONTRACT_DIR/target/wasm32-unknown-unknown/release/agegg.optimized.wasm}"
 
 echo ""
 echo "============================================"
-echo "  Predinex — Testnet Deployment"
+echo "  AGEGG — Testnet Deployment"
 echo "============================================"
 echo ""
 
@@ -81,7 +81,7 @@ info "Contract built successfully."
 
 # ─── Step 2: Optimize WASM ───────────────────────────────────────────────────
 info "Step 2: Optimizing WASM..."
-WASM_SRC="$CONTRACT_DIR/target/wasm32-unknown-unknown/release/predinex.wasm"
+WASM_SRC="$CONTRACT_DIR/target/wasm32-unknown-unknown/release/agegg.wasm"
 stellar contract optimize --wasm "$WASM_SRC"
 info "WASM optimized."
 

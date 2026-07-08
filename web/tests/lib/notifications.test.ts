@@ -95,7 +95,7 @@ describe('push notification helpers', () => {
       expect.objectContaining({
         method: 'POST',
         headers: expect.objectContaining({
-          'x-predinex-wallet-address': 'GABC123',
+          'x-agegg-wallet-address': 'GABC123',
         }),
       }),
     );

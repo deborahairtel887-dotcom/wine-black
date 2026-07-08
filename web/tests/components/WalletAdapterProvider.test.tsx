@@ -69,7 +69,7 @@ describe('WalletAdapterProvider', () => {
   });
 
   it('calls connect() on mount when a persisted address exists and Freighter is installed', async () => {
-    localStorage.setItem('predinex:wallet:address', 'GCTEST123');
+    localStorage.setItem('agegg:wallet:address', 'GCTEST123');
     vi.mocked(isFreighterInstalled).mockReturnValue(true);
 
     renderWithProvider();
@@ -80,7 +80,7 @@ describe('WalletAdapterProvider', () => {
   });
 
   it('does NOT call connect() on mount when Freighter is NOT installed', async () => {
-    localStorage.setItem('predinex:wallet:address', 'GCTEST123');
+    localStorage.setItem('agegg:wallet:address', 'GCTEST123');
     vi.mocked(isFreighterInstalled).mockReturnValue(false);
 
     renderWithProvider();
@@ -99,13 +99,13 @@ describe('WalletAdapterProvider', () => {
       mockStateCallback?.({ address: 'GCABC456', isConnected: true, isLoading: false });
     });
 
-    expect(localStorage.getItem('predinex:wallet:address')).toBe('GCABC456');
+    expect(localStorage.getItem('agegg:wallet:address')).toBe('GCABC456');
     expect(screen.getByTestId('address').textContent).toBe('GCABC456');
     expect(screen.getByTestId('connected').textContent).toBe('true');
   });
 
   it('clears localStorage when disconnect() is called', async () => {
-    localStorage.setItem('predinex:wallet:address', 'GCABC456');
+    localStorage.setItem('agegg:wallet:address', 'GCABC456');
     renderWithProvider();
     await act(async () => {});
 
@@ -116,11 +116,11 @@ describe('WalletAdapterProvider', () => {
 
     await userEvent.click(screen.getByRole('button', { name: 'disconnect' }));
 
-    expect(localStorage.getItem('predinex:wallet:address')).toBeNull();
+    expect(localStorage.getItem('agegg:wallet:address')).toBeNull();
   });
 
   it('clears localStorage when adapter patches address to null', async () => {
-    localStorage.setItem('predinex:wallet:address', 'GCABC456');
+    localStorage.setItem('agegg:wallet:address', 'GCABC456');
     renderWithProvider();
     await act(async () => {});
 
@@ -128,19 +128,19 @@ describe('WalletAdapterProvider', () => {
       mockStateCallback?.({ address: null, isConnected: false });
     });
 
-    expect(localStorage.getItem('predinex:wallet:address')).toBeNull();
+    expect(localStorage.getItem('agegg:wallet:address')).toBeNull();
     expect(screen.getByTestId('address').textContent).toBe('none');
   });
 
   it('removes stale persisted address when connect() rejects', async () => {
-    localStorage.setItem('predinex:wallet:address', 'GCSTALE');
+    localStorage.setItem('agegg:wallet:address', 'GCSTALE');
     vi.mocked(isFreighterInstalled).mockReturnValue(true);
     mockConnect.mockRejectedValue(new Error('extension rejected'));
 
     renderWithProvider();
 
     await waitFor(() => {
-      expect(localStorage.getItem('predinex:wallet:address')).toBeNull();
+      expect(localStorage.getItem('agegg:wallet:address')).toBeNull();
     });
   });
 });

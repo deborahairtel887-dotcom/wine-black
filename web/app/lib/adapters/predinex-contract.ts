@@ -1,5 +1,5 @@
 /**
- * Write-side adapter: Soroban contract calls for the Predinex pool contract.
+ * Write-side adapter: Soroban contract calls for the AGEGG pool contract.
  * Keeps wallet prompt details, argument encoding, and contract identity out of UI components.
  */
 import { getRuntimeConfig } from '../runtime-config';

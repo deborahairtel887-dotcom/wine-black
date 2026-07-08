@@ -135,9 +135,9 @@ export function activitiesToJSON(activities: ActivityItem[]): string {
   return JSON.stringify(toExportRecords(activities), null, 2);
 }
 
-/** Builds a download filename, e.g. `predinex-activity_2026-03-01_2026-05-30.csv`. */
+/** Builds a download filename, e.g. `agegg-activity_2026-03-01_2026-05-30.csv`. */
 export function buildExportFilename(format: ExportFormat, window: ExportWindow): string {
-  return `predinex-activity_${window.from}_${window.to}.${format}`;
+  return `agegg-activity_${window.from}_${window.to}.${format}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -220,8 +220,8 @@ export function poolToJSON(pool: PoolLike, poolId?: number): string {
   return JSON.stringify(poolToExportRecord(pool, poolId), null, 2);
 }
 
-/** Descriptive pool export filename: `predinex-pool-{id}-{date}.{ext}`. */
+/** Descriptive pool export filename: `agegg-pool-{id}-{date}.{ext}`. */
 export function buildPoolExportFilename(poolId: number, format: ExportFormat): string {
   const date = new Date().toISOString().slice(0, 10);
-  return `predinex-pool-${poolId}-${date}.${format}`;
+  return `agegg-pool-${poolId}-${date}.${format}`;
 }

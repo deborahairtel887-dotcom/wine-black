@@ -98,7 +98,7 @@ export default function PoolExportButton({ pool, poolId, isCreator = false, wall
       if (!res.ok) throw new Error('Export failed');
       const blob = await res.blob();
       const date = new Date().toISOString().slice(0, 10);
-      const filename = `predinex-pool-${poolId}-participants-${date}.${format}`;
+      const filename = `agegg-pool-${poolId}-participants-${date}.${format}`;
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

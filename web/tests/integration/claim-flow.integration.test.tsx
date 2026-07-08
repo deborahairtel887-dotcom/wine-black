@@ -86,8 +86,8 @@ vi.mock('../../app/lib/runtime-config', () => ({
     network: 'testnet' as const,
     contract: {
       address: 'ST1TEST',
-      name: 'predinex-pool',
-      id: 'ST1TEST.predinex-pool',
+      name: 'agegg-pool',
+      id: 'ST1TEST.agegg-pool',
     },
     api: {
       coreApiUrl: 'https://api.testnet.hiro.so',

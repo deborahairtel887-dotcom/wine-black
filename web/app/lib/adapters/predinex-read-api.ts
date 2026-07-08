@@ -1,5 +1,5 @@
 /**
- * Read-side adapter: Canonical Soroban read-only calls for the Predinex contract.
+ * Read-side adapter: Canonical Soroban read-only calls for the AGEGG contract.
  * UI and hooks should import chain reads from here instead of `stacks-api` where practical.
  *
  * This adapter uses the Soroban RPC layer for pool and user bet data,

@@ -1,12 +1,12 @@
-# CONTRACT_API.md — Predinex Contract Public Entrypoints
+# CONTRACT_API.md — AGEGG Contract Public Entrypoints
 
 #cool
 
-> **Contract:** `predinex` · **Version:** 0.1.0  
+> **Contract:** `agegg` · **Version:** 0.1.0  
 > **SDK:** Soroban SDK 22 · **Network:** Stellar Testnet / Mainnet  
-> **Source:** `contracts/predinex/src/lib.rs`
+> **Source:** `contracts/agegg/src/lib.rs`
 
-Complete reference for every public entrypoint in `PredinexContract`.  
+Complete reference for every public entrypoint in `AgeggContract`.  
 Sections: [Pool Management](#pool-management) · [Betting](#betting) · [Settlement](#settlement) · [Claims](#claims) · [Pool Templates](#pool-templates) · [Admin](#admin) · [Queries](#queries)
 
 ---

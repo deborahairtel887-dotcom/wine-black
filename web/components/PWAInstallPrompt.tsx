@@ -55,7 +55,7 @@ export default function PWAInstallPrompt() {
   return (
     <div
       role="dialog"
-      aria-label="Install Predinex"
+      aria-label="Install AGEGG"
       className="fixed bottom-4 left-1/2 z-50 w-[min(92vw,28rem)] -translate-x-1/2 rounded-2xl border border-border bg-card/95 p-4 shadow-xl backdrop-blur-md"
     >
       <div className="flex items-center gap-3">
@@ -63,7 +63,7 @@ export default function PWAInstallPrompt() {
           <Download className="h-5 w-5 text-primary" aria-hidden="true" />
         </div>
         <div className="min-w-0 grow">
-          <p className="text-sm font-bold">Install Predinex</p>
+          <p className="text-sm font-bold">Install AGEGG</p>
           <p className="text-xs text-muted-foreground">
             Add the app to your home screen for faster, offline-ready access.
           </p>

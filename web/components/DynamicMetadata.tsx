@@ -15,9 +15,9 @@ export default function DynamicMetadata({
     title,
     description,
     image = '/og-image.png',
-    url = 'https://predinex.io'
+    url = 'https://agegg.io'
 }: DynamicMetadataProps) {
-    const fullTitle = `${title} | Predinex`;
+    const fullTitle = `${title} | AGEGG`;
 
     return (
         <Head>

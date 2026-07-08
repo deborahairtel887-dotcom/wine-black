@@ -1,12 +1,12 @@
 .PHONY: benchmark benchmark-report test fmt clippy
 
 CARGO := $(HOME)/.cargo/bin/cargo
-CONTRACT_DIR := contracts/predinex
+CONTRACT_DIR := contracts/agegg
 
 # Run the full performance benchmark suite and print a summary table.
-# Results are written to contracts/predinex/benchmark-results.json.
+# Results are written to contracts/agegg/benchmark-results.json.
 benchmark:
-	@echo "=== Predinex Contract Benchmark Suite ==="
+	@echo "=== AGEGG Contract Benchmark Suite ==="
 	@echo ""
 	@rm -f $(CONTRACT_DIR)/benchmark-results.json
 	@cd $(CONTRACT_DIR) && $(CARGO) test --release bench_ -- --nocapture 2>&1 | grep -E "iters|FAILED|error"

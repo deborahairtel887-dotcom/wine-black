@@ -8,7 +8,7 @@ A serialized `ProcessedMarket[]` list, including computed fields used by the UI 
 
 ## Cache key
 
-`predinex_market_list_v1`
+`agegg_market_list_v1`
 
 ## Freshness / invalidation rules
 

@@ -5,7 +5,7 @@
 
 extern crate std;
 
-use predinex::{Pool, PredinexContract, PredinexContractClient, MIN_CREATOR_DEPOSIT};
+use agegg::{Pool, PredinexContract, PredinexContractClient, MIN_CREATOR_DEPOSIT};
 use soroban_sdk::{
     testutils::{Address as _, Ledger},
     token, Address, Env, String,
@@ -342,7 +342,7 @@ fn m2_get_pools_batch_lifecycle() {
 /// M9: rescue_tokens rejects non-admin callers.
 #[test]
 fn m9_rescue_tokens_rejects_non_admin() {
-    use predinex::ContractError;
+    use agegg::ContractError;
     let ctx = setup();
     let non_admin = Address::generate(&ctx.env);
     let to = Address::generate(&ctx.env);

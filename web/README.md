@@ -1,6 +1,6 @@
-# Predinex Frontend
+# AGEGG Frontend
 
-Next.js 14 application providing the user interface for Predinex Prediction Markets.
+Next.js 14 application providing the user interface for AGEGG Prediction Markets.
 
 ## Tech Stack
 - **Framework**: Next.js 14 (App Router)

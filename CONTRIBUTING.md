@@ -1,4 +1,4 @@
-# Contributing to Predinex Stellar
+# Contributing to AGEGG Stellar
 
 Welcome, and thank you for your interest in contributing! This guide covers everything you need to go from a clean checkout to an open pull request: local setup, running checks, documentation standards, and the issue workflow.
 
@@ -42,7 +42,7 @@ Run the bootstrap script to verify everything is installed:
 
 ```bash
 git clone <repository-url>
-cd predinex-stellar
+cd agegg-stellar
 
 # Install web dependencies
 cd web
@@ -124,7 +124,7 @@ npm run test:coverage
 
 ## 4. Running Contract Checks
 
-Run these from `contracts/predinex/`:
+Run these from `contracts/agegg/`:
 
 ```bash
 # Format check
@@ -143,7 +143,7 @@ To build the WASM artifact:
 stellar contract build
 ```
 
-The compiled output lands at `contracts/predinex/target/wasm32-unknown-unknown/release/predinex.wasm`.
+The compiled output lands at `contracts/agegg/target/wasm32-unknown-unknown/release/agegg.wasm`.
 
 For a full local deploy-to-testnet walkthrough, see the [Local End-to-End Runbook](./docs/local-runbook.md).
 

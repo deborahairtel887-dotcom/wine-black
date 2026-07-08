@@ -1,5 +1,5 @@
 /**
- * Centralized cache invalidation policy for Predinex.
+ * Centralized cache invalidation policy for AGEGG.
  *
  * ## Mutation → Invalidation Map
  *

@@ -6,8 +6,8 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                     <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform text-white font-bold">P</div>
-                        <span className="font-bold text-xl tracking-tight gradient-text">Predinex</span>
+                        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform text-white font-bold">A</div>
+                        <span className="font-bold text-xl tracking-tight gradient-text">AGEGG</span>
                     </Link>
 
                     <div className="flex gap-8 text-sm text-muted-foreground">
@@ -18,7 +18,7 @@ export default function Footer() {
                     </div>
 
                     <p className="text-sm text-muted-foreground">
-                        © 2026 Predinex Protocol. Built on Stellar.
+                        © 2026 AGEGG Protocol. Built on Stellar.
                     </p>
                 </div>
             </div>

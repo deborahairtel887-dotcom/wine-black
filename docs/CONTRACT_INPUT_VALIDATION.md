@@ -1,6 +1,6 @@
 # Contract Input Validation Audit
 
-This audit documents the public-entrypoint validation paths for the Predinex
+This audit documents the public-entrypoint validation paths for the AGEGG
 Soroban contract.
 
 ## Address Parameters

@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: predinex-settlement-bot:latest
-    container_name: predinex-settlement-bot
+    image: agegg-settlement-bot:latest
+    container_name: agegg-settlement-bot
     restart: unless-stopped
 
     environment:

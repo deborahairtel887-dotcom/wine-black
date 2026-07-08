@@ -2,7 +2,7 @@
  * Test mock surface guide.
  *
  * Preferred surfaces for production-facing suites:
- * - `predinexReadApi` and `predinexContract` adapter modules
+ * - `ageggReadApi` and `ageggContract` adapter modules
  * - `getUserActivityFromSoroban` and other Soroban event helpers
  * - `fetch` responses shaped like Soroban RPC / REST JSON
  *

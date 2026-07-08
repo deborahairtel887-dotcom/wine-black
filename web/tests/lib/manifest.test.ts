@@ -5,8 +5,8 @@ describe('web app manifest', () => {
   const result = manifest();
 
   it('declares the installability essentials', () => {
-    expect(result.name).toContain('Predinex');
-    expect(result.short_name).toBe('Predinex');
+    expect(result.name).toContain('AGEGG');
+    expect(result.short_name).toBe('AGEGG');
     expect(result.start_url).toBe('/');
     expect(result.display).toBe('standalone');
   });

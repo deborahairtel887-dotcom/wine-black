@@ -4,7 +4,7 @@ import { useFilterPresets } from '../../app/lib/hooks/useFilterPresets';
 import { DEFAULT_MARKET_FILTERS } from '../../app/lib/market-filtering';
 import type { MarketFilters } from '../../app/lib/market-types';
 
-const STORAGE_KEY = 'predinex:filter-presets';
+const STORAGE_KEY = 'agegg:filter-presets';
 
 const filtersA: MarketFilters = { ...DEFAULT_MARKET_FILTERS, search: 'btc', status: 'open' };
 const filtersB: MarketFilters = { ...DEFAULT_MARKET_FILTERS, sortBy: 'volume', status: 'settled' };

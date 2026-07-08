@@ -6,7 +6,7 @@ function request(method: string, body?: unknown, wallet = 'GABC123') {
     method,
     headers: {
       'Content-Type': 'application/json',
-      'x-predinex-wallet-address': wallet,
+      'x-agegg-wallet-address': wallet,
     },
     body: body ? JSON.stringify(body) : undefined,
   }) as never;

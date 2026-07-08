@@ -15,7 +15,7 @@
   "out": "../docs/api",
   "exclude": ["**/*.test.ts", "**/node_modules/**", "**/fixtures/**"],
   "includeVersion": true,
-  "name": "Predinex Stellar SDK Client",
+  "name": "AGEGG Stellar SDK Client",
   "readme": "none",
   "skipErrorChecking": true,
   "excludePrivate": true

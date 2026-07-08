@@ -1,5 +1,5 @@
 /**
- * Public contract facade for the Predinex pool creation flow.
+ * Public contract facade for the AGEGG pool creation flow.
  *
  * UI code should prefer importing from this module instead of reaching into
  * `web/app/lib/adapters/*` directly. The aggregator:
@@ -66,7 +66,7 @@ export function composePoolDescription(params: CreatePoolParams): string {
 }
 
 /**
- * Submit a pool-creation transaction through `predinexContract.createMarketSoroban`.
+ * Submit a pool-creation transaction through `ageggContract.createMarketSoroban`.
  *
  * The underlying contract call is `create_pool`. Asset / deposit metadata are
  * encoded in the description so the UI acceptance criteria are met today

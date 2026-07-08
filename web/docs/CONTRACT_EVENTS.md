@@ -1,4 +1,4 @@
-# Predinex Contract Event Schema
+# AGEGG Contract Event Schema
 
 This document describes all events emitted by the Predinex Soroban smart contract for off-chain indexing, monitoring, and integration.
 

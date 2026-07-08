@@ -3,7 +3,7 @@
  */
 import type { CreatePoolDraft } from './useCreateWizard';
 
-export const SAVED_POOL_TEMPLATES_KEY = 'predinex_saved_pool_templates_v1';
+export const SAVED_POOL_TEMPLATES_KEY = 'agegg_saved_pool_templates_v1';
 export const MAX_SAVED_TEMPLATES = 20;
 
 export type SettlementType = 'oracle' | 'twap' | 'manual';
@@ -43,7 +43,7 @@ export function buildPoolMetadataUri(draft: CreatePoolDraft): string {
   if (draft.referenceLink.trim()) {
     metadata.referenceLink = draft.referenceLink.trim();
   }
-  return `predinex://pool-meta/${encodeURIComponent(JSON.stringify(metadata))}`;
+  return `agegg://pool-meta/${encodeURIComponent(JSON.stringify(metadata))}`;
 }
 
 export function buildTemplateShareUrl(
