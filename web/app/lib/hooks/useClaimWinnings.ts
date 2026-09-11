@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { useToast } from '@/providers/ToastProvider';
-import { predinexContract } from '../adapters/predinex-contract';
+import { wineBlackContract } from '../adapters/wine-black-contract';
 import { invalidateOnClaimWinnings } from '../cache-invalidation';
 import { useWallet } from '@/components/WalletAdapterProvider';
 import { TxStage } from '../soroban-transaction-service';
@@ -30,7 +30,7 @@ export function useClaimWinnings(userAddress?: string | null) {
       setStage('idle');
 
       try {
-        const { txHash } = await predinexContract.claimWinningsSoroban({
+        const { txHash } = await wineBlackContract.claimWinningsSoroban({
           wallet,
           poolId,
           onStageChange: setStage,
@@ -50,7 +50,7 @@ export function useClaimWinnings(userAddress?: string | null) {
         );
         notifyBrowserEvent('Claim submitted', {
           body: `Winnings claim for pool #${poolId} is being processed.`,
-          tag: `predinex-claim-${poolId}`,
+          tag: `Wine Black-claim-${poolId}`,
         });
         showToast('Claim submitted successfully!', 'success');
         onSuccess?.();

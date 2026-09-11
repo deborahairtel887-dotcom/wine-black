@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import AuthGuard from '@/components/AuthGuard';
 import { useWallet } from '@/components/WalletAdapterProvider';
 import { useToast } from '@/app/providers/ToastProvider';
-import { predinexReadApi } from '@/app/lib/adapters/predinex-read-api';
+import { wineBlackReadApi } from '@/app/lib/adapters/wine-black-read-api';
 import { Loader2, AlertTriangle, Search, Ban, UserCheck, History, PlusCircle, Check, X } from 'lucide-react';
 import RouteErrorBoundary from '@/components/RouteErrorBoundary';
 
@@ -55,8 +55,8 @@ export default function AdminBans() {
       setCheckingAccess(true);
       try {
         // Fetch both admin and freezeAdmin for access checking
-        const freezeAdmin = await predinexReadApi.getFreezeAdmin();
-        const contractAdmin = await predinexReadApi.getPoolCount().then(() => null).catch(() => null); // fallback/best-effort
+        const freezeAdmin = await wineBlackReadApi.getFreezeAdmin();
+        const contractAdmin = await wineBlackReadApi.getPoolCount().then(() => null).catch(() => null); // fallback/best-effort
         
         const walletAddress = wallet.address.toUpperCase();
         const isAllowed = 
@@ -78,8 +78,8 @@ export default function AdminBans() {
 
   // Load from local storage
   useEffect(() => {
-    const storedCreators = localStorage.getItem('predinex:banned-creators');
-    const storedLog = localStorage.getItem('predinex:bans-audit-log');
+    const storedCreators = localStorage.getItem('Wine Black:banned-creators');
+    const storedLog = localStorage.getItem('Wine Black:bans-audit-log');
 
     if (storedCreators) {
       setBannedCreators(JSON.parse(storedCreators));
@@ -98,7 +98,7 @@ export default function AdminBans() {
         }
       ];
       setBannedCreators(initialMock);
-      localStorage.setItem('predinex:banned-creators', JSON.stringify(initialMock));
+      localStorage.setItem('Wine Black:banned-creators', JSON.stringify(initialMock));
     }
 
     if (storedLog) {
@@ -123,19 +123,19 @@ export default function AdminBans() {
         }
       ];
       setAuditLog(initialLog);
-      localStorage.setItem('predinex:bans-audit-log', JSON.stringify(initialLog));
+      localStorage.setItem('Wine Black:bans-audit-log', JSON.stringify(initialLog));
     }
   }, [wallet.address]);
 
   // Save changes helper
   const saveBannedCreators = (updatedList: BannedCreator[]) => {
     setBannedCreators(updatedList);
-    localStorage.setItem('predinex:banned-creators', JSON.stringify(updatedList));
+    localStorage.setItem('Wine Black:banned-creators', JSON.stringify(updatedList));
   };
 
   const saveAuditLog = (updatedLog: AuditLogEntry[]) => {
     setAuditLog(updatedLog);
-    localStorage.setItem('predinex:bans-audit-log', JSON.stringify(updatedLog));
+    localStorage.setItem('Wine Black:bans-audit-log', JSON.stringify(updatedLog));
   };
 
   // Actions

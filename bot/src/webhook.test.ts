@@ -85,7 +85,7 @@ describe("notify", () => {
 
     const [, options] = vi.mocked(fetch).mock.calls[0] as [string, RequestInit];
     const headers = options.headers as Record<string, string>;
-    expect(headers["X-Predinex-Signature"]).toMatch(/^sha256=[0-9a-f]{64}$/);
+    expect(headers["X-Wine Black-Signature"]).toMatch(/^sha256=[0-9a-f]{64}$/);
   });
 
   it("does not include signature when webhookSecret is null", async () => {
@@ -95,7 +95,7 @@ describe("notify", () => {
 
     const [, options] = vi.mocked(fetch).mock.calls[0] as [string, RequestInit];
     const headers = options.headers as Record<string, string>;
-    expect(headers["X-Predinex-Signature"]).toBeUndefined();
+    expect(headers["X-Wine Black-Signature"]).toBeUndefined();
   });
 
   it("includes correct settlement summary in payload", async () => {

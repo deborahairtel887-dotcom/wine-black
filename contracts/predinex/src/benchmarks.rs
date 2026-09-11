@@ -16,7 +16,7 @@ use soroban_sdk::{
 
 struct BenchCtx {
     env: Env,
-    client: PredinexContractClient<'static>,
+    client: WineBlackContractClient<'static>,
     token_id: Address,
 }
 
@@ -26,9 +26,9 @@ impl BenchCtx {
         env.mock_all_auths();
         env.cost_estimate().budget().reset_unlimited();
 
-        let contract_id = env.register(PredinexContract, ());
-        let client: PredinexContractClient<'static> =
-            PredinexContractClient::new(&env, &contract_id);
+        let contract_id = env.register(WineBlackContract, ());
+        let client: WineBlackContractClient<'static> =
+            WineBlackContractClient::new(&env, &contract_id);
 
         let treasury = Address::generate(&env);
         let token_admin = Address::generate(&env);

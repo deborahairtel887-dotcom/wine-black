@@ -15,7 +15,7 @@ export default function OfflinePage() {
         </div>
         <h1 className="text-2xl font-bold mb-2">You&apos;re offline</h1>
         <p className="text-muted-foreground mb-8">
-          Predinex can&apos;t reach the network right now. Check your connection — any
+          Wine Black can&apos;t reach the network right now. Check your connection — any
           pages you&apos;ve already visited remain available offline.
         </p>
         <button

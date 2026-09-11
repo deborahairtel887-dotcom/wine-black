@@ -1,4 +1,4 @@
-# Contributing to AGEGG Stellar
+# Contributing to Wine Black Stellar
 
 Welcome, and thank you for your interest in contributing! This guide covers everything you need to go from a clean checkout to an open pull request: local setup, running checks, documentation standards, and the issue workflow.
 
@@ -42,7 +42,7 @@ Run the bootstrap script to verify everything is installed:
 
 ```bash
 git clone <repository-url>
-cd agegg-stellar
+cd wine-black-stellar
 
 # Install web dependencies
 cd web
@@ -124,7 +124,7 @@ npm run test:coverage
 
 ## 4. Running Contract Checks
 
-Run these from `contracts/agegg/`:
+Run these from `contracts/wine-black/`:
 
 ```bash
 # Format check
@@ -143,7 +143,7 @@ To build the WASM artifact:
 stellar contract build
 ```
 
-The compiled output lands at `contracts/agegg/target/wasm32-unknown-unknown/release/agegg.wasm`.
+The compiled output lands at `contracts/wine-black/target/wasm32-unknown-unknown/release/wine-black.wasm`.
 
 For a full local deploy-to-testnet walkthrough, see the [Local End-to-End Runbook](./docs/local-runbook.md).
 
@@ -251,7 +251,7 @@ Dependabot is configured in [`.github/dependabot.yml`](./.github/dependabot.yml)
 | Ecosystem | Directory | Label |
 |-----------|-----------|-------|
 | npm | `/web` | `dependencies`, `npm` |
-| Cargo | `/contracts/predinex` | `dependencies`, `cargo` |
+| Cargo | `/contracts/wine-black` | `dependencies`, `cargo` |
 
 ### Merge policy
 

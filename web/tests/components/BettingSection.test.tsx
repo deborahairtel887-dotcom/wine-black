@@ -8,7 +8,7 @@ import * as StacksProvider from '@/components/StacksProvider';
 import * as NetworkMismatch from '../../lib/hooks/useNetworkMismatch';
 import * as TxStatusHook from '../../app/lib/hooks/useTxStatus';
 import { useToast } from '../../providers/ToastProvider';
-import { predinexContract } from '../../app/lib/adapters/predinex-contract';
+import { wineBlackContract } from '../../app/lib/adapters/wine-black-contract';
 import { renderWithProviders } from '../helpers/renderWithProviders';
 import * as NetworkMismatch from '../../lib/hooks/useNetworkMismatch';
 import { toastMessages } from '../../lib/toast-messages';
@@ -24,8 +24,8 @@ vi.mock('@/components/StacksProvider', () => ({
   StacksProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 
-vi.mock('../../app/lib/adapters/predinex-contract', () => ({
-  predinexContract: {
+vi.mock('../../app/lib/adapters/wine-black-contract', () => ({
+  wineBlackContract: {
     placeBetSoroban: vi.fn(),
   },
 }));
@@ -133,7 +133,7 @@ describe('BettingSection', () => {
     // With no amount entered the form is invalid, so submission is disabled.
     const betButton = screen.getByText(/Bet on Outcome A/i);
     expect(betButton).toBeDisabled();
-    expect(vi.mocked(predinexContract.placeBetSoroban)).not.toHaveBeenCalled();
+    expect(vi.mocked(wineBlackContract.placeBetSoroban)).not.toHaveBeenCalled();
   });
 
   it('shows an inline error and disables submit for a bet below the minimum', async () => {
@@ -148,7 +148,7 @@ describe('BettingSection', () => {
 
     expect(screen.getByRole('alert')).toHaveTextContent('Minimum bet is 0.1 XLM');
     expect(screen.getByText(/Bet on Outcome A/i)).toBeDisabled();
-    expect(vi.mocked(predinexContract.placeBetSoroban)).not.toHaveBeenCalled();
+    expect(vi.mocked(wineBlackContract.placeBetSoroban)).not.toHaveBeenCalled();
   });
 
   it('shows an inline error and disables submit for a bet above the maximum', async () => {
@@ -163,12 +163,12 @@ describe('BettingSection', () => {
 
     expect(screen.getByRole('alert')).toHaveTextContent('Maximum bet is 5 XLM');
     expect(screen.getByText(/Bet on Outcome A/i)).toBeDisabled();
-    expect(vi.mocked(predinexContract.placeBetSoroban)).not.toHaveBeenCalled();
+    expect(vi.mocked(wineBlackContract.placeBetSoroban)).not.toHaveBeenCalled();
   });
 
-  it('calls predinexContract.placeBet with correct parameters when placing bet', async () => {
+  it('calls wineBlackContract.placeBet with correct parameters when placing bet', async () => {
     vi.mocked(WalletAdapterProvider.useWallet).mockReturnValue(connectedWallet);
-    vi.mocked(predinexContract.placeBetSoroban).mockResolvedValue({ txHash: '0xbet-1' });
+    vi.mocked(wineBlackContract.placeBetSoroban).mockResolvedValue({ txHash: '0xbet-1' });
 
     const user = userEvent.setup();
     renderWithProviders(<BettingSection pool={mockPool} poolId={0} />);
@@ -180,7 +180,7 @@ describe('BettingSection', () => {
     await user.click(betButton);
 
     await waitFor(() => {
-      expect(predinexContract.placeBetSoroban).toHaveBeenCalledWith(
+      expect(wineBlackContract.placeBetSoroban).toHaveBeenCalledWith(
         expect.objectContaining({
           wallet: connectedWallet,
           poolId: 0,
@@ -194,7 +194,7 @@ describe('BettingSection', () => {
   it('disables buttons while betting is in progress', async () => {
     vi.mocked(WalletAdapterProvider.useWallet).mockReturnValue(connectedWallet);
 
-    vi.mocked(predinexContract.placeBetSoroban).mockImplementation(
+    vi.mocked(wineBlackContract.placeBetSoroban).mockImplementation(
       () => new Promise(() => {}) // Never resolves
     );
 

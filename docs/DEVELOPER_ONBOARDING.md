@@ -1,6 +1,6 @@
 # Developer Onboarding Guide
 
-Welcome to Predinex Stellar! This guide helps new developers get up and running quickly, with solutions for common setup issues.
+Welcome to Wine Black Stellar! This guide helps new developers get up and running quickly, with solutions for common setup issues.
 
 ---
 
@@ -79,8 +79,8 @@ rustup target add wasm32-unknown-unknown
 
 ```bash
 # Clone the repository
-git clone https://github.com/Mosas2000/predinex-stellar.git
-cd predinex-stellar
+git clone https://github.com/Mosas2000/Wine Black-stellar.git
+cd Wine Black-stellar
 
 # Install web dependencies
 cd web
@@ -139,7 +139,7 @@ npm run dev
 ### Smart Contracts
 
 ```bash
-cd contracts/predinex
+cd contracts/Wine Black
 
 # Format check
 cargo fmt --check
@@ -274,8 +274,8 @@ rustup update stable
 # Add WASM target if missing
 rustup target add wasm32-unknown-unknown
 
-# Try building again from contracts/predinex/
-cd contracts/predinex
+# Try building again from contracts/Wine Black/
+cd contracts/Wine Black
 cargo clean
 stellar contract build
 ```
@@ -306,14 +306,14 @@ npm test -- --run --reporter=verbose
 ### 1. Explore the Structure
 
 ```
-predinex-stellar/
+Wine Black-stellar/
 ├── web/                    # Next.js frontend
 │   ├── app/                # App Router (routes, pages, components)
 │   ├── lib/                # Utilities, hooks, API clients
 │   ├── components/         # Shared React components
 │   ├── tests/              # Vitest test suite
 │   └── package.json
-├── contracts/predinex/     # Soroban smart contracts (Rust)
+├── contracts/Wine Black/     # Soroban smart contracts (Rust)
 └── docs/                   # Architecture & deployment guides
 ```
 

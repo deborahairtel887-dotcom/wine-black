@@ -40,7 +40,7 @@
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFCT4"
                 },
                 {
-                  "string": "https://hooks.example.com/v1/predinex?token=abc123"
+                  "string": "https://hooks.example.com/v1/Wine Black?token=abc123"
                 },
                 {
                   "vec": [
@@ -313,7 +313,7 @@
                           "symbol": "url"
                         },
                         "val": {
-                          "string": "https://hooks.example.com/v1/predinex?token=abc123"
+                          "string": "https://hooks.example.com/v1/Wine Black?token=abc123"
                         }
                       }
                     ]

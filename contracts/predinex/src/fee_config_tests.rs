@@ -16,7 +16,7 @@ use soroban_sdk::{
 /// the treasury recipient / admin, mirroring `protocol_fee_tests::setup_contract`.
 fn setup() -> (
     Env,
-    PredinexContractClient<'static>,
+    WineBlackContractClient<'static>,
     Address,
     Address,
     Address,
@@ -24,8 +24,8 @@ fn setup() -> (
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_sac = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -37,7 +37,7 @@ fn setup() -> (
 
 fn make_pool(
     env: &Env,
-    client: &PredinexContractClient<'static>,
+    client: &WineBlackContractClient<'static>,
     token: &Address,
     creator: &Address,
 ) -> u32 {

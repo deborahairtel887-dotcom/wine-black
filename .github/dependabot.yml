@@ -1,31 +1,32 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/web"
-    schedule:
-      interval: "weekly"
-    labels:
-      - "dependencies"
-      - "npm"
-    groups:
-      npm-non-major:
-        patterns:
-          - "*"
-        update-types:
-          - "patch"
-          - "minor"
-
   - package-ecosystem: "cargo"
-    directory: "/contracts/predinex"
+    directory: "/contracts/wine-black"
     schedule:
       interval: "weekly"
     labels:
       - "dependencies"
       - "cargo"
     groups:
-      cargo-non-major:
-        patterns:
-          - "*"
+      patch-updates:
         update-types:
           - "patch"
+      minor-updates:
+        update-types:
           - "minor"
+
+  - package-ecosystem: "npm"
+    directory: "/bot"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "npm"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "github-actions"

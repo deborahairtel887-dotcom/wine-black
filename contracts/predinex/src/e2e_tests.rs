@@ -10,7 +10,7 @@ use soroban_sdk::{
 
 struct E2eEnv<'a> {
     env: Env,
-    client: PredinexContractClient<'a>,
+    client: WineBlackContractClient<'a>,
     token: Address,
     freeze_admin: Address,
     /// Address used as treasury_recipient in initialize(). Required by
@@ -25,8 +25,8 @@ fn setup_e2e() -> E2eEnv<'static> {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 

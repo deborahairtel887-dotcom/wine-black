@@ -1,4 +1,4 @@
-   Compiling predinex v0.1.0 (/home/solodev/Documents/dripsNetwork/second/predinex-stellar/contracts/predinex)
+   Compiling wine-black v0.1.0 (/home/solodev/Documents/dripsNetwork/second/predinex-stellar/contracts/wine-black)
 error[E0428]: the name `PoolPayoutState` is defined multiple times
    --> src/lib.rs:326:1
     |
@@ -494,4 +494,4 @@ error[E0283]: type annotations needed
 
 Some errors have detailed explanations: E0034, E0119, E0283, E0425, E0428, E0592, E0599.
 For more information about an error, try `rustc --explain E0034`.
-error: could not compile `predinex` (lib test) due to 42 previous errors
+error: could not compile `wine-black` (lib test) due to 42 previous errors

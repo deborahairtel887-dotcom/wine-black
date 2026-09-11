@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params;
   const poolId = parseInt(id, 10);
 
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://predinex.io';
-  const fallbackTitle = 'Predinex | Prediction Markets on Stellar';
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://wine-black.io';
+  const fallbackTitle = 'Wine Black | Prediction Markets on Stellar';
   const fallbackDescription =
     'Discover and participate in decentralised prediction markets on Stellar. Predict, bet, and win with Soroban-powered smart contracts.';
   const fallbackImage = `${siteUrl}/og-image.png`;
@@ -40,26 +40,26 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
     if (!pool) {
       return {
-        title: `Pool #${poolId} Not Found | Predinex`,
+        title: `Pool #${poolId} Not Found | Wine Black`,
         description: fallbackDescription,
         openGraph: {
-          title: `Pool #${poolId} Not Found | Predinex`,
+          title: `Pool #${poolId} Not Found | Wine Black`,
           description: fallbackDescription,
           images: [{ url: fallbackImage, width: 1200, height: 630 }],
         },
         twitter: {
           card: 'summary_large_image',
-          title: `Pool #${poolId} Not Found | Predinex`,
+          title: `Pool #${poolId} Not Found | Wine Black`,
           description: fallbackDescription,
           images: [fallbackImage],
         },
       };
     }
 
-    const title = `${pool.title} | Predinex`;
+    const title = `${pool.title} | Wine Black`;
     const description =
       pool.description ||
-      `Predict on "${pool.title}" — ${pool.outcomeA} vs ${pool.outcomeB}. Join the pool on Predinex.`;
+      `Predict on "${pool.title}" — ${pool.outcomeA} vs ${pool.outcomeB}. Join the pool on Wine Black.`;
     const ogImageUrl = `${siteUrl}/api/og/pool/${poolId}`;
     const poolUrl = `${siteUrl}/markets/${poolId}`;
 
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         title,
         description,
         url: poolUrl,
-        siteName: 'Predinex',
+        siteName: 'Wine Black',
         images: [
           {
             url: ogImageUrl,

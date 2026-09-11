@@ -18,7 +18,7 @@ use soroban_sdk::{
 /// A funded test fixture: an initialized contract plus a mintable token.
 struct Fixture {
     env: Env,
-    client: PredinexContractClient<'static>,
+    client: WineBlackContractClient<'static>,
     token: token::Client<'static>,
     token_admin_client: token::StellarAssetClient<'static>,
     /// Protocol admin — the only account authorized to settle pools.
@@ -29,8 +29,8 @@ fn setup() -> Fixture {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());

@@ -77,7 +77,7 @@ export default function AuthGuard({
                 <div className="text-sm text-left">
                   <p className="font-medium text-blue-500 mb-1">Supported Wallets</p>
                   <p className="text-muted-foreground">
-                    Freighter wallet is supported for connecting to AGEGG on Stellar.
+                    Freighter wallet is supported for connecting to Wine Black on Stellar.
                   </p>
                 </div>
               </div>

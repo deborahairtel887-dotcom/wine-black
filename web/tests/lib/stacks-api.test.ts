@@ -34,8 +34,8 @@ vi.mock('../../app/lib/runtime-config', () => ({
     network: 'testnet',
     contract: {
       address: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM',
-      name: 'agegg-pool',
-      id: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.agegg-pool',
+      name: 'wine-black-pool',
+      id: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.wine-black-pool',
     },
     api: {
       coreApiUrl: 'https://api.testnet.hiro.so',

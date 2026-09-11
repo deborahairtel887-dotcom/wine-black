@@ -16,11 +16,11 @@ Pick whichever is easier:
 
 ## 2. Repoint the frontend
 
-The web app reads the contract ID from `NEXT_PUBLIC_PREDINEX_CONTRACT_ID` (set
+The web app reads the contract ID from `NEXT_PUBLIC_Wine Black_CONTRACT_ID` (set
 per-environment in the Vercel/preview deployment configuration).
 
 1. Open the hosting provider's environment settings for testnet.
-2. Replace `NEXT_PUBLIC_PREDINEX_CONTRACT_ID` with the previous contract ID.
+2. Replace `NEXT_PUBLIC_Wine Black_CONTRACT_ID` with the previous contract ID.
 3. Trigger a redeploy of the frontend.
 
 ## 3. Decide on the broken contract

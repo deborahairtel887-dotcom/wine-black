@@ -7,8 +7,8 @@ import type { MetadataRoute } from 'next';
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'AGEGG — Prediction Markets on Stellar',
-    short_name: 'AGEGG',
+    name: 'wine-black — Prediction Markets on Stellar',
+    short_name: 'wine-black',
     description:
       'Decentralized prediction markets on Stellar. Predict, bet, and win with Soroban-powered smart contracts.',
     start_url: '/',

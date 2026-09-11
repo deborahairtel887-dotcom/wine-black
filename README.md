@@ -1,4 +1,4 @@
-# AGEGG Stellar
+# Wine Black Stellar
 
 > Next-generation prediction markets on Stellar (via Soroban).
 
@@ -6,16 +6,27 @@
 ![Commits](https://img.shields.io/badge/Project_Lifecycle-Initial_Implementation-green?style=for-the-badge)
  ![Rust](https://img.shields.io/badge/Language-Rust-brown?style=flat-square) ![Soroban](https://img.shields.io/badge/Platform-Soroban-black?style=flat-square) ![License](https://img.shields.io/badge/License-ISC-blue?style=flat-square)
 
+## 📁 Repository Structure
+
+| Path | Description |
+|---|---|
+| `contracts/` | Soroban smart contract (Rust) |
+| `bot/` | Automated settlement bot (TypeScript) |
+| `web/` | Next.js 14 frontend |
+| `packages/widget/` | Embeddable pool widget |
+| `scripts/` | Build, deploy, and maintenance scripts |
+| `docs/` | Contract API reference and deployment guides |
+
 ## 🏗 System Architecture
 
-The project centers around the `agegg` Soroban smart contract which manages pool states, betting logic, and fund distribution. It utilizes the Stellar Asset Contract (SAC) for secure token transfers.
+The project centers around the `wine-black` Soroban smart contract which manages pool states, betting logic, and fund distribution. It utilizes the Stellar Asset Contract (SAC) for secure token transfers.
 
 ```mermaid
 graph TD
     User[User / Client]
     
     subgraph Stellar_Blockchain [Stellar Blockchain]
-        Contract[agegg.wasm]
+        Contract[wine-black.wasm]
         Ledger[Ledger State]
     end
     
@@ -81,7 +92,7 @@ stateDiagram-v2
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd agegg-stellar
+   cd wine-black-stellar
    ```
 
 2. **Quick Start (Recommended)**
@@ -93,7 +104,7 @@ stateDiagram-v2
 
 3. **Build the Contract**
    ```bash
-   cd contracts/agegg
+   cd contracts/wine-black
    stellar contract build
    ```
 
@@ -104,7 +115,7 @@ stateDiagram-v2
 
 ## 🛣️ Roadmap to Launch
 
-AGEGG Stellar follows a phased approach to bring a premium betting experience to the ecosystem.
+Wine Black Stellar follows a phased approach to bring a premium betting experience to the ecosystem.
 
 ### Phase 1: Core Soroban Implementation (COMPLETED)
 - ✅ Core contract logic (Pools, Bets, Settlement).
@@ -158,7 +169,7 @@ npm run build
 
 **Smart Contracts:**
 ```bash
-cd contracts/agegg
+cd contracts/wine-black
 cargo fmt
 cargo fmt --check
 cargo clippy -- -D warnings

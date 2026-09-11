@@ -1,9 +1,9 @@
 # Payout Rounding & Remainder Policy
 
-> Reference: contract function `AgeggContract::claim_winnings` in
-> `contracts/agegg/src/lib.rs`. Issue #158.
+> Reference: contract function `wine-blackContract::claim_winnings` in
+> `contracts/wine-black/src/lib.rs`. Issue #158.
 
-This document is the canonical reference for how the AGEGG Soroban contract
+This document is the canonical reference for how the wine-black Soroban contract
 handles integer-division remainders ("dust") that arise when winners claim
 their share of a settled prediction pool. Indexers, analytics tooling, and UI
 previews should rely on the policy described here rather than reverse-engineer

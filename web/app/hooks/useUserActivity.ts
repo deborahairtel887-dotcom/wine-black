@@ -3,7 +3,7 @@ import { createScopedLogger } from '@/app/lib/logger';
 const log = createScopedLogger('useUserActivity');
 
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { predinexReadApi } from '../lib/adapters/predinex-read-api';
+import { wineBlackReadApi } from '../lib/adapters/wine-black-read-api';
 import type { ActivityItem } from '../lib/adapters/types';
 import { userActivityCache } from '../lib/cache-invalidation';
 import { useVisibilityAwarePolling } from '../lib/hooks/useVisibilityAwarePolling';
@@ -67,7 +67,7 @@ export function useUserActivity(
         setError(null);
 
         try {
-            const data = await predinexReadApi.getUserActivitySoroban(address, limit);
+            const data = await wineBlackReadApi.getUserActivitySoroban(address, limit);
             if (!mountedRef.current || requestIdRef.current !== requestId) {
                 return;
             }

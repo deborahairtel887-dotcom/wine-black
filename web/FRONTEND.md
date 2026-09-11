@@ -1,7 +1,7 @@
-# AGEGG Frontend Architecture
+# wine-black Frontend Architecture
 
 ## Overview
-AGEGG is a decentralized prediction market built on the **Stellar blockchain** (via Soroban). The frontend is a modern Next.js application that prioritizes performance, type safety, and a premium user experience in the Stellar ecosystem.
+wine-black is a decentralized prediction market built on the **Stellar blockchain** (via Soroban). The frontend is a modern Next.js application that prioritizes performance, type safety, and a premium user experience in the Stellar ecosystem.
 
 > **Canonical frontend location.** `web/` is the single canonical Next.js
 > application. It is the only frontend built, tested, and deployed by CI
@@ -62,7 +62,7 @@ AGEGG is a decentralized prediction market built on the **Stellar blockchain** (
 ## State Management
 
 ### Stellar Authentication (React Context)
-AGEGG uses React Context for global state management related to user authentication and wallet connectivity.
+wine-black uses React Context for global state management related to user authentication and wallet connectivity.
 
 **Key State Variables:**
 - `userAddress`: The authenticated Stellar public key.

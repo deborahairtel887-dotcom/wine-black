@@ -36,7 +36,7 @@ jobs:
           # Tests run fully in-process with mocked Soroban RPC.
           # No real Stellar network access is required.
           NODE_ENV: test
-          NEXT_PUBLIC_CONTRACT_ID: CTEST_PREDINEX_CONTRACT_ADDRESS_123456789012345678901234
+          NEXT_PUBLIC_CONTRACT_ID: CTEST_WINE_BLACK_CONTRACT_ADDRESS_123456789012345678901234
           NEXT_PUBLIC_NETWORK: testnet
 
       - name: Upload test results

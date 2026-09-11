@@ -2,13 +2,13 @@
 
 ## Overview
 
-The `agegg-stellar` monorepo co-locates three logically independent workspaces:
+The `wine-black-stellar` monorepo co-locates three logically independent workspaces:
 
 | Source paths | New standalone repo | Primary tech |
 |---|---|---|
-| `web/`, `packages/widget/` | `agegg-frontend` | Node 22, Next.js 16, React 19, Vitest 4, Vercel |
-| `contracts/`, `src/`, root `Cargo.toml`, root `Cargo.lock` | `agegg-contracts` | Rust stable, Soroban SDK, Stellar CLI |
-| `bot/` | `agegg-bot` | Node 22, TypeScript 5.5, `@stellar/stellar-sdk` 16, Vitest 4 |
+| `web/`, `packages/widget/` | `wine-black-frontend` | Node 22, Next.js 16, React 19, Vitest 4, Vercel |
+| `contracts/`, `src/`, root `Cargo.toml`, root `Cargo.lock` | `wine-black-contracts` | Rust stable, Soroban SDK, Stellar CLI |
+| `bot/` | `wine-black-bot` | Node 22, TypeScript 5.5, `@stellar/stellar-sdk` 16, Vitest 4 |
 
 The extraction uses `git filter-repo` to rewrite history so each new repository contains only the commits that touched its source paths. No cross-repo runtime dependencies exist at the code level, making the split clean and dependency-free.
 
@@ -17,16 +17,16 @@ The extraction uses `git filter-repo` to rewrite history so each new repository 
 ## Key Findings from Codebase Audit
 
 ### No Rust/WASM bindings in the frontend
-`web/lib/contract.ts` imports only from `@/app/lib/adapters/agegg-contract` and `@/app/lib/freighter-adapter` — TypeScript files that live entirely within `web/`. Contract interaction goes through Stellar SDK RPC calls at runtime; no `.wasm` files or Rust-generated ABI JSON are imported anywhere in the frontend build graph. Requirement 7 is therefore satisfied automatically: the TypeScript adapter layer travels with `web/` during extraction and requires no vendoring step.
+`web/lib/contract.ts` imports only from `@/app/lib/adapters/wine-black-contract` and `@/app/lib/freighter-adapter` — TypeScript files that live entirely within `web/`. Contract interaction goes through Stellar SDK RPC calls at runtime; no `.wasm` files or Rust-generated ABI JSON are imported anywhere in the frontend build graph. Requirement 7 is therefore satisfied automatically: the TypeScript adapter layer travels with `web/` during extraction and requires no vendoring step.
 
 ### Widget is a standalone published package
-`web/package.json` does **not** list `@agegg/widget` as a dependency. The widget is built and published independently. The frontend repo will include `packages/widget/` as a workspace sibling for local development convenience (Requirement 2.9), but the web app does not consume it from the local workspace at build time.
+`web/package.json` does **not** list `@wine-black/widget` as a dependency. The widget is built and published independently. The frontend repo will include `packages/widget/` as a workspace sibling for local development convenience (Requirement 2.9), but the web app does not consume it from the local workspace at build time.
 
 ### Bot has zero overlap with frontend or contracts
 `bot/package.json` references only `@stellar/stellar-sdk`, `dotenv`, and dev tooling. There are no path-based imports into `web/` or `contracts/`.
 
 ### CI workflow path adjustments required
-The existing `contract-checks` CI job uses `working-directory: ./contracts/predinex` and calls `scripts/measure-contract-wasm-size.sh` from the repo root. In `predinex-contracts`, `contracts/predinex` becomes the root and the script moves to `scripts/`. Workflow paths must be updated accordingly.
+The existing `contract-checks` CI job uses `working-directory: ./contracts/Wine Black` and calls `scripts/measure-contract-wasm-size.sh` from the repo root. In `wine-black-contracts`, `contracts/Wine Black` becomes the root and the script moves to `scripts/`. Workflow paths must be updated accordingly.
 
 ---
 
@@ -34,10 +34,10 @@ The existing `contract-checks` CI job uses `working-directory: ./contracts/predi
 
 ### Repository Layout
 
-#### `predinex-frontend`
+#### `Wine Black-frontend`
 
 ```
-predinex-frontend/
+Wine Black-frontend/
 ├── app/                        # Next.js App Router (from web/app/)
 ├── components/                 # Reusable UI components (from web/components/)
 ├── lib/                        # Core logic, hooks, adapters (from web/lib/)
@@ -47,7 +47,7 @@ predinex-frontend/
 ├── docs/                       # Frontend-specific docs (from web/docs/)
 ├── scripts/                    # Frontend utility scripts (from web/scripts/)
 ├── packages/
-│   └── widget/                 # @predinex/widget (from packages/widget/)
+│   └── widget/                 # @Wine Black/widget (from packages/widget/)
 │       ├── src/
 │       ├── package.json
 │       ├── vite.config.ts
@@ -76,7 +76,7 @@ Root `package.json` for the frontend repo (npm workspaces):
 
 ```json
 {
-  "name": "predinex-frontend",
+  "name": "Wine Black-frontend",
   "private": true,
   "workspaces": ["packages/widget"],
   "scripts": {
@@ -95,12 +95,12 @@ Root `package.json` for the frontend repo (npm workspaces):
 
 The workspace declaration allows `npm install` at the repo root to install both `web/` dependencies and widget devDependencies in one pass, while keeping each package's `package.json` intact.
 
-#### `predinex-contracts`
+#### `wine-black-contracts`
 
 ```
-predinex-contracts/
+wine-black-contracts/
 ├── contracts/
-│   ├── predinex/               # Main prediction-market contract
+│   ├── Wine Black/               # Main prediction-market contract
 │   │   ├── src/
 │   │   ├── tests/
 │   │   ├── Cargo.toml
@@ -138,10 +138,10 @@ predinex-contracts/
 └── README.md
 ```
 
-#### `predinex-bot`
+#### `Wine Black-bot`
 
 ```
-predinex-bot/
+Wine Black-bot/
 ├── src/
 │   ├── config.ts
 │   ├── config.test.ts
@@ -188,12 +188,12 @@ pip install git-filter-repo
 git filter-repo --version
 ```
 
-### Step 1 — Extract `predinex-frontend`
+### Step 1 — Extract `Wine Black-frontend`
 
 ```bash
 # 1. Clone a fresh copy of the monorepo (filter-repo requires a clean clone)
-git clone --no-local /path/to/predinex-stellar predinex-frontend
-cd predinex-frontend
+git clone --no-local /path/to/Wine Black-stellar Wine Black-frontend
+cd Wine Black-frontend
 
 # 2. Keep only web/ and packages/widget/ history
 git filter-repo \
@@ -207,8 +207,8 @@ git filter-repo --subdirectory-filter web/
 # OR use path renaming in a single invocation:
 
 # Alternative single-pass approach using --path-rename:
-git clone --no-local /path/to/predinex-stellar predinex-frontend
-cd predinex-frontend
+git clone --no-local /path/to/Wine Black-stellar Wine Black-frontend
+cd Wine Black-frontend
 git filter-repo \
   --path web/ \
   --path packages/widget/ \
@@ -218,11 +218,11 @@ git filter-repo \
 
 After filtering, add the workspace `package.json` at root and `.github/` workflows (these are new files, committed directly — they have no monorepo history to preserve).
 
-### Step 2 — Extract `predinex-contracts`
+### Step 2 — Extract `wine-black-contracts`
 
 ```bash
-git clone --no-local /path/to/predinex-stellar predinex-contracts
-cd predinex-contracts
+git clone --no-local /path/to/Wine Black-stellar wine-black-contracts
+cd wine-black-contracts
 
 git filter-repo \
   --path contracts/ \
@@ -235,20 +235,20 @@ git filter-repo \
   --prune-degenerate-commits
 ```
 
-Adapt `Cargo.toml` workspace members if any non-`contracts/predinex` paths changed:
+Adapt `Cargo.toml` workspace members if any non-`contracts/Wine Black` paths changed:
 ```toml
 [workspace]
-members = ["contracts/predinex"]
+members = ["contracts/Wine Black"]
 resolver = "2"
 ```
 
 Update `scripts/bootstrap.sh` to remove the Node.js / web dependency checks.
 
-### Step 3 — Extract `predinex-bot`
+### Step 3 — Extract `Wine Black-bot`
 
 ```bash
-git clone --no-local /path/to/predinex-stellar predinex-bot
-cd predinex-bot
+git clone --no-local /path/to/Wine Black-stellar Wine Black-bot
+cd Wine Black-bot
 
 git filter-repo \
   --path bot/ \
@@ -262,7 +262,7 @@ git filter-repo \
 
 ## CI/CD Workflow Designs
 
-### `predinex-frontend` — `ci.yml`
+### `Wine Black-frontend` — `ci.yml`
 
 Based directly on the `web-checks` job in the monorepo's `ci.yml`, with these adjustments:
 - `working-directory` removed (files are now at repo root)
@@ -302,7 +302,7 @@ jobs:
           # ... (identical budget-check shell block from monorepo ci.yml)
 ```
 
-### `predinex-frontend` — `preview-deploy.yml`
+### `Wine Black-frontend` — `preview-deploy.yml`
 
 Ported directly from the monorepo's `preview-deploy.yml` with these adjustments:
 - `paths` trigger changed from `web/**` to `**` (entire repo is the frontend)
@@ -311,12 +311,12 @@ Ported directly from the monorepo's `preview-deploy.yml` with these adjustments:
 - Secrets remain the same: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
 - PR comment references updated (no reference to monorepo docs paths)
 
-### `predinex-contracts` — `ci.yml`
+### `wine-black-contracts` — `ci.yml`
 
 Based directly on the `contract-checks` job in the monorepo's `ci.yml`, with these adjustments:
-- `working-directory: ./contracts/predinex` preserved (relative path unchanged)
+- `working-directory: ./contracts/Wine Black` preserved (relative path unchanged)
 - Script path updated: `bash scripts/measure-contract-wasm-size.sh` (was `bash scripts/measure-contract-wasm-size.sh` — same, script is at root)
-- `--manifest-path contracts/predinex/Cargo.toml` preserved
+- `--manifest-path contracts/Wine Black/Cargo.toml` preserved
 - No `web-checks` job
 - Benchmarks, fuzz, security-audit, and deploy workflows ported as-is with minor path fixes
 
@@ -343,7 +343,7 @@ jobs:
       WASM_SIZE_BUILD_OPTIMIZE: 'true'
     defaults:
       run:
-        working-directory: ./contracts/predinex
+        working-directory: ./contracts/Wine Black
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
@@ -357,7 +357,7 @@ jobs:
       # ... WASM size measurement steps (identical to monorepo)
 ```
 
-### `predinex-bot` — `ci.yml`
+### `Wine Black-bot` — `ci.yml`
 
 New workflow, modelled on the monorepo's `web-checks` pattern:
 
@@ -391,7 +391,7 @@ jobs:
 
 ## Environment Files
 
-### `predinex-frontend` — `.env.example`
+### `Wine Black-frontend` — `.env.example`
 
 Copied verbatim from `web/.env.example`. All variables are already correctly documented:
 
@@ -408,12 +408,12 @@ Copied verbatim from `web/.env.example`. All variables are already correctly doc
 | `DEBUG` | — | Enable debug logging |
 | `NEXT_PUBLIC_ENABLE_DISPUTE_MOCK_DATA` | — | Show mock dispute data in dev |
 
-### `predinex-bot` — `.env.example`
+### `Wine Black-bot` — `.env.example`
 
 New file derived from the env var table in `bot/DEPLOYMENT.md`:
 
 ```dotenv
-# Predinex Settlement Bot — Environment Configuration
+# Wine Black Settlement Bot — Environment Configuration
 # Copy to .env and fill in values before running.
 
 # === REQUIRED ===
@@ -439,7 +439,7 @@ LOG_LEVEL=info
 
 ## README Outlines
 
-### `predinex-frontend/README.md`
+### `Wine Black-frontend/README.md`
 
 1. Project title + badges (status, Node version, Next.js version, license)
 2. Overview — what this repo is, what it builds
@@ -449,23 +449,23 @@ LOG_LEVEL=info
 6. Environment variables table (from `.env.example`)
 7. Available scripts table (`dev`, `build`, `test`, `lint`, `test:coverage`, `test:visual`, `widget:build`)
 8. Project structure (app/, components/, lib/, packages/widget/)
-9. Contract integration note — explain that contract interaction is via Stellar SDK RPC; point to `NEXT_PUBLIC_SOROBAN_CONTRACT_ID` env var; link to `predinex-contracts` repo for ABI changes
+9. Contract integration note — explain that contract interaction is via Stellar SDK RPC; point to `NEXT_PUBLIC_SOROBAN_CONTRACT_ID` env var; link to `wine-black-contracts` repo for ABI changes
 10. Wallet support — link to `docs/WALLET_NETWORK_SUPPORT.md`
 11. Deployment (Vercel — link to `vercel.json` and preview deployment docs)
 12. Contributing
 13. License (ISC)
 
-### `predinex-contracts/README.md`
+### `wine-black-contracts/README.md`
 
 1. Project title + badges (Rust version, Soroban SDK version, license)
-2. Overview — Soroban smart contracts for Predinex prediction markets
+2. Overview — Soroban smart contracts for Wine Black prediction markets
 3. Architecture overview with the Mermaid system diagram (from monorepo README)
 4. Pool lifecycle state diagram (from monorepo README)
 5. Prerequisites (Rust stable, Stellar CLI, `wasm32v1-none` target)
 6. Quick start (clone → `./scripts/bootstrap.sh`)
 7. Build commands (`cargo build`, `stellar contract build`)
 8. Test commands (`cargo test`, `cargo clippy`, `cargo fmt`)
-9. Contract structure (contracts/predinex, contracts/pool, contracts/wave_pool, src/)
+9. Contract structure (contracts/Wine Black, contracts/pool, contracts/wave_pool, src/)
 10. Deployment guide — link to `docs/DEPLOYMENT_RUNBOOK.md` and `docs/deployment-guide.md`
 11. Contract API reference — link to `docs/CONTRACT_API.md`
 12. WASM size budget (327,680 bytes / 320 KiB limit; warning at 80%, failure at 95%)
@@ -473,12 +473,12 @@ LOG_LEVEL=info
 14. Contributing
 15. License (ISC)
 
-### `predinex-bot/README.md`
+### `Wine Black-bot/README.md`
 
 Content derived directly from `bot/DEPLOYMENT.md`, restructured as a project README:
 
 1. Project title + badges (Node version, license)
-2. Overview — what the bot does (polls Predinex contract, settles expired pools)
+2. Overview — what the bot does (polls Wine Black contract, settles expired pools)
 3. Prerequisites (Node 18+, npm, OR Docker)
 4. Quick start (clone → `npm install` → copy `.env.example` → `npm run build` → `npm start`)
 5. Environment variables table (full table from DEPLOYMENT.md)
@@ -496,11 +496,11 @@ Content derived directly from `bot/DEPLOYMENT.md`, restructured as a project REA
 
 ## Smoke Test Scripts
 
-### `predinex-frontend` — `scripts/smoke-test.sh`
+### `Wine Black-frontend` — `scripts/smoke-test.sh`
 
 ```bash
 #!/usr/bin/env bash
-# Validates a clean-checkout build of predinex-frontend.
+# Validates a clean-checkout build of Wine Black-frontend.
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -521,11 +521,11 @@ npm run build
 echo "✓ Smoke test passed."
 ```
 
-### `predinex-contracts` — `scripts/smoke-test.sh`
+### `wine-black-contracts` — `scripts/smoke-test.sh`
 
 ```bash
 #!/usr/bin/env bash
-# Validates a clean-checkout build of predinex-contracts.
+# Validates a clean-checkout build of wine-black-contracts.
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -543,11 +543,11 @@ cargo test
 echo "✓ Smoke test passed."
 ```
 
-### `predinex-bot` — `scripts/smoke-test.sh`
+### `Wine Black-bot` — `scripts/smoke-test.sh`
 
 ```bash
 #!/usr/bin/env bash
-# Validates a clean-checkout build of predinex-bot.
+# Validates a clean-checkout build of Wine Black-bot.
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -571,7 +571,7 @@ echo "✓ Smoke test passed."
 
 A detailed audit of `web/lib/contract.ts` and its import chain confirms:
 
-- `web/lib/contract.ts` imports from `@/app/lib/adapters/predinex-contract` (TypeScript, lives in `web/app/lib/`)
+- `web/lib/contract.ts` imports from `@/app/lib/adapters/wine-black-contract` (TypeScript, lives in `web/app/lib/`)
 - `web/app/lib/adapters/` contains TypeScript adapter files that call the Stellar SDK (`@stellar/stellar-sdk`) via RPC
 - There are no imports of generated `.wasm` files, `.json` ABI files, or Rust-generated TypeScript bindings
 - `@stellar/stellar-sdk 16.0.1` is a regular npm dependency already in `web/package.json`
@@ -585,7 +585,7 @@ Therefore, **Requirement 7 requires no additional action** beyond moving `web/` 
 These properties define the correctness invariants for the extraction and can be verified programmatically post-extraction.
 
 ### P1 — Import isolation
-For every TypeScript/JavaScript file `f` in `predinex-frontend`:
+For every TypeScript/JavaScript file `f` in `Wine Black-frontend`:
 ```
 ∀ import_path ∈ imports(f) :
   resolve(import_path, base=repo_root) starts_with repo_root
@@ -593,7 +593,7 @@ For every TypeScript/JavaScript file `f` in `predinex-frontend`:
 No import resolves to a path outside the repo root. Verified by running `tsc --noEmit` and `npm run build` from a clean clone.
 
 ### P2 — Cargo workspace closure  
-For every crate `c` in the `predinex-contracts` workspace:
+For every crate `c` in the `wine-black-contracts` workspace:
 ```
 ∀ dep ∈ path_dependencies(c) :
   path(dep) starts_with repo_root
@@ -601,7 +601,7 @@ For every crate `c` in the `predinex-contracts` workspace:
 No `path = "../../../something"` dependency escapes the repo. Verified by `cargo build`.
 
 ### P3 — Node dependency closure  
-For `predinex-bot`:
+For `Wine Black-bot`:
 ```
 ∀ dep ∈ dependencies(bot/package.json) :
   dep is a registry package (not a file: or workspace: reference)
@@ -609,14 +609,14 @@ For `predinex-bot`:
 Verified by `npm ci` succeeding from a clean directory with no prior `node_modules`.
 
 ### P4 — CI cross-contamination absence  
-For `predinex-frontend`:
+For `Wine Black-frontend`:
 ```
 ∀ step ∈ ci_workflow_steps :
   "cargo" ∉ step.run AND
   "rustup" ∉ step.run AND
   "stellar contract" ∉ step.run
 ```
-For `predinex-contracts`:
+For `wine-black-contracts`:
 ```
 ∀ step ∈ ci_workflow_steps :
   "npm" ∉ step.run AND

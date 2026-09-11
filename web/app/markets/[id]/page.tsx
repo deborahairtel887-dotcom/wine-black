@@ -10,7 +10,7 @@ import SettledPoolSummary from "../../components/SettledPoolSummary";
 import { useWallet } from '@/components/WalletAdapterProvider';
 import { useEffect, useState, useCallback } from "react";
 import { useUserActivity } from "../../hooks/useUserActivity";
-import { predinexReadApi } from "../../lib/adapters/predinex-read-api";
+import { wineBlackReadApi } from "../../lib/adapters/wine-black-read-api";
 import type { Pool } from "../../lib/adapters/types";
 import { fetchCurrentBlockHeightLive } from "../../lib/market-utils";
 import { blocksToSeconds } from "../../lib/countdown-utils";
@@ -50,7 +50,7 @@ export default function PoolDetails({ params }: { params: Promise<{ id: string }
             setIsLoading(true);
             setError(null);
             try {
-                const data = await predinexReadApi.getPool(poolId);
+                const data = await wineBlackReadApi.getPool(poolId);
                 setPool(data);
             } catch (e) {
                 setError(e instanceof Error ? e.message : 'Failed to load pool');
@@ -83,7 +83,7 @@ export default function PoolDetails({ params }: { params: Promise<{ id: string }
             return;
         }
 
-        predinexReadApi.getUserBet(poolId, stxAddress).then(bet => {
+        wineBlackReadApi.getUserBet(poolId, stxAddress).then(bet => {
             setUserBet(bet);
         }).catch(() => setUserBet(null));
     }, [stxAddress, poolId]);
@@ -95,8 +95,8 @@ export default function PoolDetails({ params }: { params: Promise<{ id: string }
 
         try {
             const [newPool, newBet] = await Promise.all([
-                predinexReadApi.getPool(poolId),
-                stxAddress ? predinexReadApi.getUserBet(poolId, stxAddress) : Promise.resolve(null)
+                wineBlackReadApi.getPool(poolId),
+                stxAddress ? wineBlackReadApi.getUserBet(poolId, stxAddress) : Promise.resolve(null)
             ]);
 
             if (newPool) setPool(newPool);

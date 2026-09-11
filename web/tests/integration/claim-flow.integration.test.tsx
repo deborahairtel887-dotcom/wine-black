@@ -75,8 +75,8 @@ vi.mock('next/dynamic', () => ({
   },
 }));
 
-vi.mock('../../app/lib/adapters/predinex-contract', () => ({
-  predinexContract: {
+vi.mock('../../app/lib/adapters/wine-black-contract', () => ({
+  wineBlackContract: {
     claimWinningsSoroban: mockClaimWinningsSoroban,
   },
 }));
@@ -86,8 +86,8 @@ vi.mock('../../app/lib/runtime-config', () => ({
     network: 'testnet' as const,
     contract: {
       address: 'ST1TEST',
-      name: 'agegg-pool',
-      id: 'ST1TEST.agegg-pool',
+      name: 'wine-black-pool',
+      id: 'ST1TEST.wine-black-pool',
     },
     api: {
       coreApiUrl: 'https://api.testnet.hiro.so',
@@ -113,8 +113,8 @@ vi.mock('../../app/lib/dashboard-api', async () => {
   };
 });
 
-vi.mock('../../app/lib/adapters/predinex-read-api', () => ({
-  predinexReadApi: {
+vi.mock('../../app/lib/adapters/wine-black-read-api', () => ({
+  wineBlackReadApi: {
     getUserActivitySoroban: mockGetUserActivitySoroban,
     getPool: mockGetPool,
     getUserBet: mockGetUserBet,

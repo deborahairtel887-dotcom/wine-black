@@ -61,7 +61,7 @@ function hasCrypto(): boolean {
  * derived key material.
  */
 function getDeviceSecret(): string {
-  const KEY = 'predinex_ds';
+  const KEY = 'Wine Black_ds';
   try {
     let secret = sessionStorage.getItem(KEY);
     if (!secret) {
@@ -71,7 +71,7 @@ function getDeviceSecret(): string {
     return secret;
   } catch {
     // sessionStorage unavailable — use a constant fallback (still better than btoa)
-    return 'predinex-fallback-secret-v1';
+    return 'Wine Black-fallback-secret-v1';
   }
 }
 
@@ -130,7 +130,7 @@ async function decryptData(stored: string): Promise<string> {
 // ─── service ────────────────────────────────────────────────────────────────
 
 export class SessionStorageService {
-  private static readonly STORAGE_KEY = 'predinex_wallet_session';
+  private static readonly STORAGE_KEY = 'Wine Black_wallet_session';
   private static readonly STORAGE_VERSION = '2.0.0';
   private static readonly SESSION_TTL = 7 * 24 * 60 * 60 * 1000; // 7 days
 

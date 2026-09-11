@@ -32,15 +32,15 @@ jobs:
           target: wasm32-unknown-unknown
 
       - name: Format check
-        working-directory: contracts/predinex
+        working-directory: contracts/wine-black
         run: cargo fmt --check
 
       - name: Clippy (deny warnings)
-        working-directory: contracts/predinex
+        working-directory: contracts/wine-black
         run: cargo clippy -- -D warnings
 
       - name: Full test suite
-        working-directory: contracts/predinex
+        working-directory: contracts/wine-black
         run: cargo test
 
       - name: Install Stellar CLI
@@ -50,12 +50,12 @@ jobs:
 
       - name: Build & optimize WASM
         id: build
-        working-directory: contracts/predinex
+        working-directory: contracts/wine-black
         run: |
           stellar contract build
           stellar contract optimize \
-            --wasm target/wasm32-unknown-unknown/release/predinex.wasm
-          HASH=$(sha256sum target/wasm32-unknown-unknown/release/predinex.optimized.wasm | awk '{print $1}')
+            --wasm target/wasm32-unknown-unknown/release/wine-black.wasm
+          HASH=$(sha256sum target/wasm32-unknown-unknown/release/wine-black.optimized.wasm | awk '{print $1}')
           echo "wasm-hash=$HASH" >> "$GITHUB_OUTPUT"
 
       - name: Check deployer balance
@@ -79,8 +79,8 @@ jobs:
       - name: Upload WASM artifact
         uses: actions/upload-artifact@v4
         with:
-          name: predinex-wasm-${{ github.ref_name }}
-          path: contracts/predinex/target/wasm32-unknown-unknown/release/predinex.optimized.wasm
+          name: wine-black-wasm-${{ github.ref_name }}
+          path: contracts/wine-black/target/wasm32-unknown-unknown/release/wine-black.optimized.wasm
           retention-days: 90
 
   # ── 2. Deploy ───────────────────────────────────────────────────────────────
@@ -102,7 +102,7 @@ jobs:
       - name: Download WASM artifact
         uses: actions/download-artifact@v4
         with:
-          name: predinex-wasm-${{ github.ref_name }}
+          name: wine-black-wasm-${{ github.ref_name }}
           path: wasm/
 
       - name: Import deployer key
@@ -114,7 +114,7 @@ jobs:
         id: deploy
         run: |
           CONTRACT_ID=$(stellar contract deploy \
-            --wasm wasm/predinex.optimized.wasm \
+            --wasm wasm/wine-black.optimized.wasm \
             --network mainnet \
             --rpc-url "$STELLAR_RPC_URL" \
             --network-passphrase "$STELLAR_NETWORK_PASSPHRASE" \

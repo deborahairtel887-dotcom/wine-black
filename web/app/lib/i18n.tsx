@@ -182,7 +182,7 @@ export interface I18nContextValue {
 }
 
 const I18nContext = createContext<I18nContextValue | null>(null);
-const STORAGE_KEY = 'predinex_language_v1';
+const STORAGE_KEY = 'Wine Black_language_v1';
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useLocalStorage<AppLanguage>(STORAGE_KEY, 'en');

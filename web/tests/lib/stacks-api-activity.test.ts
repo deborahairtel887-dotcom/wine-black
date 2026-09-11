@@ -27,7 +27,7 @@ describe('getUserActivity API', () => {
                     tx_status: 'success',
                     burn_block_time: 123456789,
                     contract_call: {
-                        contract_id: 'SP2WWKKF25SED3K5P6ETY7MDDNBQH50GPSP8EJM8N.agegg-contract',
+                        contract_id: 'SP2WWKKF25SED3K5P6ETY7MDDNBQH50GPSP8EJM8N.wine-black-contract',
                         function_name: 'place-bet',
                         function_args: [
                             { name: 'amount', repr: 'u1000000' },
@@ -40,7 +40,7 @@ describe('getUserActivity API', () => {
                     tx_status: 'success',
                     burn_block_time: 123456790,
                     contract_call: {
-                        contract_id: 'SP2WWKKF25SED3K5P6ETY7MDDNBQH50GPSP8EJM8N.agegg-contract',
+                        contract_id: 'SP2WWKKF25SED3K5P6ETY7MDDNBQH50GPSP8EJM8N.wine-black-contract',
                         function_name: 'claim-winnings',
                         function_args: [
                             { name: 'pool-id', repr: 'u3' }
@@ -81,7 +81,7 @@ describe('getUserActivity API', () => {
                     tx_status: 'success',
                     burn_block_time: 123456789,
                     contract_call: {
-                        contract_id: 'SP2WWKKF25SED3K5P6ETY7MDDNBQH50GPSP8EJM8N.agegg-contract',
+                        contract_id: 'SP2WWKKF25SED3K5P6ETY7MDDNBQH50GPSP8EJM8N.wine-black-contract',
                         function_name: 'place-bet',
                         function_args: []
                     }
@@ -101,7 +101,7 @@ describe('getUserActivity API', () => {
         );
     });
 
-    it('filters out non-AGEGG transactions', async () => {
+    it('filters out non-wine-black transactions', async () => {
         const mockApiResponse = {
             results: [
                 {

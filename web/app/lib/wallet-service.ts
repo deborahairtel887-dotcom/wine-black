@@ -130,7 +130,7 @@ export class WalletService {
     return new Promise((resolve, reject) => {
       showConnect({
         appDetails: {
-          name: 'Predinex',
+          name: 'Wine Black',
           icon: '/logo.png',
         },
         redirectTo: '/',

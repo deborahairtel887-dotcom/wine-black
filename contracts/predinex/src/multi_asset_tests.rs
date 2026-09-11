@@ -10,7 +10,7 @@ use soroban_sdk::{
 
 struct MaEnv<'a> {
     env: Env,
-    client: PredinexContractClient<'a>,
+    client: WineBlackContractClient<'a>,
     /// Base token — same as the single-asset contract token.
     base_token: Address,
     /// Alternative token used for multi-asset bet tests.
@@ -32,8 +32,8 @@ fn setup_ma() -> MaEnv<'static> {
     let base_asset = env.register_stellar_asset_contract_v2(treasury.clone());
     let alt_asset = env.register_stellar_asset_contract_v2(treasury.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&base_asset.address(), &treasury, &treasury);
 
     let base_admin: token::StellarAssetClient<'static> =

@@ -122,16 +122,16 @@ export default function SettingsPage() {
     try {
       switch (kind) {
         case 'pools-csv':
-          exportRecords(poolExportRows, 'agegg-pools', 'csv');
+          exportRecords(poolExportRows, 'wine-black-pools', 'csv');
           break;
         case 'pools-json':
-          exportRecords(poolExportRows, 'agegg-pools', 'json');
+          exportRecords(poolExportRows, 'wine-black-pools', 'json');
           break;
         case 'activity-csv':
-          exportRecords(activityExportRows, 'agegg-activity', 'csv');
+          exportRecords(activityExportRows, 'wine-black-activity', 'csv');
           break;
         case 'activity-json':
-          exportRecords(activityExportRows, 'agegg-activity', 'json');
+          exportRecords(activityExportRows, 'wine-black-activity', 'json');
           break;
       }
     } finally {

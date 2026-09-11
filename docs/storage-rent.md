@@ -11,7 +11,7 @@ periodically extended (bumped) or it is evicted from the ledger. Eviction does
 not destroy the data permanently — it moves to the archival layer — but it
 blocks contract reads until the entry is restored via `restoreFootprint`.
 
-All persistent entries in Predinex use `env.storage().persistent()`. The
+All persistent entries in Wine Black use `env.storage().persistent()`. The
 contract does **not** use `instance()` or `temporary()` storage.
 
 ## In-contract TTL bump policy (#189)

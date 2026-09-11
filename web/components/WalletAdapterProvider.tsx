@@ -3,7 +3,7 @@
 import { ReactNode, createContext, useContext, useEffect, useRef, useState } from 'react';
 import { createFreighterAdapter, isFreighterInstalled, FreighterWalletClient } from '@/app/lib/freighter-adapter';
 
-const STORAGE_KEY = 'agegg:wallet:address';
+const STORAGE_KEY = 'wine-black:wallet:address';
 
 /**
  * Wallet context value exposed to consumers.

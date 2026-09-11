@@ -20,7 +20,7 @@ on:
 # Only deploy from the canonical upstream repo. Forks that pull this
 # workflow do not have the secrets configured and would fail noisily.
 env:
-  CANONICAL_REPO: dimka90/predinex-stellar
+  CANONICAL_REPO: smiletech092-code/wine-black-stellar
   STELLAR_NETWORK: mainnet
   STELLAR_RPC_URL: https://horizon.stellar.org
   STELLAR_NETWORK_PASSPHRASE: 'Public Global Stellar Network ; September 2015'
@@ -34,7 +34,7 @@ concurrency:
 jobs:
   guard:
     name: Validate inputs
-    if: github.repository == 'dimka90/predinex-stellar'
+    if: github.repository == 'smiletech092-code/wine-black-stellar'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -64,7 +64,7 @@ jobs:
   build:
     name: Build optimized WASM
     needs: guard
-    if: github.repository == 'dimka90/predinex-stellar'
+    if: github.repository == 'smiletech092-code/wine-black-stellar'
     runs-on: ubuntu-latest
     environment: mainnet
     permissions:
@@ -94,11 +94,11 @@ jobs:
         run: cargo install --locked stellar-cli@22.0.1
 
       - name: Build contract
-        working-directory: ./contracts/predinex
+        working-directory: ./contracts/wine-black
         run: stellar contract build
 
       - name: Optimize WASM
-        working-directory: ./contracts/predinex
+        working-directory: ./contracts/wine-black
         run: |
           UNOPTIMIZED=$(find target/wasm32v1-none/release -maxdepth 1 -name '*.wasm' -not -name '*.optimized.wasm' | head -n1)
           if [ -z "$UNOPTIMIZED" ]; then
@@ -111,15 +111,15 @@ jobs:
       - name: Upload optimized WASM artifact
         uses: actions/upload-artifact@v4
         with:
-          name: predinex-wasm
-          path: contracts/predinex/target/wasm32v1-none/release/*.optimized.wasm
+          name: wine-black-wasm
+          path: contracts/wine-black/target/wasm32v1-none/release/*.optimized.wasm
           if-no-files-found: error
           retention-days: 7
 
   deploy:
     name: Deploy to mainnet
     needs: build
-    if: github.repository == 'dimka90/predinex-stellar'
+    if: github.repository == 'smiletech092-code/wine-black-stellar'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -136,7 +136,7 @@ jobs:
       - name: Download optimized WASM
         uses: actions/download-artifact@v4
         with:
-          name: predinex-wasm
+          name: wine-black-wasm
           path: ./wasm
 
       - name: Cache stellar-cli
@@ -259,7 +259,7 @@ jobs:
   smoke:
     name: Smoke test
     needs: deploy
-    if: github.repository == 'dimka90/predinex-stellar'
+    if: github.repository == 'smiletech092-code/wine-black-stellar'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -438,7 +438,7 @@ jobs:
   report:
     name: Report
     needs: [deploy, smoke]
-    if: always() && github.repository == 'dimka90/predinex-stellar'
+    if: always() && github.repository == 'smiletech092-code/wine-black-stellar'
     runs-on: ubuntu-latest
     permissions:
       contents: write

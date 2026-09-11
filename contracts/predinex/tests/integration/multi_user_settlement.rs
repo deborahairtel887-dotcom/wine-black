@@ -8,12 +8,12 @@
 //! * Concurrent pool operations: create and settle several pools in a single test
 //!
 //! These tests exercise the full contract ABI end-to-end via
-//! `PredinexContractClient` and do NOT reach into internal helpers.
+//! `WineBlackContractClient` and do NOT reach into internal helpers.
 
 extern crate std;
 
-use agegg::{
-    ClaimStatus, Pool, PoolStatus, PredinexContract, PredinexContractClient, MIN_CREATOR_DEPOSIT,
+use wine_black::{
+    ClaimStatus, Pool, PoolStatus, WineBlackContract, WineBlackContractClient, MIN_CREATOR_DEPOSIT,
 };
 use soroban_sdk::{
     testutils::{Address as _, Ledger},
@@ -26,7 +26,7 @@ use soroban_sdk::{
 
 struct Ctx<'a> {
     env: Env,
-    client: PredinexContractClient<'a>,
+    client: WineBlackContractClient<'a>,
     token: token::Client<'a>,
     token_admin: token::StellarAssetClient<'a>,
     /// Treasury recipient (= contract admin for fee-related calls).
@@ -42,8 +42,8 @@ fn setup() -> Ctx<'static> {
     let treasury = Address::generate(&env);
     let token_asset = env.register_stellar_asset_contract_v2(treasury.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&token_asset.address(), &treasury, &treasury);
 
     let token: token::Client<'static> = token::Client::new(&env, &token_asset.address());

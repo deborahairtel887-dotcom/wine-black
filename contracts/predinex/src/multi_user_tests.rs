@@ -16,7 +16,7 @@ use soroban_sdk::{testutils::Address as _, testutils::Ledger, Address, Env, Stri
 
 struct MultiUserEnv<'a> {
     env: Env,
-    client: PredinexContractClient<'a>,
+    client: WineBlackContractClient<'a>,
     token: Address,
     _contract_id: Address,
 }
@@ -28,8 +28,8 @@ fn setup_multi_user() -> MultiUserEnv<'static> {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 

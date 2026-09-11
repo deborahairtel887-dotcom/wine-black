@@ -7,7 +7,7 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                     <Link href="/" className="flex items-center gap-2 group">
                         <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform text-white font-bold">A</div>
-                        <span className="font-bold text-xl tracking-tight gradient-text">AGEGG</span>
+                        <span className="font-bold text-xl tracking-tight gradient-text">Wine Black</span>
                     </Link>
 
                     <div className="flex gap-8 text-sm text-muted-foreground">
@@ -18,7 +18,7 @@ export default function Footer() {
                     </div>
 
                     <p className="text-sm text-muted-foreground">
-                        © 2026 AGEGG Protocol. Built on Stellar.
+                        © 2026 Wine Black Protocol. Built on Stellar.
                     </p>
                 </div>
             </div>

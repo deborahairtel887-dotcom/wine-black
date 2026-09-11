@@ -129,7 +129,7 @@ export function formatTimeRemaining(blocksRemaining: number | null): string {
  * happens via `fetchCurrentBlockHeightLive()`.
  */
 
-export const BLOCK_HEIGHT_CACHE_KEY = 'predinex_block_height_v1';
+export const BLOCK_HEIGHT_CACHE_KEY = 'Wine Black_block_height_v1';
 export const BLOCK_HEIGHT_CACHE_VERSION = 1;
 export const BLOCK_HEIGHT_CACHE_TTL_MS = 30_000;
 

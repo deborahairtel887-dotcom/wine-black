@@ -11,7 +11,7 @@ import { getEnhancedPool } from '../../lib/enhanced-stacks-api';
 import { fetchCurrentBlockHeightLive, processMarketData } from '../../lib/market-utils';
 import { useToast } from '../../../providers/ToastProvider';
 
-const FAVORITE_SNAPSHOT_KEY = 'predinex_favorite_snapshot_v1';
+const FAVORITE_SNAPSHOT_KEY = 'Wine Black_favorite_snapshot_v1';
 
 function snapshotOfMarket(market: ProcessedMarket): string {
   // Compact snapshot so we can cheaply diff per-market.

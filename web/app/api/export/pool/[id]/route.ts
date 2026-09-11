@@ -115,7 +115,7 @@ export async function GET(
     : [];
 
   const date = new Date().toISOString().slice(0, 10);
-  const filename = `predinex-pool-${poolId}-${date}.${format}`;
+  const filename = `wine-black-pool-${poolId}-${date}.${format}`;
 
   if (format === 'json') {
     const payload = {

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Implement a continuous server-side monitoring system for Predinex prediction market pools. The system runs as an in-process singleton inside the existing Next.js application, polling Soroban RPC on a configurable interval, classifying pool health states, evaluating four alert rules, delivering signed webhook notifications, persisting alert history, and exposing a `/monitoring` dashboard page with three supporting API routes.
+Implement a continuous server-side monitoring system for Wine Black prediction market pools. The system runs as an in-process singleton inside the existing Next.js application, polling Soroban RPC on a configurable interval, classifying pool health states, evaluating four alert rules, delivering signed webhook notifications, persisting alert history, and exposing a `/monitoring` dashboard page with three supporting API routes.
 
 All new code lives under `web/app/lib/monitoring/`, `web/app/api/health/`, `web/app/monitoring/`, and `web/tests/lib/monitoring/`. Existing utilities (`webhook-service.ts` HMAC pattern, `retry.ts` `withRetry()`, `logger.ts` `createScopedLogger()`, `soroban-read-api.ts`, `soroban-event-service.ts`, `runtime-config.ts`) are reused throughout.
 
@@ -74,13 +74,13 @@ All new code lives under `web/app/lib/monitoring/`, `web/app/api/health/`, `web/
     - Implement `NotificationService` class using `createScopedLogger('monitoring:notification')`
     - Implement `private async sign(body: string, secret: string): Promise<string>` using SubtleCrypto HMAC-SHA256 (same pattern as `webhook-service.ts`'s `generateSignature`), returning the hex digest
     - Implement `private formatSlackMessage(alert: AlertRecord): string` returning Slack Block Kit JSON with a `section` block (mrkdwn text with rule name and pool title), a `context` block (pool ID + `fired_at`), and a color attachment (`danger` for `critical`, `warning` for `warning`)
-    - Implement `private async deliverToUrl(alert: AlertRecord, url: string, secret: string): Promise<void>` — detects Slack URLs via `url.includes('hooks.slack.com')`, builds body accordingly, calls `withRetry` with `maxAttempts: 4`, `baseDelayMs: 5000`, `backoffFactor: 2`, `maxDelayMs: 40000`; sets `X-Predinex-Signature: sha256=<hmac>` and `X-Predinex-Alert-Rule: <rule>` headers; throws on non-2xx; logs final failure with rule, pool ID, status, and timestamp
+    - Implement `private async deliverToUrl(alert: AlertRecord, url: string, secret: string): Promise<void>` — detects Slack URLs via `url.includes('hooks.slack.com')`, builds body accordingly, calls `withRetry` with `maxAttempts: 4`, `baseDelayMs: 5000`, `backoffFactor: 2`, `maxDelayMs: 40000`; sets `X-Wine Black-Signature: sha256=<hmac>` and `X-Wine Black-Alert-Rule: <rule>` headers; throws on non-2xx; logs final failure with rule, pool ID, status, and timestamp
     - Implement `async deliver(alert: AlertRecord, config: MonitoringConfig): Promise<void>` — maps `config.webhookUrls` to `deliverToUrl` calls and awaits `Promise.allSettled`
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8_
 
   - [ ]* 5.2 Write property tests for `notification-service` in `web/tests/lib/monitoring/notification-service.test.ts`
-    - **Property 16: HMAC signature correctness** — `fc.tuple(fc.string(), fc.string({ minLength: 1, maxLength: 64 }))` for `(payload, secret)`; verify `X-Predinex-Signature` equals `sha256=<expected-hmac>`; `numRuns: 100`
-    - **Property 17: Alert rule header matches alert rule** — generate alerts with any `AlertRuleName`; mock fetch; verify `X-Predinex-Alert-Rule` header equals `alert.rule`
+    - **Property 16: HMAC signature correctness** — `fc.tuple(fc.string(), fc.string({ minLength: 1, maxLength: 64 }))` for `(payload, secret)`; verify `X-Wine Black-Signature` equals `sha256=<expected-hmac>`; `numRuns: 100`
+    - **Property 17: Alert rule header matches alert rule** — generate alerts with any `AlertRuleName`; mock fetch; verify `X-Wine Black-Alert-Rule` header equals `alert.rule`
     - **Property 18: Retry on non-2xx** — mock fetch returning non-2xx; verify exactly 4 fetch calls made (1 initial + 3 retries)
     - **Property 19: Independent multi-URL delivery** — `fc.array(fc.webUrl(), { minLength: 2, maxLength: 5 })` with some URLs mocked to fail; verify all URLs receive a POST request
     - **Property 20: Slack Block Kit format** — generate alerts delivered to a `hooks.slack.com` URL; verify request body is valid JSON with a `blocks` array containing at least one block, and includes `alert.rule` and `pool_title` in the text
@@ -229,7 +229,7 @@ All new code lives under `web/app/lib/monitoring/`, `web/app/api/health/`, `web/
     - Document all 9 environment variables with type, valid range, default value, and description (matching the table in the design document)
     - Document all 4 alert rules: `settlement_overdue`, `tvl_drop`, `high_error_rate`, `oracle_price_deviation` — trigger conditions, default thresholds, cooldown periods, and severity
     - Document the webhook payload schema for each alert rule (field names, types, example values)
-    - Include instructions for verifying the `X-Predinex-Signature` HMAC-SHA256 header, with a Node.js code example
+    - Include instructions for verifying the `X-Wine Black-Signature` HMAC-SHA256 header, with a Node.js code example
     - Include example webhook receiver code for Slack (parsing Block Kit) and Telegram (sending a message via Bot API)
     - Include a step-by-step deployment guide: environment variable setup, running `next start`, confirming the `/monitoring` route is accessible, and verifying the `/api/health/config` endpoint
     - _Requirements: 13.1, 13.2, 13.3_

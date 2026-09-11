@@ -44,13 +44,13 @@ npm run test:coverage
 Tests use Vitest mocks for:
 - Next.js navigation hooks
 - Wallet/auth provider context
-- Adapter modules (`ageggReadApi`, `ageggContract`)
+- Adapter modules (`wine-blackReadApi`, `wine-blackContract`)
 - Soroban RPC / event-service JSON payloads
 
 ## Supported Mock Surfaces
 
 Production-facing suites should prefer the current product surfaces:
-- `ageggReadApi` and `ageggContract`
+- `wine-blackReadApi` and `wine-blackContract`
 - `getUserActivityFromSoroban` and other Soroban event helpers
 - `fetch` responses shaped like Soroban RPC or REST JSON
 

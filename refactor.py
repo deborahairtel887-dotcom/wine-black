@@ -2,7 +2,7 @@ import os
 import re
 import glob
 
-TEST_FILES_DIR = "contracts/predinex/src/"
+TEST_FILES_DIR = "contracts/wine-black/src/"
 
 def main():
     test_files = glob.glob(os.path.join(TEST_FILES_DIR, "*.rs"))

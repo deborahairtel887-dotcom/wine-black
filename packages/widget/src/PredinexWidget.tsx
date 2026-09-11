@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import type { PredinexWidgetProps, WidgetPool } from './types';
+import type { Wine BlackWidgetProps, WidgetPool } from './types';
 import { buildCSSVars, pct } from './utils';
 import { WIDGET_CSS } from './styles';
 
@@ -35,7 +35,7 @@ async function defaultPlaceBet(
 
 interface PoolCardProps {
   pool: WidgetPool;
-  onBet?: PredinexWidgetProps['onBet'];
+  onBet?: Wine BlackWidgetProps['onBet'];
   placeBet: (contractId: string, poolId: number, outcome: number, amount: number) => Promise<string>;
   contractId: string;
 }
@@ -142,16 +142,16 @@ function PoolCard({ pool, onBet, placeBet, contractId }: PoolCardProps) {
   );
 }
 
-// ── PredinexWidget (root) ─────────────────────────────────────────────────────
+// ── Wine BlackWidget (root) ─────────────────────────────────────────────────────
 
-export function PredinexWidget({
+export function Wine BlackWidget({
   contractId,
   poolId,
   theme,
   onBet,
   fetchPool = defaultFetchPool,
   placeBet = defaultPlaceBet,
-}: PredinexWidgetProps) {
+}: Wine BlackWidgetProps) {
   injectStyles();
 
   const [pool, setPool] = useState<WidgetPool | null>(null);

@@ -1250,11 +1250,11 @@ pub struct LpRewardClaimEvent {
 }
 
 #[contract]
-pub struct PredinexContract;
+pub struct WineBlackContract;
 
 #[allow(clippy::too_many_arguments)]
 #[contractimpl]
-impl PredinexContract {
+impl WineBlackContract {
     /// Initialize the contract. Must be called exactly once before any pool
     /// can be created or any bet placed.
     ///

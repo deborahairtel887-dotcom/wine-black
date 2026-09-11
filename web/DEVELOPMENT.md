@@ -1,6 +1,6 @@
-# Development Guide - AGEGG Frontend
+# Development Guide - wine-black Frontend
 
-This document provides instructions for developers looking to contribute to the AGEGG frontend. For information on the release lifecycle, see the [Release Process](../RELEASE.md).
+This document provides instructions for developers looking to contribute to the wine-black frontend. For information on the release lifecycle, see the [Release Process](../RELEASE.md).
 
 ## Prerequisites
 
@@ -89,7 +89,7 @@ The activity feed is powered by `web/app/lib/soroban-event-service.ts`, which in
 1. `getUserActivityFromSoroban` calls the Soroban RPC `getEvents` method, filtering by contract ID and relevant event names (`place_bet`, `claim_winnings`, `create_pool`, `settle_pool`).
 2. `decodeSorobanEvent` normalises raw RPC topic/value payloads into typed `DecodedSorobanEvent` objects.
 3. `mapEventToActivityItem` converts decoded events into `ActivityItem` objects consumed by `<ActivityFeed>`.
-4. `useUserActivity` (hook) calls `ageggReadApi.getUserActivitySoroban` which wires the above together.
+4. `useUserActivity` (hook) calls `wine-blackReadApi.getUserActivitySoroban` which wires the above together.
 
 ### Local environment setup
 
@@ -161,7 +161,7 @@ The [CI workflow](../.github/workflows/ci.yml) uses GitHub Actions built-in cach
 
 Cache keys are based on lockfile hashes:
 - `web/package-lock.json` for npm
-- `contracts/agegg/Cargo.lock` for Rust
+- `contracts/wine-black/Cargo.lock` for Rust
 
 ### Local Development Best Practices
 

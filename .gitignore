@@ -1,22 +1,26 @@
-# Rust / Soroban
-**/target/
-**/*.wasm
+# Rust / Cargo
+target/
+Cargo.lock.bak
 
-# Node.js
-**/node_modules/
-.next/
-out/
-build/
-.env*
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# Soroban build artifacts
+*.wasm
+*.optimized.wasm
+
+# Bot
+bot/node_modules/
+bot/dist/
+
+# Environment
+.env
+.env.local
+.env*.local
 
 # OS
 .DS_Store
 Thumbs.db
-.vscode
-issue.md
-pr.md
-docs/api/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

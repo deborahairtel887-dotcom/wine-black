@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   markPushPermissionPromptShown,
   shouldShowFirstVisitPushPrompt,
-  subscribeToPredinexPush,
+  subscribeToWineBlackPush,
 } from '../../app/lib/notifications';
 
 const originalEnv = process.env;
@@ -80,7 +80,7 @@ describe('push notification helpers', () => {
   it('saves the push subscription after permission has been granted', async () => {
     installPushSupport('granted');
 
-    await subscribeToPredinexPush({
+    await subscribeToWineBlackPush({
       userId: 'GABC123',
       preferences: {
         poolSettled: true,
@@ -95,7 +95,7 @@ describe('push notification helpers', () => {
       expect.objectContaining({
         method: 'POST',
         headers: expect.objectContaining({
-          'x-agegg-wallet-address': 'GABC123',
+          'x-wine-black-wallet-address': 'GABC123',
         }),
       }),
     );

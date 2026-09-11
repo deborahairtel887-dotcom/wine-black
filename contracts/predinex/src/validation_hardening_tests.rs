@@ -5,7 +5,7 @@ use soroban_sdk::{testutils::Address as _, testutils::Ledger, Address, Env, Stri
 
 struct TestCtx<'a> {
     env: Env,
-    client: PredinexContractClient<'a>,
+    client: WineBlackContractClient<'a>,
     admin: Address,
     user: Address,
     user_b: Address,
@@ -18,8 +18,8 @@ fn setup() -> TestCtx<'static> {
     let user = Address::generate(&env);
     let user_b = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(admin.clone());
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&token_id.address(), &admin, &admin);
     let token_admin = token::StellarAssetClient::new(&env, &token_id.address());
     token_admin.mint(&user, &10_000);

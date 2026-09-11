@@ -1,6 +1,6 @@
 # Local End-to-End Runbook
 
-This guide walks you through building or deploying the Predinex Soroban contract locally, wiring the web frontend to it, and running the full test suite — all from a clean checkout.
+This guide walks you through building or deploying the Wine Black Soroban contract locally, wiring the web frontend to it, and running the full test suite — all from a clean checkout.
 
 ---
 
@@ -26,7 +26,7 @@ Verify everything is in order with the bootstrap script:
 ## 1. Contract: build and test
 
 ```bash
-cd contracts/predinex
+cd contracts/Wine Black
 
 # Run the full test suite (no network required)
 cargo test
@@ -37,7 +37,7 @@ stellar contract build
 
 The compiled artifact lands at:
 ```
-contracts/predinex/target/wasm32-unknown-unknown/release/predinex.wasm
+contracts/Wine Black/target/wasm32-unknown-unknown/release/Wine Black.wasm
 ```
 
 > **Tip:** `stellar contract build` wraps `cargo build --release --target wasm32-unknown-unknown` and applies the release profile from `Cargo.toml` (`opt-level = "z"`, `codegen-units = 1`).
@@ -62,16 +62,16 @@ stellar keys fund deployer --network testnet
 
 ```bash
 stellar contract optimize \
-  --wasm target/wasm32-unknown-unknown/release/predinex.wasm
+  --wasm target/wasm32-unknown-unknown/release/Wine Black.wasm
 ```
 
-Output: `predinex.optimized.wasm`
+Output: `Wine Black.optimized.wasm`
 
 ### 2c. Deploy
 
 ```bash
 stellar contract deploy \
-  --wasm predinex.optimized.wasm \
+  --wasm Wine Black.optimized.wasm \
   --network testnet \
   --source deployer
 ```
@@ -133,14 +133,14 @@ NEXT_PUBLIC_NETWORK=testnet
 # Set to your deployed contract ID from step 2c,
 # or leave as-is to use the shared testnet deployment
 NEXT_PUBLIC_CONTRACT_ADDRESS=<your-contract-id>
-NEXT_PUBLIC_CONTRACT_NAME=predinex
+NEXT_PUBLIC_CONTRACT_NAME=Wine Black
 
 # Optional — only needed for WalletConnect UI features
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=YOUR_PROJECT_ID
 ```
 
 > **How the app resolves the contract:**
-> `web/app/lib/runtime-config.ts` reads `NEXT_PUBLIC_NETWORK` to select the network and derives the API base URL from `web/app/lib/network-config.ts`. Contract reads flow through `web/app/lib/adapters/predinex-read-api.ts`.
+> `web/app/lib/runtime-config.ts` reads `NEXT_PUBLIC_NETWORK` to select the network and derives the API base URL from `web/app/lib/network-config.ts`. Contract reads flow through `web/app/lib/adapters/wine-black-read-api.ts`.
 
 ### Environment variable reference
 
@@ -148,8 +148,8 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=YOUR_PROJECT_ID
 |---|---|---|---|
 | `NEXT_PUBLIC_NETWORK` | **Yes** | — | `testnet` or `mainnet` |
 | `NEXT_PUBLIC_CONTRACT_ADDRESS` | **Yes** | — | Deployed contract ID (`C…`) |
-| `NEXT_PUBLIC_CONTRACT_NAME` | No | `predinex-pool` | Contract name suffix |
-| `NEXT_PUBLIC_APP_URL` | No | `https://predinex.app` | Used for WalletConnect metadata |
+| `NEXT_PUBLIC_CONTRACT_NAME` | No | `Wine Black-pool` | Contract name suffix |
+| `NEXT_PUBLIC_APP_URL` | No | `https://Wine Black.app` | Used for WalletConnect metadata |
 | `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` | No | — | WalletConnect Cloud project ID |
 | `NEXT_PUBLIC_STACKS_API_URL` | No | Hiro testnet URL | Override the legacy helper API endpoint |
 | `DEBUG` | No | `false` | Enable verbose client-side logging |
@@ -168,7 +168,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 **Smoke-check the contract wiring:**
 1. Connect using the supported wallet flow documented in [WALLET_NETWORK_SUPPORT.md](../web/docs/WALLET_NETWORK_SUPPORT.md) and set the app to the matching supported network.
-2. Navigate to **Markets** — the page fetches live pool data via `predinexReadApi.getMarkets()`.
+2. Navigate to **Markets** — the page fetches live pool data via `wineBlackReadApi.getMarkets()`.
 3. Open browser DevTools → Network. Confirm a request to the configured helper API endpoint returns 200.
 4. If `DEBUG=true` is set in `.env.local`, check the console for the resolved runtime config log.
 
@@ -201,7 +201,7 @@ Refresh the Markets page — the new pool should appear within one polling cycle
 ### Contract tests
 
 ```bash
-cd contracts/predinex
+cd contracts/Wine Black
 cargo test
 ```
 
@@ -226,7 +226,7 @@ npm run build
 
 ```bash
 # Contracts
-cd contracts/predinex
+cd contracts/Wine Black
 cargo fmt --check
 cargo clippy -- -D warnings
 cargo test

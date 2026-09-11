@@ -1,6 +1,6 @@
-# Predinex Contract Deployment Guide
+# Wine Black Contract Deployment Guide
 
-Step-by-step guide to build, deploy, initialize, and verify the `predinex` Soroban smart contract on Stellar testnet, then wire it into the web app.
+Step-by-step guide to build, deploy, initialize, and verify the `Wine Black` Soroban smart contract on Stellar testnet, then wire it into the web app.
 
 ---
 
@@ -35,14 +35,14 @@ stellar account show --network testnet $(stellar keys address deployer)
 From the repo root:
 
 ```bash
-cd contracts/predinex
+cd contracts/Wine Black
 cargo build --target wasm32-unknown-unknown --release
 ```
 
 The optimised WASM is written to:
 
 ```
-contracts/predinex/target/wasm32-unknown-unknown/release/predinex.wasm
+contracts/Wine Black/target/wasm32-unknown-unknown/release/Wine Black.wasm
 ```
 
 Run tests before deploying:
@@ -57,7 +57,7 @@ cargo test
 
 ```bash
 stellar contract deploy \
-  --wasm contracts/predinex/target/wasm32-unknown-unknown/release/predinex.wasm \
+  --wasm contracts/Wine Black/target/wasm32-unknown-unknown/release/Wine Black.wasm \
   --source deployer \
   --network testnet
 ```

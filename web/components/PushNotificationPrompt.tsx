@@ -41,7 +41,7 @@ export default function PushNotificationPrompt() {
           <Bell className="h-5 w-5" />
         </div>
         <div className="min-w-0 flex-1">
-          <h2 className="font-semibold text-foreground">Stay updated on AGEGG</h2>
+          <h2 className="font-semibold text-foreground">Stay updated on Wine Black</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Enable push alerts for pool settlements, 24h expiry reminders, claim availability, and disputes.
           </p>

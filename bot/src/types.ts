@@ -1,6 +1,6 @@
 /**
  * TypeScript types mirroring the Soroban contract data structures.
- * See contracts/predinex/src/lib.rs for the canonical Rust definitions.
+ * See contracts/Wine Black/src/lib.rs for the canonical Rust definitions.
  */
 
 /**

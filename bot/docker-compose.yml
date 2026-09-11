@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: agegg-settlement-bot:latest
-    container_name: agegg-settlement-bot
+    image: wine-black-settlement-bot:latest
+    container_name: wine-black-settlement-bot
     restart: unless-stopped
 
     environment:

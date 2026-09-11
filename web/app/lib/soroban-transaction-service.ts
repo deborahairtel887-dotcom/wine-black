@@ -1,7 +1,7 @@
 /**
  * Soroban Transaction Service
  *
- * Core service for executing write operations against the Predinex Soroban contract.
+ * Core service for executing write operations against the Wine Black Soroban contract.
  * Handles transaction building, simulation, signing (via Freighter), submission,
  * and polling for final status.
  *
@@ -48,7 +48,7 @@ export type TxStage =
   | "error";
 
 /**
- * Main SDK client for executing transactions on the Predinex Soroban contract.
+ * Main SDK client for executing transactions on the Wine Black Soroban contract.
  * Provides high-level methods with built-in simulation, fee prompting, signing,
  * and status polling.
  */
@@ -118,7 +118,7 @@ export class SorobanTransactionService {
    * Creates a new prediction pool on the Soroban contract.
    *
    * @param wallet - Connected Freighter wallet
-   * @param contractId - Deployed Predinex contract ID
+   * @param contractId - Deployed Wine Black contract ID
    * @param params - Pool configuration
    * @param onStageChange - Optional callback for UI progress updates
    * @param onFeeEstimated - Optional callback to show and confirm fee

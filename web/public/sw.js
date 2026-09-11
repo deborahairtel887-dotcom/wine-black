@@ -1,5 +1,5 @@
 /*
- * AGEGG service worker.
+ * Wine Black service worker.
  *
  * Strategy (mirrors app/lib/pwa.ts — keep both in sync):
  *   - Navigations  → network-first, falling back to cache then the /offline page
@@ -8,7 +8,7 @@
  *   - Cross-origin requests (RPC, Stellar APIs) are left to the network
  */
 
-const CACHE_VERSION = 'agegg-v1';
+const CACHE_VERSION = 'wine-black-v1';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const OFFLINE_URL = '/offline';
@@ -23,19 +23,19 @@ const DEFAULT_NOTIFICATION_URL = '/dashboard';
 const EVENT_FALLBACKS = {
   pool_settled: {
     title: 'Pool settled',
-    body: 'An AGEGG pool you follow has settled.',
+    body: 'A Wine Black pool you follow has settled.',
   },
   pool_expiring_24h: {
     title: 'Pool expiring soon',
-    body: 'An AGEGG pool you follow expires in 24 hours.',
+    body: 'A Wine Black pool you follow expires in 24 hours.',
   },
   claim_available: {
     title: 'Claim available',
-    body: 'You have AGEGG winnings available to claim.',
+    body: 'You have Wine Black winnings available to claim.',
   },
   dispute_filed: {
     title: 'Dispute filed',
-    body: 'A dispute was filed on an AGEGG pool you follow.',
+    body: 'A dispute was filed on A Wine Black pool you follow.',
   },
 };
 
@@ -168,8 +168,8 @@ self.addEventListener('push', (event) => {
     (async () => {
       const payload = parsePushPayload(event);
       const fallback = EVENT_FALLBACKS[payload.eventType] || {
-        title: 'AGEGG update',
-        body: 'There is a new update for your AGEGG activity.',
+        title: 'Wine Black update',
+        body: 'There is a new update for your Wine Black activity.',
       };
       const url = normalizeNotificationUrl(payload.url);
 
@@ -177,10 +177,10 @@ self.addEventListener('push', (event) => {
         body: payload.body || fallback.body,
         icon: payload.icon || DEFAULT_NOTIFICATION_ICON,
         badge: DEFAULT_NOTIFICATION_ICON,
-        tag: payload.eventType || 'agegg-update',
+        tag: payload.eventType || 'wine-black-update',
         data: {
           url,
-          eventType: payload.eventType || 'agegg_update',
+          eventType: payload.eventType || 'wine_black_update',
           poolId: payload.poolId,
           disputeId: payload.disputeId,
           claimId: payload.claimId,

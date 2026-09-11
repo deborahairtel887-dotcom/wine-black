@@ -143,8 +143,8 @@ vi.mock('../../app/lib/hooks/usePoolFavorites', () => ({
   usePoolFavorites: vi.fn(() => ({ isFavorite: vi.fn(() => false), toggleFavorite: vi.fn() })),
 }));
 
-vi.mock('../../app/lib/adapters/predinex-read-api', () => ({
-  predinexReadApi: {
+vi.mock('../../app/lib/adapters/wine-black-read-api', () => ({
+  wineBlackReadApi: {
     getPool: vi.fn(() => Promise.resolve(null)),
     getUserBet: vi.fn(() => Promise.resolve(null)),
   },
@@ -246,8 +246,8 @@ vi.mock('../../app/lib/runtime-config', () => ({
     network: 'testnet',
     contract: {
       address: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM',
-      name: 'agegg-pool',
-      id: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.agegg-pool',
+      name: 'wine-black-pool',
+      id: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.wine-black-pool',
     },
     api: { coreApiUrl: '', explorerUrl: '', rpcUrl: '' },
   })),

@@ -44,8 +44,8 @@ export default function LiquidityProviderDashboard({
         setLoading(true);
         setError(null);
         // TODO: Fetch LP position and rewards from contract
-        // const position = await predinexReadApi.getLpPosition(poolId, address);
-        // const pendingRewards = await predinexReadApi.getPendingLpRewards(poolId, address);
+        // const position = await wineBlackReadApi.getLpPosition(poolId, address);
+        // const pendingRewards = await wineBlackReadApi.getPendingLpRewards(poolId, address);
         // setLpPosition(position);
         // setRewards({ pending: pendingRewards, claimed: '0' });
       } catch (err) {

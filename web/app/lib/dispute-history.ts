@@ -1,7 +1,7 @@
 /**
  * Pool dispute-history timeline.
  *
- * The Predinex Soroban contract exposes a freeze/dispute lifecycle for settled
+ * The Wine Black Soroban contract exposes a freeze/dispute lifecycle for settled
  * pools, emitting these events (topics: `(name, "v1", pool_id)`, data: caller):
  *   - `pool_frozen`   — pool temporarily frozen, blocking bets/claims
  *   - `pool_disputed` — settled pool marked disputed, blocking payouts

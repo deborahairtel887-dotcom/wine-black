@@ -52,7 +52,7 @@ fn has_event_topic(env: &Env, events: &soroban_sdk::testutils::ContractEvents, n
 
 struct Ctx {
     env: Env,
-    client: PredinexContractClient<'static>,
+    client: WineBlackContractClient<'static>,
     /// The treasury_recipient address (passed as `caller` to admin functions).
     admin: Address,
 }
@@ -62,10 +62,10 @@ impl Ctx {
         let env = Env::default();
         env.mock_all_auths();
 
-        let contract_id = env.register(PredinexContract, ());
+        let contract_id = env.register(WineBlackContract, ());
         // SAFETY: lifetime extension matches the pattern used across this repo.
-        let client: PredinexContractClient<'static> =
-            PredinexContractClient::new(&env, &contract_id);
+        let client: WineBlackContractClient<'static> =
+            WineBlackContractClient::new(&env, &contract_id);
 
         // initialize() stores the second argument as TreasuryRecipient.
         let token_admin = Address::generate(&env);
@@ -180,7 +180,7 @@ fn test_register_webhook_accepts_https_url_with_path_and_query() {
     let ctx = Ctx::new();
     ctx.client.register_webhook(
         &ctx.admin,
-        &ctx.url("https://hooks.example.com/v1/predinex?token=abc123"),
+        &ctx.url("https://hooks.example.com/v1/wine-black?token=abc123"),
         &ctx.event_types_one(),
     );
     assert_eq!(ctx.client.get_webhooks().len(), 1);

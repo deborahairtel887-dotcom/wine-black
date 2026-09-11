@@ -1,5 +1,5 @@
 /**
- * Centralized cache invalidation policy for AGEGG.
+ * Centralized cache invalidation policy for Wine Black.
  *
  * ## Mutation → Invalidation Map
  *

@@ -12,12 +12,12 @@ function loadServiceWorker() {
   const navigate = vi.fn().mockResolvedValue(undefined);
 
   const self = {
-    location: { origin: 'https://agegg.test' },
+    location: { origin: 'https://wine-black.test' },
     registration: { showNotification },
     clients: {
       matchAll: vi.fn().mockResolvedValue([
         {
-          url: 'https://agegg.test/dashboard',
+          url: 'https://wine-black.test/dashboard',
           focus,
           navigate,
         },
@@ -100,7 +100,7 @@ describe('service worker push handling', () => {
     await promise;
 
     expect(focus).toHaveBeenCalled();
-    expect(navigate).toHaveBeenCalledWith('https://agegg.test/disputes?dispute=3');
+    expect(navigate).toHaveBeenCalledWith('https://wine-black.test/disputes?dispute=3');
     expect(openWindow).not.toHaveBeenCalled();
   });
 });

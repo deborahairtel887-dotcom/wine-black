@@ -37,7 +37,7 @@ describe('appkit-config — issue #210', () => {
   it('keeps WalletConnect project id and metadata exported', () => {
     expect(typeof WALLETCONNECT_PROJECT_ID).toBe('string');
     expect(WALLETCONNECT_PROJECT_ID.length).toBeGreaterThan(0);
-    expect(appKitMetadata.name).toBe('AGEGG');
+    expect(appKitMetadata.name).toBe('Wine Black');
     expect(appKitMetadata.description.toLowerCase()).toContain('stellar');
   });
 });

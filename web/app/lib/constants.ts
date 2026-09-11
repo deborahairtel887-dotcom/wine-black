@@ -1,5 +1,5 @@
 /**
- * Shared constants for the Predinex frontend UI.
+ * Shared constants for the Wine Black frontend UI.
  */
 
 // ---------------------------------------------------------------------------
@@ -18,7 +18,7 @@ export const CONTRACT_ADDRESS: string =
     process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || 'SP2WWKKF25SED3K5P6ETY7MDDNBQH50GPSP8EJM8N';
 
 export const CONTRACT_NAME: string =
-    process.env.NEXT_PUBLIC_CONTRACT_NAME || 'predinex-contract';
+    process.env.NEXT_PUBLIC_CONTRACT_NAME || 'wine-black-contract';
 
 // Maximum pool duration that the frontend allows when creating a new market.
 // This mirrors the contract-side maximum and protects against long-lived pools.

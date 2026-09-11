@@ -121,8 +121,8 @@ describe('activitiesToJSON', () => {
 describe('buildExportFilename', () => {
   it('embeds the format and window bounds', () => {
     const window = { from: '2026-03-01', to: '2026-05-30', clamped: false };
-    expect(buildExportFilename('csv', window)).toBe('agegg-activity_2026-03-01_2026-05-30.csv');
-    expect(buildExportFilename('json', window)).toBe('agegg-activity_2026-03-01_2026-05-30.json');
+    expect(buildExportFilename('csv', window)).toBe('wine-black-activity_2026-03-01_2026-05-30.csv');
+    expect(buildExportFilename('json', window)).toBe('wine-black-activity_2026-03-01_2026-05-30.json');
   });
 });
 

@@ -33,7 +33,7 @@ interface Transaction {
   retryAction?: () => void;
 }
 
-const STORAGE_KEY = 'agegg-tx-history';
+const STORAGE_KEY = 'wine-black-tx-history';
 const ITEMS_PER_PAGE = 10;
 
 const STELLAR_EXPLORER_BASE = 'https://stellar.expert/explorer/testnet/tx';
@@ -199,14 +199,14 @@ function TransactionsContent() {
           <div className="flex gap-3">
             <button
               type="button"
-              onClick={() => exportRecords(transactionExportRows, 'agegg-transactions', 'csv')}
+              onClick={() => exportRecords(transactionExportRows, 'wine-black-transactions', 'csv')}
               className="rounded-xl border border-border bg-card/40 px-4 py-2 text-sm font-semibold transition-colors hover:bg-card"
             >
               Export CSV
             </button>
             <button
               type="button"
-              onClick={() => exportRecords(transactionExportRows, 'agegg-transactions', 'json')}
+              onClick={() => exportRecords(transactionExportRows, 'wine-black-transactions', 'json')}
               className="rounded-xl border border-border bg-card/40 px-4 py-2 text-sm font-semibold transition-colors hover:bg-card"
             >
               Export JSON

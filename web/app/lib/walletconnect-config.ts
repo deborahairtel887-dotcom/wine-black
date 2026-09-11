@@ -9,10 +9,10 @@ export const WALLETCONNECT_CONFIG = {
 
   // App metadata for wallet display
   metadata: {
-    name: 'Predinex',
+    name: 'Wine Black',
     description: 'Decentralized Prediction Market on Stellar',
-    url: process.env.NEXT_PUBLIC_APP_URL || 'https://predinex.app',
-    icons: ['https://predinex.app/logo.png'],
+    url: process.env.NEXT_PUBLIC_APP_URL || 'https://Wine Black.app',
+    icons: ['https://Wine Black.app/logo.png'],
   },
 
   // Supported Stellar/Soroban networks
@@ -84,7 +84,7 @@ export const WALLETCONNECT_CONFIG = {
 
   // Session storage configuration
   storage: {
-    key: 'predinex_wallet_session',
+    key: 'Wine Black_wallet_session',
     ttl: 7 * 24 * 60 * 60 * 1000, // 7 days
     version: '1.0.0',
   },

@@ -5,12 +5,12 @@ use soroban_sdk::{
     Address, Env, String,
 };
 
-fn setup_contract() -> (Env, PredinexContractClient<'static>, Address, Address) {
+fn setup_contract() -> (Env, WineBlackContractClient<'static>, Address, Address) {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());

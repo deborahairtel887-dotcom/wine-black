@@ -62,16 +62,16 @@ read -rp "Type the version to confirm rollback: " CONFIRM
 [[ "$CONFIRM" == "$TARGET_VERSION" ]] || error "Confirmation mismatch — aborting."
 
 # ── fetch WASM from GitHub release or local artifact ─────────────────────────
-WASM_PATH="wasm_rollback/predinex.optimized.wasm"
+WASM_PATH="wasm_rollback/Wine Black.optimized.wasm"
 mkdir -p wasm_rollback
 
 if [[ -f "deployments/${TARGET_VERSION}.wasm" ]]; then
   cp "deployments/${TARGET_VERSION}.wasm" "$WASM_PATH"
 else
   info "Downloading WASM from GitHub release $TARGET_VERSION …"
-  REPO="${GITHUB_REPOSITORY:-dimka90/predinex-stellar}"
+  REPO="${GITHUB_REPOSITORY:-dimka90/Wine Black-stellar}"
   curl -sSL \
-    "https://github.com/${REPO}/releases/download/${TARGET_VERSION}/predinex.optimized.wasm" \
+    "https://github.com/${REPO}/releases/download/${TARGET_VERSION}/Wine Black.optimized.wasm" \
     -o "$WASM_PATH" || error "Could not download WASM for $TARGET_VERSION from GitHub releases."
 fi
 

@@ -2,7 +2,7 @@
  * Webhook Notification Service
  *
  * Sends HTTP POST notifications to configured webhook URLs when
- * pool events occur on the Predinex platform.
+ * pool events occur on the Wine Black platform.
  *
  * Events supported:
  *   - pool_created: When a new prediction market is created
@@ -11,7 +11,7 @@
  *   - payout_claimed: When a user claims their winnings
  *
  * Security: All payloads are signed with HMAC-SHA256 using a shared secret.
- * The signature is included in the `X-Predinex-Signature` header for verification.
+ * The signature is included in the `X-Wine Black-Signature` header for verification.
  */
 
 import { getRuntimeConfig } from './runtime-config';
@@ -89,7 +89,7 @@ export function getWebhookConfig(poolId?: number): WebhookConfig | null {
 
 /**
  * Generate HMAC-SHA256 signature for webhook payload.
- * Used in the `X-Predinex-Signature` header.
+ * Used in the `X-Wine Black-Signature` header.
  */
 function generateSignature(payload: string, secret: string): Promise<string> {
   const encoder = new TextEncoder();
@@ -236,8 +236,8 @@ async function sendWebhook(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Predinex-Signature': `sha256=${signature}`,
-        'X-Predinex-Event': payload.event,
+        'X-Wine Black-Signature': `sha256=${signature}`,
+        'X-Wine Black-Event': payload.event,
       },
       body: payloadString,
     });

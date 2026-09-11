@@ -58,7 +58,7 @@ vi.mock('../../app/lib/hooks/useTxStatus', () => ({
 vi.mock('../../app/lib/runtime-config', () => ({
   getRuntimeConfig: vi.fn(() => ({
     network: 'testnet',
-    contract: { address: 'ST1', name: 'agegg-pool', id: 'ST1.agegg-pool' },
+    contract: { address: 'ST1', name: 'wine-black-pool', id: 'ST1.wine-black-pool' },
     api: { coreApiUrl: '', explorerUrl: '', rpcUrl: '' },
   })),
 }));

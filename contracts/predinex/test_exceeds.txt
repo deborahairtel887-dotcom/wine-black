@@ -1,5 +1,5 @@
     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.45s
-     Running unittests src/lib.rs (target/debug/deps/predinex-c365d1296803d96f)
+     Running unittests src/lib.rs (target/debug/deps/wine-black-c365d1296803d96f)
 
 running 3 tests
 test test::test_create_pool_exceeds_outcome_length - should panic ... ok

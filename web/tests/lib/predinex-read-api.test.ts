@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { fetchPredinexContractEvents, getStacksCoreApiBaseUrl, predinexReadApi } from '../../app/lib/adapters/predinex-read-api';
+import { fetchwineBlackContractEvents, getStacksCoreApiBaseUrl, wineBlackReadApi } from '../../app/lib/adapters/wine-black-read-api';
 import { makeSorobanEvent, makeSorobanEventsResponse } from '../helpers/mock-surfaces';
 
 const {
@@ -19,8 +19,8 @@ vi.mock('../../app/lib/runtime-config', () => ({
     network: 'testnet',
     contract: {
       address: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM',
-      name: 'agegg-pool',
-      id: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.agegg-pool',
+      name: 'wine-black-pool',
+      id: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.wine-black-pool',
     },
     api: {
       coreApiUrl: 'https://api.testnet.hiro.so',
@@ -47,7 +47,7 @@ vi.mock('../../app/lib/soroban-event-service', () => ({
 
 global.fetch = vi.fn();
 
-describe('predinexReadApi', () => {
+describe('wineBlackReadApi', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -64,11 +64,11 @@ describe('predinexReadApi', () => {
       json: async () => response,
     } as unknown as Response);
 
-    const result = await fetchPredinexContractEvents(5);
+    const result = await fetchwineBlackContractEvents(5);
 
     expect(result).toEqual(response);
     expect(fetch).toHaveBeenCalledWith(
-      'https://api.testnet.hiro.so/extended/v1/contract/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM/agegg-pool/events?limit=5'
+      'https://api.testnet.hiro.so/extended/v1/contract/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM/wine-black-pool/events?limit=5'
     );
   });
 
@@ -86,7 +86,7 @@ describe('predinexReadApi', () => {
       },
     ]);
 
-    const result = await predinexReadApi.getUserActivitySoroban('GBUSER123STELLARADDRESS', 20);
+    const result = await wineBlackReadApi.getUserActivitySoroban('GBUSER123STELLARADDRESS', 20);
 
     expect(result).toHaveLength(1);
     expect(mockGetUserActivityFromSoroban).toHaveBeenCalledWith(
@@ -101,13 +101,13 @@ describe('predinexReadApi', () => {
   });
 
   it('retains the compatibility delegates still used by the app shell', () => {
-    expect(predinexReadApi.getPool).toEqual(expect.any(Function));
-    expect(predinexReadApi.getUserBet).toEqual(expect.any(Function));
-    expect(predinexReadApi.getPoolCount).toEqual(expect.any(Function));
-    expect(predinexReadApi.getUserActivitySoroban).toEqual(expect.any(Function));
-    expect(predinexReadApi.getUserActivity).toBe(predinexReadApi.getUserActivitySoroban);
-    expect(predinexReadApi.getTotalVolume).toBe(mockGetTotalVolume);
-    expect(predinexReadApi.getMarkets).toBe(mockGetMarkets);
-    expect(predinexReadApi.getStacksActivity).toBe(mockGetUserActivity);
+    expect(wineBlackReadApi.getPool).toEqual(expect.any(Function));
+    expect(wineBlackReadApi.getUserBet).toEqual(expect.any(Function));
+    expect(wineBlackReadApi.getPoolCount).toEqual(expect.any(Function));
+    expect(wineBlackReadApi.getUserActivitySoroban).toEqual(expect.any(Function));
+    expect(wineBlackReadApi.getUserActivity).toBe(wineBlackReadApi.getUserActivitySoroban);
+    expect(wineBlackReadApi.getTotalVolume).toBe(mockGetTotalVolume);
+    expect(wineBlackReadApi.getMarkets).toBe(mockGetMarkets);
+    expect(wineBlackReadApi.getStacksActivity).toBe(mockGetUserActivity);
   });
 });

@@ -1,7 +1,7 @@
 {
-  "name": "agegg-settlement-bot",
+  "name": "wine-black-settlement-bot",
   "version": "1.0.0",
-  "description": "Automated settlement bot for AGEGG prediction pools on Stellar/Soroban",
+  "description": "Automated settlement bot for wine-black prediction pools on Stellar/Soroban",
   "private": true,
   "type": "module",
   "main": "dist/index.js",

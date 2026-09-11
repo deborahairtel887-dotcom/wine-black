@@ -1,9 +1,9 @@
-export { predinexContract } from './predinex-contract';
+export { wineBlackContract } from './wine-black-contract';
 export {
-  predinexReadApi,
+  wineBlackReadApi,
   getStacksCoreApiBaseUrl,
-  fetchPredinexContractEvents,
-} from './predinex-read-api';
+  fetchWineBlackContractEvents,
+} from './wine-black-read-api';
 export type { Pool, ActivityItem } from './types';
 export {
   getUserActivityFromSoroban,

@@ -9,8 +9,8 @@ import Navbar from '@/components/Navbar';
 import AuthGuard from '@/components/AuthGuard';
 import { useWallet } from '@/components/WalletAdapterProvider';
 import { useToast } from '../../providers/ToastProvider';
-import { predinexContract } from '../lib/adapters/predinex-contract';
-import { predinexReadApi } from '../lib/adapters/predinex-read-api';
+import { wineBlackContract } from '../lib/adapters/wine-black-contract';
+import { wineBlackReadApi } from '../lib/adapters/wine-black-read-api';
 import { invalidateOnCreatePool } from '../lib/cache-invalidation';
 import { TxStage } from '../lib/soroban-transaction-service';
 import { TransactionFeeModal } from '@/components/TransactionFeeModal';
@@ -52,7 +52,7 @@ export default function CreateMarket() {
 
     let cancelled = false;
     (async () => {
-      const publicTemplates = await predinexReadApi.getPublicTemplates();
+      const publicTemplates = await wineBlackReadApi.getPublicTemplates();
       if (cancelled) return;
       const savedTemplates = loadSavedTemplates();
       const applied = wizard.applyDeepLinkTemplate(
@@ -124,7 +124,7 @@ export default function CreateMarket() {
     setIsSubmitting(true);
     setStage('idle');
     try {
-      const { txHash, poolId } = await predinexContract.createMarketSoroban({
+      const { txHash, poolId } = await wineBlackContract.createMarketSoroban({
         wallet,
         title: wizard.draft.title,
         description: wizard.draft.description,
@@ -144,7 +144,7 @@ export default function CreateMarket() {
       const { resolutionCriteria, externalLinks, coverImage } = wizard.draft;
       if (poolId && (resolutionCriteria || externalLinks || coverImage)) {
         try {
-          await predinexContract.setPoolExtMetadataSoroban({
+          await wineBlackContract.setPoolExtMetadataSoroban({
             wallet,
             poolId,
             resolutionCriteria: resolutionCriteria || undefined,

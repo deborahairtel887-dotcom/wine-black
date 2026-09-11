@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Copy, FileStack, Globe, LayoutTemplate, Loader2 } from 'lucide-react';
-import { predinexReadApi } from '@/app/lib/adapters/predinex-read-api';
+import { wineBlackReadApi } from '@/app/lib/adapters/wine-black-read-api';
 import type { OnChainPoolTemplate } from '@/app/lib/soroban-template-api';
 import {
   buildTemplateShareUrl,
@@ -39,7 +39,7 @@ export function StepTemplate({ draft, selectTemplate }: StepTemplateProps) {
     let cancelled = false;
     (async () => {
       setLoadingPublic(true);
-      const templates = await predinexReadApi.getPublicTemplates();
+      const templates = await wineBlackReadApi.getPublicTemplates();
       if (!cancelled) {
         setPublicTemplates(templates);
         setLoadingPublic(false);

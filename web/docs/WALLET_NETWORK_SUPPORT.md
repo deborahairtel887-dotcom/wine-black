@@ -1,6 +1,6 @@
 # Wallet and Network Support
 
-This page is the single source of truth for wallet, network, and migration support in the AGEGG web app.
+This page is the single source of truth for wallet, network, and migration support in the wine-black web app.
 
 ## Current Support
 

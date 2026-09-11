@@ -7,7 +7,7 @@ This document outlines identified opportunities to reduce Soroban contract stora
 ### High-Cost Data Structures
 
 #### 1. Pool Struct (Instance Per Pool)
-**File:** `contracts/predinex/src/lib.rs`
+**File:** `contracts/Wine Black/src/lib.rs`
 
 **Current Fields:**
 - `creator` (Address): ~32 bytes

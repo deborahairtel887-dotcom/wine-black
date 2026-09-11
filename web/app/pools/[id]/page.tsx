@@ -5,7 +5,7 @@ const log = createScopedLogger('PoolDetailPage');
 import Link from "next/link";
 import { use, useEffect, useState, useCallback } from "react";
 import { useWallet } from '@/components/WalletAdapterProvider';
-import { predinexReadApi } from "../../lib/adapters/predinex-read-api";
+import { wineBlackReadApi } from "../../lib/adapters/wine-black-read-api";
 import type { Pool } from "../../lib/adapters/types";
 import type { PoolExtendedMetadata } from "../../lib/soroban-read-api";
 import Navbar from '@/components/Navbar';
@@ -54,7 +54,7 @@ export default function PoolDetail({ params }: { params: Promise<{ id: string }>
 
     const fetchPool = useCallback(async () => {
         try {
-            const data = await predinexReadApi.getPool(poolId);
+            const data = await wineBlackReadApi.getPool(poolId);
             setPool(data);
             setError(null);
             return data;
@@ -69,7 +69,7 @@ export default function PoolDetail({ params }: { params: Promise<{ id: string }>
             return;
         }
         try {
-            const bet = await predinexReadApi.getUserBet(poolId, stxAddress);
+            const bet = await wineBlackReadApi.getUserBet(poolId, stxAddress);
             setUserBet(bet);
         } catch {
             setUserBet(null);
@@ -97,7 +97,7 @@ export default function PoolDetail({ params }: { params: Promise<{ id: string }>
 
     // #721 — Fetch extended metadata once on mount (best-effort).
     useEffect(() => {
-        predinexReadApi.getPoolExtMetadata(poolId)
+        wineBlackReadApi.getPoolExtMetadata(poolId)
             .then(meta => { if (meta) setExtMetadata(meta); })
             .catch(() => {});
     }, [poolId]);

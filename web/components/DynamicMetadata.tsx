@@ -15,9 +15,9 @@ export default function DynamicMetadata({
     title,
     description,
     image = '/og-image.png',
-    url = 'https://agegg.io'
+    url = 'https://wine-black.io'
 }: DynamicMetadataProps) {
-    const fullTitle = `${title} | AGEGG`;
+    const fullTitle = `${title} | Wine Black`;
 
     return (
         <Head>

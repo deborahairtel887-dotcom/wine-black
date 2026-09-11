@@ -23,8 +23,8 @@ export interface WidgetTheme {
   fontFamily?: string;
 }
 
-export interface PredinexWidgetProps {
-  /** Soroban contract ID for the Predinex contract */
+export interface Wine BlackWidgetProps {
+  /** Soroban contract ID for the Wine Black contract */
   contractId: string;
   /** Pool ID to display. Omit to show a list. */
   poolId?: number;

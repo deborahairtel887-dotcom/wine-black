@@ -4,7 +4,7 @@
 **Status:** Canonical Reference  
 **Last Updated:** 2026-04-29
 
-This document defines the canonical event vocabulary for product analytics across wallet, market, and transaction flows in the Predinex application. All analytics instrumentation must use the event names and payload shapes defined here.
+This document defines the canonical event vocabulary for product analytics across wallet, market, and transaction flows in the Wine Black application. All analytics instrumentation must use the event names and payload shapes defined here.
 
 ---
 

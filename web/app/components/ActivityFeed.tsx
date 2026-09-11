@@ -98,7 +98,7 @@ function EmptyState() {
             </div>
             <h3 className="text-xl font-bold mb-2">No Activity Yet</h3>
             <p className="text-muted-foreground max-w-sm mb-6">
-                Your on-chain activity with Predinex will appear here once you start predicting.
+                Your on-chain activity with Wine Black will appear here once you start predicting.
             </p>
             <Link
                 href="/markets"

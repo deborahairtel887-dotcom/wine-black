@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Predinex Rewards",
+  title: "Wine Black Rewards",
   description: "Your rewards and leaderboard position",
 };
 

@@ -26,7 +26,7 @@ const BET: i128 = 5_000_000;
 
 struct Setup {
     env: Env,
-    client: PredinexContractClient<'static>,
+    client: WineBlackContractClient<'static>,
     token: token::Client<'static>,
     minter: token::StellarAssetClient<'static>,
     admin: Address,
@@ -36,8 +36,8 @@ fn setup() -> Setup {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin);
@@ -272,7 +272,7 @@ fn claim_all_winnings_returns_per_pool_amounts() {
 
 struct MaSetup {
     env: Env,
-    client: PredinexContractClient<'static>,
+    client: WineBlackContractClient<'static>,
     alt: token::Client<'static>,
     alt_minter: token::StellarAssetClient<'static>,
     admin: Address,
@@ -290,8 +290,8 @@ fn ma_setup() -> MaSetup {
     let alt = token::Client::new(&env, &alt_id.address());
     let alt_minter = token::StellarAssetClient::new(&env, &alt_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let admin = Address::generate(&env);
     client.initialize(&proto_id.address(), &admin, &admin);

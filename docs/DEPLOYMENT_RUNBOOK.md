@@ -1,6 +1,6 @@
-# Predinex Operations Runbook
+# Wine Black Operations Runbook
 
-This runbook covers deployment, monitoring, incident response, and emergency procedures for the Predinex prediction market contract and associated infrastructure.
+This runbook covers deployment, monitoring, incident response, and emergency procedures for the Wine Black prediction market contract and associated infrastructure.
 
 ---
 
@@ -19,21 +19,21 @@ This runbook covers deployment, monitoring, incident response, and emergency pro
 #### Step 1: Build the Contract
 
 ```bash
-cd contracts/predinex
+cd contracts/Wine Black
 cargo build --target wasm32-unknown-unknown --release
-stellar contract optimize --wasm target/wasm32-unknown-unknown/release/predinex.wasm
+stellar contract optimize --wasm target/wasm32-unknown-unknown/release/Wine Black.wasm
 ```
 
 Verify the optimized WASM:
 ```bash
-ls -lh target/wasm32-unknown-unknown/release/predinex.optimized.wasm
+ls -lh target/wasm32-unknown-unknown/release/Wine Black.optimized.wasm
 ```
 
 #### Step 2: Deploy to Testnet
 
 ```bash
 stellar contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/predinex.optimized.wasm \
+  --wasm target/wasm32-unknown-unknown/release/Wine Black.optimized.wasm \
   --source admin \
   --network testnet
 ```
@@ -114,18 +114,18 @@ Complete **all items** before proceeding:
 
 1. **Build & Verify Contract**
    ```bash
-   cd contracts/predinex
+   cd contracts/Wine Black
    cargo build --target wasm32-unknown-unknown --release
-   stellar contract optimize --wasm target/wasm32-unknown-unknown/release/predinex.wasm
+   stellar contract optimize --wasm target/wasm32-unknown-unknown/release/Wine Black.wasm
    
    # Compute WASM hash for verification (see bytecode verification workflow)
-   sha256sum target/wasm32-unknown-unknown/release/predinex.optimized.wasm
+   sha256sum target/wasm32-unknown-unknown/release/Wine Black.optimized.wasm
    ```
 
 2. **Deploy with Multi-Sig**
    ```bash
    stellar contract deploy \
-     --wasm target/wasm32-unknown-unknown/release/predinex.optimized.wasm \
+     --wasm target/wasm32-unknown-unknown/release/Wine Black.optimized.wasm \
      --source admin-multisig \
      --network mainnet
    ```
@@ -460,7 +460,7 @@ DELETE FROM events WHERE timestamp > <issue-start>;
 
 **Escalation chain:**
 1. **5 min:** Notify on-call slack channel #incidents
-2. **15 min:** Update status.predinex.io with incident page
+2. **15 min:** Update status.wine-black.io with incident page
 3. **30 min:** Email all users with impact assessment + ETA
 4. **Resolved:** Post-mortem summary and remediation plan
 
@@ -581,7 +581,7 @@ stellar contract info --id <SAC_ADDRESS> --network mainnet
 2. **Export indexer database:**
    ```bash
    # Dump to local file
-   pg_dump -U postgres predinex_indexer \
+   pg_dump -U postgres Wine Black_indexer \
      | gzip > /backup/indexer_$(date +%Y%m%d_%H%M%S).sql.gz
    
    # Verify backup size
@@ -591,17 +591,17 @@ stellar contract info --id <SAC_ADDRESS> --network mainnet
 3. **Verify backups are recoverable:**
    ```bash
    # Test database restore
-   gunzip < /backup/indexer_latest.sql.gz | psql -U postgres predinex_test
+   gunzip < /backup/indexer_latest.sql.gz | psql -U postgres Wine Black_test
    ```
 
 4. **Upload to secure storage:**
    ```bash
    # AWS S3 (encrypted)
-   aws s3 cp /backup/ s3://predinex-backups-encrypted/ \
+   aws s3 cp /backup/ s3://Wine Black-backups-encrypted/ \
      --sse AES256 --recursive
    
    # Verify upload
-   aws s3 ls s3://predinex-backups-encrypted/
+   aws s3 ls s3://Wine Black-backups-encrypted/
    ```
 
 #### Automatic Daily Backups
@@ -611,7 +611,7 @@ stellar contract info --id <SAC_ADDRESS> --network mainnet
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: predinex-backup
+  name: Wine Black-backup
 spec:
   schedule: "0 2 * * *"  # 2am UTC daily
   jobTemplate:
@@ -626,12 +626,12 @@ spec:
             - -c
             - |
               pg_dump $DATABASE_URL | gzip | \
-              aws s3 cp - s3://predinex-backups/daily-$(date +%Y%m%d).sql.gz --sse AES256
+              aws s3 cp - s3://Wine Black-backups/daily-$(date +%Y%m%d).sql.gz --sse AES256
             env:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: predinex-db
+                  name: Wine Black-db
                   key: url
 ```
 
@@ -641,7 +641,7 @@ spec:
 
 ```bash
 # 1. Identify backup point
-ls -lh /backup/ | grep -i predinex
+ls -lh /backup/ | grep -i Wine Black
 
 # 2. Stop indexer (prevent new writes during recovery)
 kubectl scale deployment soroban-indexer --replicas=0
@@ -850,7 +850,7 @@ stellar contract invoke --id $CONTRACT_ID \
    cargo build --release --target wasm32-unknown-unknown
    
    # Compute hash for verification
-   sha256sum target/wasm32-unknown-unknown/release/predinex.optimized.wasm
+   sha256sum target/wasm32-unknown-unknown/release/Wine Black.optimized.wasm
    
    # Test on testnet
    stellar contract deploy --wasm ... --network testnet
@@ -865,7 +865,7 @@ stellar contract invoke --id $CONTRACT_ID \
 3. **Deploy upgraded contract:**
    ```bash
    stellar contract deploy \
-     --wasm target/wasm32-unknown-unknown/release/predinex.optimized.wasm \
+     --wasm target/wasm32-unknown-unknown/release/Wine Black.optimized.wasm \
      --source admin-multisig --network mainnet
    
    export NEW_CONTRACT_ID=<result>

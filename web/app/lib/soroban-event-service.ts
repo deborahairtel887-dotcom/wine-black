@@ -6,7 +6,7 @@
  *
  * Event schema reference: web/docs/CONTRACT_EVENTS.md
  *
- * Schema versioning (issue #175): every event emitted by the Predinex
+ * Schema versioning (issue #175): every event emitted by the Wine Black
  * contract carries a `Symbol` schema version at topic position 1 (currently
  * `"v1"`). This decoder pins to the version it was built against and skips
  * events with any other version rather than silently mis-decoding them.
@@ -30,7 +30,7 @@ const log = createScopedLogger('soroban-event-service');
 
 /**
  * The contract event schema version this decoder understands. Must match the
- * `EVENT_SCHEMA_VERSION` constant in `contracts/predinex/src/lib.rs`. Update
+ * `EVENT_SCHEMA_VERSION` constant in `contracts/Wine Black/src/lib.rs`. Update
  * both in lockstep when the contract bumps its version marker.
  */
 export const SUPPORTED_EVENT_SCHEMA_VERSION = 'v1';

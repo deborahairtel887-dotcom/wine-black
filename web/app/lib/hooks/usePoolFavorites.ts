@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
-const POOL_FAVORITES_KEY = 'predinex_pool_favorites_v1';
+const POOL_FAVORITES_KEY = 'Wine Black_pool_favorites_v1';
 
 function normalizeIds(ids: unknown): number[] {
   if (!Array.isArray(ids)) return [];

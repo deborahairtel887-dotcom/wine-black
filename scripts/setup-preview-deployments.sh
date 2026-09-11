@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🚀 Predinex Preview Deployment Setup"
+echo "🚀 Wine Black Preview Deployment Setup"
 echo "===================================="
 echo ""
 

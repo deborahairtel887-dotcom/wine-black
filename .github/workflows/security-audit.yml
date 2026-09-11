@@ -7,48 +7,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  npm-audit:
-    name: npm dependency audit
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./web
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-          cache-dependency-path: web/package-lock.json
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Audit (high and critical only)
-        # --audit-level=high surfaces high/critical findings without blocking on moderate/low.
-        # The step is marked continue-on-error so unrelated PRs are never blocked;
-        # findings are still visible in the workflow summary.
-        run: npm audit --audit-level=high
-        continue-on-error: true
-
-      - name: Generate audit report
-        run: npm audit --json > npm-audit-report.json || true
-
-      - name: Upload audit report
-        uses: actions/upload-artifact@v4
-        with:
-          name: npm-audit-report
-          path: web/npm-audit-report.json
-          retention-days: 30
-
   cargo-audit:
     name: Cargo dependency audit
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./contracts/predinex
+        working-directory: ./contracts/wine-black
     steps:
       - uses: actions/checkout@v4
 
@@ -71,5 +35,26 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cargo-audit-report
-          path: contracts/predinex/cargo-audit-report.json
+          path: contracts/wine-black/cargo-audit-report.json
           retention-days: 30
+
+  bot-audit:
+    name: Bot npm audit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./bot
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit
+        run: npm audit --audit-level=high
+        continue-on-error: true

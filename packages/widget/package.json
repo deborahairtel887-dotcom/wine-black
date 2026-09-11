@@ -1,7 +1,7 @@
 {
-  "name": "@agegg/widget",
+  "name": "@wine-black/widget",
   "version": "0.1.0",
-  "description": "Embeddable AGEGG prediction-pool widget",
+  "description": "Embeddable wine-black prediction-pool widget",
   "license": "ISC",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

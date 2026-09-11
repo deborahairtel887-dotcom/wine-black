@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Pool Health Monitoring feature adds a continuous server-side monitoring system for Predinex prediction market pools on the Stellar/Soroban blockchain. A background polling singleton collects on-chain metrics every N seconds, classifies each pool into a health state, evaluates four alert rules, and delivers signed webhook notifications to configured endpoints. A `/monitoring` dashboard page provides operators with a real-time overview.
+The Pool Health Monitoring feature adds a continuous server-side monitoring system for Wine Black prediction market pools on the Stellar/Soroban blockchain. A background polling singleton collects on-chain metrics every N seconds, classifies each pool into a health state, evaluates four alert rules, and delivers signed webhook notifications to configured endpoints. A `/monitoring` dashboard page provides operators with a real-time overview.
 
 The system runs entirely within the existing Next.js application — no additional infrastructure is required. The background poller is a module-level singleton initialized on first import of any API route in the Node.js runtime. All state is held in-memory with optional NDJSON file persistence for alert history.
 
@@ -486,8 +486,8 @@ export class NotificationService {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'X-Predinex-Signature': `sha256=${signature}`,
-            'X-Predinex-Alert-Rule': alert.rule,
+            'X-Wine Black-Signature': `sha256=${signature}`,
+            'X-Wine Black-Alert-Rule': alert.rule,
           },
           body,
         });
@@ -931,7 +931,7 @@ The following properties are derived from the acceptance criteria. Property-base
 
 ### Property 16: HMAC signature correctness
 
-*For any* alert payload string and webhook secret, the `X-Predinex-Signature` header value must equal `sha256=<hex>` where `<hex>` is the HMAC-SHA256 hex digest of the payload computed with the given secret. Verifying the signature with the same secret must succeed.
+*For any* alert payload string and webhook secret, the `X-Wine Black-Signature` header value must equal `sha256=<hex>` where `<hex>` is the HMAC-SHA256 hex digest of the payload computed with the given secret. Verifying the signature with the same secret must succeed.
 
 **Validates: Requirements 9.2**
 
@@ -939,7 +939,7 @@ The following properties are derived from the acceptance criteria. Property-base
 
 ### Property 17: Alert rule header matches alert rule
 
-*For any* alert delivered to a webhook URL, the `X-Predinex-Alert-Rule` header value must equal `alert.rule`.
+*For any* alert delivered to a webhook URL, the `X-Wine Black-Alert-Rule` header value must equal `alert.rule`.
 
 **Validates: Requirements 9.3**
 

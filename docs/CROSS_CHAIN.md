@@ -2,7 +2,7 @@
 
 ## Overview
 
-Predinex supports cross-chain pool mirroring, allowing prediction markets created on Stellar to have mirrored counterparts on other supported chains. Users can participate from any supported chain, and outcomes are settled based on the source chain's result.
+Wine Black supports cross-chain pool mirroring, allowing prediction markets created on Stellar to have mirrored counterparts on other supported chains. Users can participate from any supported chain, and outcomes are settled based on the source chain's result.
 
 ## Supported Chains
 
@@ -71,8 +71,8 @@ The bridge contract address is stored per-mirror and is responsible for:
 
 To add support for a new chain:
 
-1. **Add Chain ID**: Add a new variant to the `ChainId` enum in `contracts/predinex/src/lib.rs`
-2. **Deploy Bridge Contract**: Deploy a bridge contract on the target chain that implements the Predinex bridge interface
+1. **Add Chain ID**: Add a new variant to the `ChainId` enum in `contracts/Wine Black/src/lib.rs`
+2. **Deploy Bridge Contract**: Deploy a bridge contract on the target chain that implements the Wine Black bridge interface
 3. **Register Bridge**: Use `create_pool_mirror` with the new chain ID and bridge contract address
 4. **Frontend**: Add the chain to the `CHAINS` array in `web/components/CrossChainFilter.tsx`
 5. **Test**: Add integration tests for the new chain's bridge contract

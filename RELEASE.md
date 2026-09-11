@@ -1,6 +1,6 @@
 # Release Process
 
-This document outlines the release checklist and version tagging process for Predinex Stellar.
+This document outlines the release checklist and version tagging process for Wine Black Stellar.
 
 ## 📋 Release Checklist
 
@@ -8,12 +8,12 @@ Before tagging a new release, ensure the following steps are completed:
 
 ### 1. Verification
 - [ ] **Web Build**: Run `npm run build` in the `web` directory.
-- [ ] **Contract Tests**: Run `cargo test` in `contracts/predinex`.
+- [ ] **Contract Tests**: Run `cargo test` in `contracts/Wine Black`.
 - [ ] **Linting**: Ensure `npm run lint` and `cargo fmt --check` / `cargo clippy` pass.
 - [ ] **Environment**: Verify `.env.production` (if applicable) and contract IDs are correct for the target network.
 
 ### 2. Documentation
-- [ ] **Version Bump**: Update version in `web/package.json` and `contracts/predinex/Cargo.toml`.
+- [ ] **Version Bump**: Update version in `web/package.json` and `contracts/Wine Black/Cargo.toml`.
 - [ ] **Changelog**: Update `CHANGELOG.md` with new features, fixes, and breaking changes.
 - [ ] **README**: Ensure all setup instructions and architecture diagrams are up to date.
 

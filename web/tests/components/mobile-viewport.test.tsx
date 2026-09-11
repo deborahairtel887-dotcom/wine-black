@@ -113,7 +113,7 @@ describe('Navbar — mobile viewport', () => {
 
   it('renders the logo link at mobile size', () => {
     renderWithProviders(<Navbar />);
-    expect(screen.getByRole('link', { name: /agegg home/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /wine-black home/i })).toBeInTheDocument();
   });
 
   it('shows connect wallet button in mobile menu', async () => {

@@ -1,5 +1,5 @@
 /**
- * Read-side adapter: Canonical Soroban read-only calls for the AGEGG contract.
+ * Read-side adapter: Canonical Soroban read-only calls for the Wine Black contract.
  * UI and hooks should import chain reads from here instead of `stacks-api` where practical.
  *
  * This adapter uses the Soroban RPC layer for pool and user bet data,
@@ -19,7 +19,7 @@ import { getPublicTemplatesFromSoroban } from '../soroban-template-api';
 import { getUserActivityFromSoroban } from "../soroban-event-service";
 import { getMarkets, getTotalVolume, getUserActivity } from "../stacks-api";
 import { createScopedLogger } from '@/app/lib/logger';
-const log = createScopedLogger('predinexReadApi');
+const log = createScopedLogger('wineBlackReadApi');
 import type { ActivityItem } from "./types";
 
 /** #721 — Re-export for convenience. */
@@ -42,10 +42,10 @@ export function getStacksCoreApiBaseUrl(): string {
  *
  * @example
  * ```ts
- * const events = await fetchPredinexContractEvents(50);
+ * const events = await fetchWineBlackContractEvents(50);
  * ```
  */
-export async function fetchPredinexContractEvents(
+export async function fetchWineBlackContractEvents(
   limit = 100,
 ): Promise<unknown> {
   const cfg = getRuntimeConfig();
@@ -83,7 +83,7 @@ async function getUserActivitySoroban(
 async function getPool(poolId: number): Promise<Pool | null> {
   const result = await getPoolFromSoroban(poolId);
   if (result.error) {
-    log.error(`[predinexReadApi] Error fetching pool ${poolId}:`, result.error);
+    log.error(`[wineBlackReadApi] Error fetching pool ${poolId}:`, result.error);
   }
 
   if (!result.pool) return null;
@@ -108,7 +108,7 @@ async function getUserBet(
   const result = await getUserBetFromSoroban(poolId, userAddress);
   if (result.error) {
     log.error(
-      `[predinexReadApi] Error fetching user bet for pool ${poolId}:`,
+      `[wineBlackReadApi] Error fetching user bet for pool ${poolId}:`,
       result.error,
     );
   }
@@ -133,7 +133,7 @@ async function getFreezeAdmin(): Promise<string | null> {
  * Public read API for the SDK client. Prefers Soroban read paths; retains
  * legacy Stacks delegates for callers still migrating.
  */
-export const predinexReadApi = {
+export const wineBlackReadApi = {
   /** Canonical Soroban read: list public pool templates */
   getPublicTemplates: getPublicTemplatesFromSoroban,
   /** Canonical Soroban read: get pool by ID */
@@ -152,7 +152,7 @@ export const predinexReadApi = {
   getMarkets,
   getTotalVolume,
   getStacksCoreApiBaseUrl,
-  fetchPredinexContractEvents,
+  fetchWineBlackContractEvents,
   /** Legacy delegate: get user activity via the Stacks API */
   getStacksActivity: getUserActivity,
 };

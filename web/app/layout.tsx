@@ -22,19 +22,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Predinex | Next-Gen Prediction Markets on Stellar",
+  title: "Wine Black | Next-Gen Prediction Markets on Stellar",
   description: "The decentralized prediction market built on Stellar. Predict, bet, and win with Soroban-powered smart contracts.",
   openGraph: {
-    title: "Predinex | Next-Gen Prediction Markets on Stellar",
+    title: "Wine Black | Next-Gen Prediction Markets on Stellar",
     description: "The decentralized prediction market built on Stellar. Predict, bet, and win with Soroban-powered smart contracts.",
-    url: "https://predinex.io",
-    siteName: "Predinex",
+    url: "https://wine-black.io",
+    siteName: "Wine Black",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Predinex - Prediction Markets on Stellar",
+        alt: "Wine Black - Prediction Markets on Stellar",
       },
     ],
     locale: "en_US",
@@ -42,14 +42,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Predinex | Next-Gen Prediction Markets on Stellar",
+    title: "Wine Black | Next-Gen Prediction Markets on Stellar",
     description: "Predict the future. Win on Stellar.",
     images: ["/og-image.png"],
   },
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
-    title: "Predinex",
+    title: "Wine Black",
     statusBarStyle: "black-translucent",
   },
 };

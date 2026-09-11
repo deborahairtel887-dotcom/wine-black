@@ -1,5 +1,5 @@
 /**
- * Public contract facade for the AGEGG pool creation flow.
+ * Public contract facade for the Wine Black pool creation flow.
  *
  * UI code should prefer importing from this module instead of reaching into
  * `web/app/lib/adapters/*` directly. The aggregator:
@@ -10,11 +10,11 @@
  *      When the on-chain `create_multi_asset_pool` function becomes available
  *      it can be swapped in without touching call sites.
  */
-import { predinexContract } from '@/app/lib/adapters/predinex-contract';
+import { wineBlackContract } from '@/app/lib/adapters/wine-black-contract';
 import type { FreighterWalletClient } from '@/app/lib/freighter-adapter';
 import type { TxStage } from '@/app/lib/soroban-transaction-service';
 
-export { predinexContract, predinexReadApi } from '@/app/lib/adapters';
+export { wineBlackContract, wineBlackReadApi } from '@/app/lib/adapters';
 export type { Pool, ActivityItem } from '@/app/lib/adapters';
 
 /**
@@ -66,7 +66,7 @@ export function composePoolDescription(params: CreatePoolParams): string {
 }
 
 /**
- * Submit a pool-creation transaction through `ageggContract.createMarketSoroban`.
+ * Submit a pool-creation transaction through `wine-blackContract.createMarketSoroban`.
  *
  * The underlying contract call is `create_pool`. Asset / deposit metadata are
  * encoded in the description so the UI acceptance criteria are met today
@@ -79,7 +79,7 @@ export async function createPool(
   const outcomes = params.outcomes ?? { a: 'Yes', b: 'No' };
   const composedDescription = composePoolDescription(params);
 
-  const { txHash } = await predinexContract.createMarketSoroban({
+  const { txHash } = await wineBlackContract.createMarketSoroban({
     wallet: options.wallet,
     title: params.name.trim(),
     description: composedDescription,

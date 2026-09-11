@@ -1,6 +1,6 @@
-# AGEGG Contract Event Schema
+# wine-black Contract Event Schema
 
-This document describes all events emitted by the Predinex Soroban smart contract for off-chain indexing, monitoring, and integration.
+This document describes all events emitted by the Wine Black Soroban smart contract for off-chain indexing, monitoring, and integration.
 
 ## Overview
 

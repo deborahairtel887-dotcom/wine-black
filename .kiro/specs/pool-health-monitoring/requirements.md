@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This feature adds a monitoring and alerting system for deployed Predinex prediction market pools on the Stellar/Soroban blockchain. The system continuously tracks key health metrics for all active pools, evaluates configurable alert rules, and notifies operators via webhook (Slack, Telegram, or any HTTP endpoint) when anomalies are detected. A dashboard page, deployable alongside the existing Next.js web frontend, provides operators with a real-time overview of pool health, a timeline of recent alerts, and per-pool detail views.
+This feature adds a monitoring and alerting system for deployed Wine Black prediction market pools on the Stellar/Soroban blockchain. The system continuously tracks key health metrics for all active pools, evaluates configurable alert rules, and notifies operators via webhook (Slack, Telegram, or any HTTP endpoint) when anomalies are detected. A dashboard page, deployable alongside the existing Next.js web frontend, provides operators with a real-time overview of pool health, a timeline of recent alerts, and per-pool detail views.
 
 ## Glossary
 
@@ -144,8 +144,8 @@ This feature adds a monitoring and alerting system for deployed Predinex predict
 #### Acceptance Criteria
 
 1. WHEN the Alert_Engine fires an alert, THE Notification_Service SHALL send an HTTP POST request to the configured webhook URL with the alert payload serialized as JSON.
-2. THE Notification_Service SHALL include an `X-Predinex-Signature` header containing `sha256=<hmac>` where `<hmac>` is the HMAC-SHA256 hex digest of the request body computed using the configured webhook secret.
-3. THE Notification_Service SHALL include an `X-Predinex-Alert-Rule` header containing the alert rule name.
+2. THE Notification_Service SHALL include an `X-Wine Black-Signature` header containing `sha256=<hmac>` where `<hmac>` is the HMAC-SHA256 hex digest of the request body computed using the configured webhook secret.
+3. THE Notification_Service SHALL include an `X-Wine Black-Alert-Rule` header containing the alert rule name.
 4. IF the webhook endpoint returns a non-2xx HTTP status code, THEN THE Notification_Service SHALL retry the delivery up to 3 times with exponential backoff starting at 5 seconds.
 5. IF all retry attempts fail, THEN THE Notification_Service SHALL log the failure with the alert rule, pool ID, final HTTP status code, and timestamp.
 6. WHERE the operator configures multiple webhook URLs, THE Notification_Service SHALL deliver each alert to all configured endpoints independently.

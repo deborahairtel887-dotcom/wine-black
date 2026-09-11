@@ -5,7 +5,7 @@ be imported with `@/components/...`. This directory is for App Router-specific
 components and temporary compatibility re-exports for older `app/components`
 imports.
 
-This directory contains the wallet connection UI for Predinex. The current support matrix is documented in [WALLET_NETWORK_SUPPORT.md](../../docs/WALLET_NETWORK_SUPPORT.md).
+This directory contains the wallet connection UI for Wine Black. The current support matrix is documented in [WALLET_NETWORK_SUPPORT.md](../../docs/WALLET_NETWORK_SUPPORT.md).
 
 ## Components
 
@@ -91,11 +91,11 @@ Feature status: fixture-backed placeholder tooling, disabled by default for prod
 
 Set `NEXT_PUBLIC_ENABLE_ORACLE_MANAGEMENT_PLACEHOLDER=true` only in a contributor or test environment to review the mock oracle-management path. When enabled, the component labels itself as a placeholder preview and keeps registration actions disabled so fixture data is not presented as live oracle administration.
 
-To find the oracle-management route visit [page.tsx](file:///C:/Stellar%20Contributions/predinex-stellar/web/app/oracle-management/page.tsx).
+To find the oracle-management route visit [page.tsx](file:///C:/Stellar%20Contributions/Wine Black-stellar/web/app/oracle-management/page.tsx).
 
-To find oracle-management placeholder gating visit [OracleManagement.tsx](file:///C:/Stellar%20Contributions/predinex-stellar/web/app/components/OracleManagement.tsx).
+To find oracle-management placeholder gating visit [OracleManagement.tsx](file:///C:/Stellar%20Contributions/Wine Black-stellar/web/app/components/OracleManagement.tsx).
 
-The oracle-management feature flag can be found in [feature-flags.ts](file:///C:/Stellar%20Contributions/predinex-stellar/web/app/lib/feature-flags.ts).
+The oracle-management feature flag can be found in [feature-flags.ts](file:///C:/Stellar%20Contributions/Wine Black-stellar/web/app/lib/feature-flags.ts).
 
 ## Context and Hooks
 

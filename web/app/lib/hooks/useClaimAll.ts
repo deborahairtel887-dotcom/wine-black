@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { useToast } from '@/providers/ToastProvider';
-import { predinexContract } from '../adapters/predinex-contract';
+import { wineBlackContract } from '../adapters/wine-black-contract';
 import { invalidateOnClaimWinnings } from '../cache-invalidation';
 import { useWallet } from '@/components/WalletAdapterProvider';
 import { TxStage } from '../soroban-transaction-service';
@@ -75,7 +75,7 @@ export function useClaimAll(userAddress?: string | null) {
       });
 
       try {
-        const { txHash, claimedPoolIds } = await predinexContract.claimAllWinningsSoroban({
+        const { txHash, claimedPoolIds } = await wineBlackContract.claimAllWinningsSoroban({
           wallet,
           poolIds: batch,
           onStageChange: setStage,
@@ -108,7 +108,7 @@ export function useClaimAll(userAddress?: string | null) {
         });
         notifyBrowserEvent('Claim All submitted', {
           body: `Claimed winnings for ${claimedCount} pool${claimedCount === 1 ? '' : 's'}.`,
-          tag: 'predinex-claim-all',
+          tag: 'Wine Black-claim-all',
         });
         showToast(
           isPartial

@@ -14,7 +14,7 @@ import Navbar from '@/components/Navbar';
 import AuthGuard from '@/components/AuthGuard';
 import RouteErrorBoundary from '@/components/RouteErrorBoundary';
 import { CreatePoolForm } from '@/components/pools/CreatePoolForm';
-import { predinexReadApi } from '@/lib/contract';
+import { wineBlackReadApi } from '@/lib/contract';
 import { createScopedLogger } from '@/app/lib/logger';
 
 const log = createScopedLogger('CreatePoolPage');
@@ -31,13 +31,13 @@ async function findLatestPoolId(): Promise<number | null> {
   try {
     let lastCount: number | null = null;
     for (let attempt = 0; attempt < POOL_INDEX_MAX_RETRIES; attempt += 1) {
-      const count = await predinexReadApi.getPoolCount();
+      const count = await wineBlackReadApi.getPoolCount();
       if (typeof count === 'number' && count > 0) {
         lastCount = count;
         // The latest pool id is the count minus one (0-indexed).
         const candidate = count - 1;
         // Light-weight verification: the candidate exists.
-        const pool = await predinexReadApi.getPool(candidate);
+        const pool = await wineBlackReadApi.getPool(candidate);
         if (pool) return candidate;
       }
       await new Promise((resolve) => setTimeout(resolve, POOL_INDEX_RETRY_DELAY_MS));

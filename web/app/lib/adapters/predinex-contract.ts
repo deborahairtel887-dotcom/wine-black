@@ -1,5 +1,5 @@
 /**
- * Write-side adapter: Soroban contract calls for the AGEGG pool contract.
+ * Write-side adapter: Soroban contract calls for the Wine Black pool contract.
  * Keeps wallet prompt details, argument encoding, and contract identity out of UI components.
  */
 import { getRuntimeConfig } from '../runtime-config';
@@ -17,7 +17,7 @@ function getSorobanService() {
   return sorobanService;
 }
 
-export const predinexContract = {
+export const wineBlackContract = {
   /**
    * Submit a `create_pool` Soroban contract call (wallet prompt).
    */
@@ -193,7 +193,7 @@ export const predinexContract = {
    *
    * @example
    * ```ts
-   * const { txHash } = await predinexContract.setPoolBetLimitsSoroban({
+   * const { txHash } = await wineBlackContract.setPoolBetLimitsSoroban({
    *   wallet,
    *   poolId: 12,
    *   minBetStroops: 1_000_000,
@@ -297,7 +297,7 @@ export const predinexContract = {
    *
    * @example
    * ```ts
-   * const { txHash } = await predinexContract.settlePoolSoroban({
+   * const { txHash } = await wineBlackContract.settlePoolSoroban({
    *   wallet,
    *   poolId: 12,
    *   winningOutcome: 0,

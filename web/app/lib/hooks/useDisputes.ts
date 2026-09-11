@@ -5,7 +5,7 @@ import { useState, useCallback } from 'react';
 /**
  * Legacy dispute helper.
  *
- * The current Predinex Soroban contract exposes a frozen/disputed lifecycle
+ * The current Wine Black Soroban contract exposes a frozen/disputed lifecycle
  * for pool state, but it does not support a full on-chain community dispute
  * voting mechanism. This hook preserves compatibility for UI state while the
  * contract-level dispute resolution contract is developed.
@@ -20,7 +20,7 @@ export function useDisputes() {
    * Client-side vote stub.
    *
    * This function does not call an on-chain dispute voting contract because the
-   * current Predinex contract does not expose vote submission.
+   * current Wine Black contract does not expose vote submission.
    * Future on-chain integration should replace this with a contract call to the
    * configured dispute contract principal and function.
    */

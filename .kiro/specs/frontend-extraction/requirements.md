@@ -2,19 +2,19 @@
 
 ## Introduction
 
-The `agegg-stellar` monorepo currently co-locates three distinct workspaces: a Next.js frontend (`web/`), a Rust/Soroban smart-contract suite (`contracts/`), and a TypeScript settlement bot (`bot/`), together with a shared embeddable widget (`packages/widget/`). Development velocity on the frontend is slowed by the monorepo entanglement: shared tooling, cross-workspace CI noise, and the cognitive overhead of unrelated codebases.
+The `wine-black-stellar` monorepo currently co-locates three distinct workspaces: a Next.js frontend (`web/`), a Rust/Soroban smart-contract suite (`contracts/`), and a TypeScript settlement bot (`bot/`), together with a shared embeddable widget (`packages/widget/`). Development velocity on the frontend is slowed by the monorepo entanglement: shared tooling, cross-workspace CI noise, and the cognitive overhead of unrelated codebases.
 
 This feature extracts the `web/` frontend (and its companion `packages/widget/`) into a fully self-contained standalone repository so that frontend development can proceed independently. The existing `contracts/` and `bot/` workspaces are each extracted into their own repositories as well, preserving their full history and operational independence. The result is three clean, focused repositories that can be versioned, deployed, and contributed to separately.
 
 ## Glossary
 
-- **Monorepo**: The existing `agegg-stellar` Git repository containing all workspaces.
+- **Monorepo**: The existing `wine-black-stellar` Git repository containing all workspaces.
 - **Frontend_Repo**: The new standalone repository that contains only `web/` and `packages/widget/`.
 - **Contracts_Repo**: The new standalone repository that contains only `contracts/` and the root Rust workspace files.
 - **Bot_Repo**: The new standalone repository that contains only `bot/`.
 - **Extraction**: The process of moving a workspace subtree out of the Monorepo into its own Git repository with preserved history.
 - **Root_Artifacts**: Files at the monorepo root that are shared (`.gitignore`, `README.md`, `CHANGELOG.md`, `scripts/`, `docs/`) and must be selectively copied or adapted per target repository.
-- **Widget**: The `packages/widget/` embeddable package (`@agegg/widget`) that is built and consumed by the frontend.
+- **Widget**: The `packages/widget/` embeddable package (`@wine-black/widget`) that is built and consumed by the frontend.
 - **CI**: GitHub Actions workflows stored under `.github/`.
 - **Env_File**: The `.env.example` template that documents all required and optional environment variables for a workspace.
 
@@ -30,7 +30,7 @@ This feature extracts the `web/` frontend (and its companion `packages/widget/`)
 
 1. THE Frontend_Repo SHALL NOT import any file from `contracts/` or `bot/` at build time.
 2. THE Frontend_Repo SHALL NOT reference any Rust or Soroban toolchain in its package scripts or CI workflows.
-3. WHEN a dependency audit is run against `web/package.json`, THE Dependency_Auditor SHALL confirm that no `@agegg/*` package other than `@agegg/widget` is listed as a dependency.
+3. WHEN a dependency audit is run against `web/package.json`, THE Dependency_Auditor SHALL confirm that no `@wine-black/*` package other than `@wine-black/widget` is listed as a dependency.
 4. THE Contracts_Repo SHALL NOT reference any Node.js package from `web/` or `bot/` in its Cargo workspace.
 5. THE Bot_Repo SHALL NOT reference any Rust crate or Soroban toolchain in its `package.json`.
 

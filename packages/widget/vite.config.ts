@@ -10,7 +10,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'src/index.ts',
-      name: 'PredinexWidget',
+      name: 'Wine BlackWidget',
       formats: ['es', 'umd'],
       fileName: (fmt) => fmt === 'es' ? 'index.esm.js' : 'index.js',
     },

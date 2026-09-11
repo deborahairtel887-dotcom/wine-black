@@ -44,7 +44,7 @@ This document specifies the requirements for implementing a real-time odds chart
 3. THE Odds_Chart SHALL display a distinct line for Outcome_A
 4. THE Odds_Chart SHALL display a distinct line for Outcome_B
 5. THE Odds_Chart SHALL use contrasting colors for Outcome_A and Outcome_B lines to ensure visual distinction
-6. THE Odds_Chart SHALL apply glassmorphism design patterns consistent with existing Predinex components
+6. THE Odds_Chart SHALL apply glassmorphism design patterns consistent with existing Wine Black components
 
 ### Requirement 3: Interactive Tooltip
 
@@ -65,7 +65,7 @@ This document specifies the requirements for implementing a real-time odds chart
 #### Acceptance Criteria
 
 1. WHEN the Odds_Chart begins fetching Place_Bet_Event data, THE Odds_Chart SHALL display the Loading_State
-2. THE Loading_State SHALL use the `animate-pulse` skeleton pattern consistent with existing Predinex components
+2. THE Loading_State SHALL use the `animate-pulse` skeleton pattern consistent with existing Wine Black components
 3. WHEN Place_Bet_Event data fetch completes successfully, THE Odds_Chart SHALL hide the Loading_State and display the chart
 4. WHEN Place_Bet_Event data fetch fails, THE Odds_Chart SHALL hide the Loading_State and display an error message
 
@@ -77,7 +77,7 @@ This document specifies the requirements for implementing a real-time odds chart
 
 1. WHEN no Place_Bet_Event data exists for the pool, THE Odds_Chart SHALL display the Empty_State
 2. THE Empty_State SHALL include a message indicating no historical bet data is available
-3. THE Empty_State SHALL use the EmptyState component pattern consistent with existing Predinex components
+3. THE Empty_State SHALL use the EmptyState component pattern consistent with existing Wine Black components
 
 ### Requirement 6: Accessibility Compliance
 
@@ -100,7 +100,7 @@ This document specifies the requirements for implementing a real-time odds chart
 1. THE Odds_Chart SHALL render at full container width on all screen sizes
 2. WHEN displayed on mobile devices (width < 768px), THE Odds_Chart SHALL adjust axis labels for readability
 3. WHEN displayed on mobile devices (width < 768px), THE Chart_Tooltip SHALL position itself to remain visible within the viewport
-4. THE Odds_Chart SHALL use Tailwind CSS responsive utilities consistent with existing Predinex components
+4. THE Odds_Chart SHALL use Tailwind CSS responsive utilities consistent with existing Wine Black components
 
 ### Requirement 8: Integration with Pool Detail Page
 

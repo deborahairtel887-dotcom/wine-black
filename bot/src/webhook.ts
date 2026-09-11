@@ -4,7 +4,7 @@
  * On successful settlement (or in dry-run mode) POSTs a JSON payload to
  * the configured WEBHOOK_URL. Optionally signs the payload body with an
  * HMAC-SHA256 signature derived from WEBHOOK_SECRET and includes it as the
- * `X-Predinex-Signature` header so receivers can verify authenticity.
+ * `X-Wine Black-Signature` header so receivers can verify authenticity.
  *
  * Payload format:
  * {
@@ -88,11 +88,11 @@ export async function notify(
   const body = JSON.stringify(payload);
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    "User-Agent": "predinex-settlement-bot/1.0",
+    "User-Agent": "Wine Black-settlement-bot/1.0",
   };
 
   if (config.webhookSecret) {
-    headers["X-Predinex-Signature"] = buildSignature(body, config.webhookSecret);
+    headers["X-Wine Black-Signature"] = buildSignature(body, config.webhookSecret);
   }
 
   try {

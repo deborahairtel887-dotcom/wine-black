@@ -16,7 +16,7 @@ use soroban_sdk::{
 
 struct TestCtx {
     env: Env,
-    client: PredinexContractClient<'static>,
+    client: WineBlackContractClient<'static>,
     token_admin: Address,
     token_id: Address,
     freeze_admin: Address,
@@ -29,9 +29,9 @@ impl TestCtx {
         let env = Env::default();
         env.mock_all_auths();
 
-        let contract_id = env.register(PredinexContract, ());
-        let client: PredinexContractClient<'static> =
-            PredinexContractClient::new(&env, &contract_id);
+        let contract_id = env.register(WineBlackContract, ());
+        let client: WineBlackContractClient<'static> =
+            WineBlackContractClient::new(&env, &contract_id);
 
         let token_admin = Address::generate(&env);
         let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());

@@ -11,8 +11,8 @@ export async function GET(
   const { id } = await params;
   const poolId = parseInt(id, 10);
 
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://predinex.io';
-  const fallbackTitle = 'Predinex';
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://wine-black.io';
+  const fallbackTitle = 'Wine Black';
   const fallbackSubtitle = 'Next-Gen Prediction Markets on Stellar';
 
   let title = fallbackTitle;
@@ -28,7 +28,7 @@ export async function GET(
       const pool = result.pool;
       if (pool) {
         title = pool.title;
-        subtitle = pool.description || `Pool #${poolId} on Predinex`;
+        subtitle = pool.description || `Pool #${poolId} on Wine Black`;
         outcomeA = pool.outcomeA;
         outcomeB = pool.outcomeB;
         status = pool.settled ? 'Settled' : pool.status === 'expired' ? 'Expired' : 'Active';
@@ -90,7 +90,7 @@ export async function GET(
             P
           </div>
           <span style={{ fontSize: '28px', fontWeight: '700', color: '#fff', letterSpacing: '-0.5px' }}>
-            Predinex
+            Wine Black
           </span>
           {status && (
             <span

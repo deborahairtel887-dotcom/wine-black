@@ -58,7 +58,7 @@ export function useDisputeManagement(userAddress: string | null | undefined) {
   /**
    * Records a local vote for UI display.
    *
-   * The underlying Predinex Soroban contract currently does not expose a
+   * The underlying Wine Black Soroban contract currently does not expose a
    * community dispute-voting transaction. This hook preserves local vote state
    * until a dedicated on-chain dispute contract is implemented.
    */

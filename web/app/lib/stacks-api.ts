@@ -5,7 +5,7 @@
  * For new code, please use:
  * - `soroban-read-api.ts` for contract reads (getPool, getUserBet, getPoolCount)
  * - `soroban-event-service.ts` for user activity
- * - `predinex-read-api.ts` as the canonical adapter interface
+ * - `wine-black-read-api.ts` as the canonical adapter interface
  *
  * This file will be removed in a future release.
  */
@@ -86,7 +86,7 @@ export async function getPoolCount(): Promise<number> {
  * Fetches a single pool by ID via a Stacks Clarity read-only call to `get-pool`.
  *
  * @deprecated Use {@link soroban-read-api!getPoolFromSoroban} from `soroban-read-api.ts` instead.
- * @param poolId - Numeric pool identifier (1-based in the Predinex contract).
+ * @param poolId - Numeric pool identifier (1-based in the Wine Black contract).
  * @returns Normalized pool data, or `null` if the pool does not exist or the read fails.
  */
 export async function getPool(poolId: number): Promise<Pool | null> {
@@ -434,13 +434,13 @@ export interface ActivityConfig {
     apiBaseUrl: string;
     /** Explorer base URL used to build transaction links. */
     explorerUrl: string;
-    /** Contract address used to filter Predinex transactions. */
+    /** Contract address used to filter Wine Black transactions. */
     contractAddress: string;
 }
 
 /**
  * Fetches recent on-chain activity for a user by querying the Hiro Stacks API
- * for contract-call transactions targeting the Predinex contract.
+ * for contract-call transactions targeting the Wine Black contract.
  *
  * Enriches each row with contract print events and function-argument parsing when available.
  *
@@ -500,12 +500,12 @@ export async function getUserActivity(
         const maybeResults = dataRecord['results'];
         const results = Array.isArray(maybeResults) ? maybeResults.filter(isStacksTransaction) : [];
 
-        const predinexTxs = results.filter((tx) => {
+        const Wine BlackTxs = results.filter((tx) => {
             const callInfo = tx.contract_call;
             return typeof callInfo?.contract_id === 'string' && callInfo.contract_id.includes(contractAddress);
         });
 
-        return predinexTxs.map((tx): ActivityItem => {
+        return Wine BlackTxs.map((tx): ActivityItem => {
             const callInfo = tx.contract_call;
             const fnName: string = callInfo?.function_name || 'unknown';
 

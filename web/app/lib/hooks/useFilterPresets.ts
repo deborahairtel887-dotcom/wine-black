@@ -10,7 +10,7 @@ export interface FilterPreset {
   filters: MarketFilters;
 }
 
-const STORAGE_KEY = 'predinex:filter-presets';
+const STORAGE_KEY = 'Wine Black:filter-presets';
 const MAX_PRESETS = 5;
 
 export function useFilterPresets() {

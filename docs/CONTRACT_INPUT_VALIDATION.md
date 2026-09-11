@@ -1,6 +1,6 @@
 # Contract Input Validation Audit
 
-This audit documents the public-entrypoint validation paths for the AGEGG
+This audit documents the public-entrypoint validation paths for the wine-black
 Soroban contract.
 
 ## Address Parameters

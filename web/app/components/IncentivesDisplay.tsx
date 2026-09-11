@@ -5,7 +5,7 @@ const log = createScopedLogger('IncentivesDisplay');
 import { useState, useEffect, useCallback } from 'react';
 import { useIncentives } from '../lib/hooks/useIncentives';
 import { useWallet } from '@/components/WalletAdapterProvider';
-import { getStacksCoreApiBaseUrl, predinexReadApi } from '../lib/adapters/predinex-read-api';
+import { getStacksCoreApiBaseUrl, wineBlackReadApi } from '../lib/adapters/wine-black-read-api';
 import { calculateTotalIncentive, DEFAULT_INCENTIVE_CONFIG, BetterIncentive } from '../lib/liquidity-incentives';
 import { TOKEN_SYMBOL } from '@/lib/formatting';
 import { Gift, TrendingUp, Award, Zap } from 'lucide-react';
@@ -60,10 +60,10 @@ async function fetchIncentivesFromContract(userAddress: string): Promise<Contrac
 
 async function calculateRealIncentives(userAddress: string, poolId: number): Promise<ContractIncentive[]> {
   try {
-    const pool = await predinexReadApi.getPool(poolId);
+    const pool = await wineBlackReadApi.getPool(poolId);
     if (!pool) return [];
     
-    const userBet = await predinexReadApi.getUserBet(poolId, userAddress);
+    const userBet = await wineBlackReadApi.getUserBet(poolId, userAddress);
     if (!userBet || userBet.totalBet === 0) return [];
     
     const totalVolume = pool.totalA + pool.totalB;

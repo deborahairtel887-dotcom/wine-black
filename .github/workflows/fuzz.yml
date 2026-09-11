@@ -19,8 +19,8 @@ jobs:
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2
         with:
-          workspaces: contracts/predinex
+          workspaces: contracts/wine-black
 
       - name: Run Fuzz Harness
         run: |
-          cargo test --manifest-path contracts/predinex/Cargo.toml -- fuzz_
+          cargo test --manifest-path contracts/wine-black/Cargo.toml -- fuzz_

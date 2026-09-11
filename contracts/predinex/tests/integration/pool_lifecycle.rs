@@ -5,7 +5,7 @@
 
 extern crate std;
 
-use agegg::{Pool, PredinexContract, PredinexContractClient, MIN_CREATOR_DEPOSIT};
+use wine_black::{Pool, WineBlackContract, WineBlackContractClient, MIN_CREATOR_DEPOSIT};
 use soroban_sdk::{
     testutils::{Address as _, Ledger},
     token, Address, Env, String,
@@ -18,7 +18,7 @@ use soroban_sdk::{
 /// Full test context: contract client, token contract, and named actors.
 struct Ctx<'a> {
     env: Env,
-    client: PredinexContractClient<'a>,
+    client: WineBlackContractClient<'a>,
     token: token::Client<'a>,
     token_admin: token::StellarAssetClient<'a>,
     treasury: Address,
@@ -33,8 +33,8 @@ fn setup() -> Ctx<'static> {
     let token_admin_addr = Address::generate(&env);
     let token_asset = env.register_stellar_asset_contract_v2(token_admin_addr.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&token_asset.address(), &treasury, &treasury);
 
     let token: token::Client<'static> = token::Client::new(&env, &token_asset.address());
@@ -342,7 +342,7 @@ fn m2_get_pools_batch_lifecycle() {
 /// M9: rescue_tokens rejects non-admin callers.
 #[test]
 fn m9_rescue_tokens_rejects_non_admin() {
-    use agegg::ContractError;
+    use wine_black::ContractError;
     let ctx = setup();
     let non_admin = Address::generate(&ctx.env);
     let to = Address::generate(&ctx.env);

@@ -3,8 +3,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CreateMarket from '../../app/create/page';
-import { predinexContract } from '../../app/lib/adapters/predinex-contract';
-import { predinexReadApi } from '../../app/lib/adapters/predinex-read-api';
+import { wineBlackContract } from '../../app/lib/adapters/wine-black-contract';
+import { wineBlackReadApi } from '../../app/lib/adapters/wine-black-read-api';
 import * as WalletAdapterProvider from '@/components/WalletAdapterProvider';
 import { renderWithProviders } from '../helpers/renderWithProviders';
 
@@ -13,15 +13,15 @@ vi.mock('@/components/WalletAdapterProvider', () => ({
   WalletAdapterProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 
-vi.mock('../../app/lib/adapters/predinex-contract', () => ({
-  predinexContract: {
+vi.mock('../../app/lib/adapters/wine-black-contract', () => ({
+  wineBlackContract: {
     createMultiOutcomePoolSoroban: vi.fn(),
     createPoolFromTemplateSoroban: vi.fn(),
   },
 }));
 
-vi.mock('../../app/lib/adapters/predinex-read-api', () => ({
-  predinexReadApi: {
+vi.mock('../../app/lib/adapters/wine-black-read-api', () => ({
+  wineBlackReadApi: {
     getPublicTemplates: vi.fn().mockResolvedValue([]),
   },
 }));
@@ -103,7 +103,7 @@ describe('CreateMarket wizard', () => {
     vi.clearAllMocks();
     localStorage.clear();
     setWalletState();
-    vi.mocked(predinexReadApi.getPublicTemplates).mockResolvedValue([]);
+    vi.mocked(wineBlackReadApi.getPublicTemplates).mockResolvedValue([]);
   });
 
   it('renders template step on initial mount', () => {
@@ -152,7 +152,7 @@ describe('CreateMarket wizard', () => {
   });
 
   it('submits createMultiOutcomePoolSoroban with the wizard draft on step 5', async () => {
-    vi.mocked(predinexContract.createMultiOutcomePoolSoroban).mockResolvedValue({
+    vi.mocked(wineBlackContract.createMultiOutcomePoolSoroban).mockResolvedValue({
       txHash: 'mock-tx-id-123',
     });
 
@@ -163,24 +163,24 @@ describe('CreateMarket wizard', () => {
     await user.click(screen.getByRole('button', { name: /create pool on-chain/i }));
 
     await waitFor(() => {
-      expect(predinexContract.createMultiOutcomePoolSoroban).toHaveBeenCalledTimes(1);
+      expect(wineBlackContract.createMultiOutcomePoolSoroban).toHaveBeenCalledTimes(1);
     });
 
-    expect(predinexContract.createMultiOutcomePoolSoroban).toHaveBeenCalledWith(
+    expect(wineBlackContract.createMultiOutcomePoolSoroban).toHaveBeenCalledWith(
       expect.objectContaining({
         wallet: connectedWallet,
         title: 'Will BTC hit 100k?',
         description: 'Resolution based on Coinbase price at midnight UTC.',
         outcomes: ['Yes', 'No'],
         durationSeconds: 1440,
-        metadataUri: expect.stringContaining('predinex://pool-meta/'),
+        metadataUri: expect.stringContaining('Wine Black://pool-meta/'),
         onStageChange: expect.any(Function),
       })
     );
   });
 
   it('shows success feedback after the transaction completes', async () => {
-    vi.mocked(predinexContract.createMultiOutcomePoolSoroban).mockResolvedValue({
+    vi.mocked(wineBlackContract.createMultiOutcomePoolSoroban).mockResolvedValue({
       txHash: 'mock-tx-id-123',
     });
 
@@ -205,7 +205,7 @@ describe('CreateMarket wizard', () => {
     await user.click(screen.getByRole('button', { name: /create pool on-chain/i }));
 
     expect(mockConnect).toHaveBeenCalledTimes(1);
-    expect(predinexContract.createMultiOutcomePoolSoroban).not.toHaveBeenCalled();
+    expect(wineBlackContract.createMultiOutcomePoolSoroban).not.toHaveBeenCalled();
   });
 
   it('clears a field error when the user starts typing again', async () => {
@@ -227,7 +227,7 @@ describe('CreateMarket wizard', () => {
   });
 
   it('shows an error toast when the contract call fails due to network error', async () => {
-    vi.mocked(predinexContract.createMultiOutcomePoolSoroban).mockRejectedValue(
+    vi.mocked(wineBlackContract.createMultiOutcomePoolSoroban).mockRejectedValue(
       new Error('Network error: connection refused')
     );
 
@@ -243,7 +243,7 @@ describe('CreateMarket wizard', () => {
   });
 
   it('shows and accepts the transaction fee modal before completing the submission', async () => {
-    vi.mocked(predinexContract.createMultiOutcomePoolSoroban).mockImplementation(async (params) => {
+    vi.mocked(wineBlackContract.createMultiOutcomePoolSoroban).mockImplementation(async (params) => {
       const approved = await params.onFeeEstimated?.('500');
       if (!approved) throw new Error('Fee rejected');
       return { txHash: 'mock-fee-tx' };

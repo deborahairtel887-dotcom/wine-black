@@ -11,8 +11,8 @@ const { mockUserActivityCacheGet, mockUserActivityCacheClear } = vi.hoisted(() =
   mockUserActivityCacheClear: vi.fn(),
 }));
 
-vi.mock('../../app/lib/adapters/predinex-read-api', () => ({
-  predinexReadApi: {
+vi.mock('../../app/lib/adapters/wine-black-read-api', () => ({
+  wineBlackReadApi: {
     getUserActivitySoroban: mockGetUserActivitySoroban,
   },
 }));

@@ -150,7 +150,7 @@ export default function PoolDetail({ poolId }: { poolId: number }) {
 - [ ] Replace mock data in `usePoolActivity.ts` with real API call
 - [ ] Create Soroban event decoder (if needed)
 - [ ] Map contract events to `PoolActivityEventType`
-- [ ] Connect to `predinexReadApi.getPoolActivity()`
+- [ ] Connect to `wineBlackReadApi.getPoolActivity()`
 - [ ] Test with real pool data
 
 ## Styling

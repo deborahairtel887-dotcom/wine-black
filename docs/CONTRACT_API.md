@@ -1,12 +1,12 @@
-# CONTRACT_API.md — AGEGG Contract Public Entrypoints
+# CONTRACT_API.md — wine-black Contract Public Entrypoints
 
 #cool
 
-> **Contract:** `agegg` · **Version:** 0.1.0  
+> **Contract:** `wine-black` · **Version:** 0.1.0  
 > **SDK:** Soroban SDK 22 · **Network:** Stellar Testnet / Mainnet  
-> **Source:** `contracts/agegg/src/lib.rs`
+> **Source:** `contracts/wine-black/src/lib.rs`
 
-Complete reference for every public entrypoint in `AgeggContract`.  
+Complete reference for every public entrypoint in `wine-blackContract`.  
 Sections: [Pool Management](#pool-management) · [Betting](#betting) · [Settlement](#settlement) · [Claims](#claims) · [Pool Templates](#pool-templates) · [Admin](#admin) · [Queries](#queries)
 
 ---

@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-This security policy applies to the following versions of Predinex Stellar:
+This security policy applies to the following versions of Wine Black Stellar:
 
 | Version | Supported |
 |---------|-----------|
@@ -12,7 +12,7 @@ This security policy applies to the following versions of Predinex Stellar:
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in Predinex Stellar, please report it responsibly. We take security seriously and appreciate your help in keeping our users and their funds safe.
+If you discover a security vulnerability in Wine Black Stellar, please report it responsibly. We take security seriously and appreciate your help in keeping our users and their funds safe.
 
 ### How to Report
 
@@ -20,7 +20,7 @@ If you discover a security vulnerability in Predinex Stellar, please report it r
 
 Instead, please send your report to:
 
-- **Email**: `security@predinex.io`
+- **Email**: `security@wine-black.io`
 - **PGP Key**: See below for encrypted communication
 
 ### PGP Key for Encrypted Communication
@@ -37,7 +37,7 @@ For sensitive vulnerability reports, we strongly recommend encrypting your commu
 
 **Fingerprint**: `[FINGERPRINT TO BE ADDED]`
 
-To verify this key, please check the official Predinex website or contact us through an alternative verified channel.
+To verify this key, please check the official Wine Black website or contact us through an alternative verified channel.
 
 ### What to Include in Your Report
 
@@ -55,7 +55,7 @@ Please include the following information in your vulnerability report:
 This security policy covers:
 
 ### In Scope
-- **Smart Contracts**: The `predinex` Soroban smart contract (`contracts/predinex/`)
+- **Smart Contracts**: The `wine-black` Soroban smart contract (`contracts/wine-black/`)
 - **Contract Interfaces**: All public functions and entry points
 - **Token Integration**: Stellar Asset Contract (SAC) integration
 - **Access Control**: Authorization mechanisms and permission checks
@@ -95,18 +95,18 @@ We value the work of security researchers and aim to recognize valid vulnerabili
 ### For Valid Reports
 - **Credit**: Public acknowledgment in our security advisories (with your permission)
 - **Hall of Fame**: Inclusion in our security hall of fame (if desired)
-- **Swag**: Predinex merchandise (subject to availability)
+- **Swag**: Wine Black merchandise (subject to availability)
 - **Bounty**: For critical vulnerabilities, we may offer a bounty (contact us for details)
 
 ### Bounty Program
 
-We are working on establishing a formal bug bounty program. For now, bounties are handled on a case-by-case basis for critical vulnerabilities that could result in fund loss. Contact us at `security@predinex.io` for more information.
+We are working on establishing a formal bug bounty program. For now, bounties are handled on a case-by-case basis for critical vulnerabilities that could result in fund loss. Contact us at `security@wine-black.io` for more information.
 
 ## Emergency Contact
 
 For **critical** vulnerabilities that are actively being exploited or pose an immediate threat to user funds:
 
-- **Email**: `emergency@predinex.io`
+- **Email**: `emergency@wine-black.io`
 - **Response Time**: Within 12 hours
 - **PGP Key**: Same as above
 
@@ -170,10 +170,10 @@ This project has undergone/is undergoing security audits by reputable firms. Aud
 
 If you have questions about this security policy or need clarification:
 
-- **General Security Questions**: `security@predinex.io`
-- **Press/Media**: `press@predinex.io`
-- **General Inquiries**: `hello@predinex.io`
+- **General Security Questions**: `security@wine-black.io`
+- **Press/Media**: `press@wine-black.io`
+- **General Inquiries**: `hello@wine-black.io`
 
 ---
 
-Thank you for helping keep Predinex Stellar secure! 🛡️
+Thank you for helping keep Wine Black Stellar secure! 🛡️

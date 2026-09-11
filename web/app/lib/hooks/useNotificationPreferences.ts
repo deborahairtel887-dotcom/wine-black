@@ -7,7 +7,7 @@ import {
 
 export type { NotificationPreferences } from '../push-notification-types';
 
-const PREFERENCES_KEY = 'predinex_notification_preferences_v1';
+const PREFERENCES_KEY = 'Wine Black_notification_preferences_v1';
 
 export function normalizePreferences(prefs: unknown): NotificationPreferences {
   if (typeof prefs !== 'object' || prefs === null) {

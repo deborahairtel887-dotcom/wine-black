@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { useToast } from '@/providers/ToastProvider';
-import { predinexContract } from '../adapters/predinex-contract';
+import { wineBlackContract } from '../adapters/wine-black-contract';
 import { useWallet } from '@/components/WalletAdapterProvider';
 import { TxStage } from '../soroban-transaction-service';
 
@@ -28,7 +28,7 @@ export function useSettlePool() {
       setStage('idle');
 
       try {
-        const { txHash } = await predinexContract.settlePoolSoroban({
+        const { txHash } = await wineBlackContract.settlePoolSoroban({
           wallet,
           poolId,
           winningOutcome,

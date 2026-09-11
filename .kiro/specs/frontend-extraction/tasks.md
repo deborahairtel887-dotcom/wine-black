@@ -2,7 +2,7 @@
 
 ## Overview
 
-These tasks implement the full extraction of `agegg-stellar` into three standalone repositories: `agegg-frontend`, `agegg-contracts`, and `agegg-bot`. Tasks are ordered by dependency — complete all tasks in a phase before starting the next.
+These tasks implement the full extraction of `wine-black-stellar` into three standalone repositories: `wine-black-frontend`, `wine-black-contracts`, and `wine-black-bot`. Tasks are ordered by dependency — complete all tasks in a phase before starting the next.
 
 ---
 
@@ -23,17 +23,17 @@ These tasks implement the full extraction of `agegg-stellar` into three standalo
   - Acceptance: all checks return zero results
 
 - [ ] 0.3 Create a full backup of the monorepo
-  - `cp -r agegg-stellar agegg-stellar-backup`
+  - `cp -r wine-black-stellar wine-black-stellar-backup`
   - Tag current HEAD: `git tag pre-extraction`
   - Acceptance: backup directory exists and is identical to source
 
 ---
 
-## Phase 1 — Extract `agegg-contracts`
+## Phase 1 — Extract `wine-black-contracts`
 
 - [ ] 1.1 Clone and filter the contracts repo
-  - `git clone --no-local ./agegg-stellar agegg-contracts`
-  - `cd agegg-contracts`
+  - `git clone --no-local ./wine-black-stellar wine-black-contracts`
+  - `cd wine-black-contracts`
   - Run `git filter-repo --path contracts/ --path src/ --path Cargo.toml --path Cargo.lock --path scripts/ --path deployments/ --prune-degenerate-commits`
   - Acceptance: `git log --oneline | wc -l` shows only commits that touched `contracts/`, `src/`, or root Cargo files
 
@@ -75,11 +75,11 @@ These tasks implement the full extraction of `agegg-stellar` into three standalo
 
 ---
 
-## Phase 2 — Extract `agegg-bot`
+## Phase 2 — Extract `wine-black-bot`
 
 - [ ] 2.1 Clone and filter the bot repo
-  - `git clone --no-local ./agegg-stellar agegg-bot`
-  - `cd agegg-bot`
+  - `git clone --no-local ./wine-black-stellar wine-black-bot`
+  - `cd wine-black-bot`
   - Run `git filter-repo --path bot/ --path-rename 'bot/::' --prune-degenerate-commits`
   - Acceptance: `bot/` contents are now at repo root (`src/`, `package.json`, `Dockerfile`, etc.)
 
@@ -116,11 +116,11 @@ These tasks implement the full extraction of `agegg-stellar` into three standalo
 
 ---
 
-## Phase 3 — Extract `agegg-frontend`
+## Phase 3 — Extract `wine-black-frontend`
 
 - [ ] 3.1 Clone and filter the frontend repo
-  - `git clone --no-local ./agegg-stellar agegg-frontend`
-  - `cd agegg-frontend`
+  - `git clone --no-local ./wine-black-stellar wine-black-frontend`
+  - `cd wine-black-frontend`
   - Run `git filter-repo --path web/ --path packages/widget/ --path-rename 'web/::' --prune-degenerate-commits`
   - Acceptance: `web/` contents are at repo root; `packages/widget/` is at `packages/widget/` relative to root
 
@@ -189,24 +189,24 @@ These tasks implement the full extraction of `agegg-stellar` into three standalo
 ## Phase 4 — Validation
 
 - [ ] 4.1 Verify correctness property P1 — frontend import isolation
-  - In `agegg-frontend`, run `npm run build` from a clean clone
+  - In `wine-black-frontend`, run `npm run build` from a clean clone
   - Run `tsc --noEmit`
   - Grep for any imports containing absolute paths outside the repo: `grep -r "from.*\.\./\.\." app/ components/ lib/` — must return no results that escape the repo root
   - Acceptance: build succeeds; no out-of-repo imports found
 
 - [ ] 4.2 Verify correctness property P2 — contracts Cargo workspace closure
-  - In `agegg-contracts`, run `cargo build`
+  - In `wine-black-contracts`, run `cargo build`
   - Check `Cargo.toml` for any `path = "../../..."` dependencies: `grep -r 'path = "\.\.' contracts/ Cargo.toml`
   - Acceptance: build succeeds; no path dependencies escape the repo
 
 - [ ] 4.3 Verify correctness property P3 — bot Node dependency closure
-  - In `agegg-bot`, delete `node_modules/` and run `npm ci` from scratch
+  - In `wine-black-bot`, delete `node_modules/` and run `npm ci` from scratch
   - Check `package.json` for any `file:` or `workspace:` references: `grep -E '"(file:|workspace:)' package.json`
   - Acceptance: `npm ci` succeeds; no local path dependencies
 
 - [ ] 4.4 Verify correctness property P4 — CI cross-contamination
-  - In `agegg-frontend/.github/workflows/ci.yml`: `grep -i cargo` and `grep -i rustup` — must return no results
-  - In `agegg-contracts/.github/workflows/ci.yml`: `grep -i 'npm run\|next build\|npx' ` — must return no results
+  - In `wine-black-frontend/.github/workflows/ci.yml`: `grep -i cargo` and `grep -i rustup` — must return no results
+  - In `wine-black-contracts/.github/workflows/ci.yml`: `grep -i 'npm run\|next build\|npx' ` — must return no results
   - Acceptance: all checks return zero matches
 
 - [ ] 4.5 Run all three smoke tests from clean clones
@@ -216,7 +216,7 @@ These tasks implement the full extraction of `agegg-stellar` into three standalo
 - [ ] 4.6 Verify Git history preservation
   - For each repo, pick 3 representative files and verify commit history is non-trivial:
     - `git log --oneline -- <file>` should show ≥ 1 commit from the original monorepo
-  - Files to check: `web/app/page.tsx` (→ `app/page.tsx` in frontend), `contracts/agegg/src/lib.rs`, `bot/src/poller.ts`
+  - Files to check: `web/app/page.tsx` (→ `app/page.tsx` in frontend), `contracts/wine-black/src/lib.rs`, `bot/src/poller.ts`
   - Acceptance: history is non-empty for all checked files
 
 ---
@@ -224,7 +224,7 @@ These tasks implement the full extraction of `agegg-stellar` into three standalo
 ## Phase 5 — Publication and Handoff
 
 - [ ] 5.1 Push repos to GitHub
-  - Create three new GitHub repositories (empty, no README): `agegg-frontend`, `agegg-contracts`, `agegg-bot`
+  - Create three new GitHub repositories (empty, no README): `wine-black-frontend`, `wine-black-contracts`, `wine-black-bot`
   - Add remote and push: `git remote add origin <url>` → `git push -u origin main`
   - Acceptance: all three repos are live on GitHub with full history
 
@@ -234,8 +234,8 @@ These tasks implement the full extraction of `agegg-stellar` into three standalo
   - Prevent direct pushes to `main`
   - Acceptance: branch protection rules are active on all three repos
 
-- [ ] 5.3 Configure Vercel for `agegg-frontend`
-  - Create a new Vercel project linked to `agegg-frontend`
+- [ ] 5.3 Configure Vercel for `wine-black-frontend`
+  - Create a new Vercel project linked to `wine-black-frontend`
   - Set root directory to `.` (repo root, not `web/`)
   - Set build command to `npm run build`
   - Set output directory to `.next`
@@ -251,9 +251,9 @@ These tasks implement the full extraction of `agegg-stellar` into three standalo
   - Add a notice to the monorepo `README.md` at the top:
     ```markdown
     > ⚠️ **This monorepo has been split.** Active development continues in:
-    > - [agegg-frontend](<url>)
-    > - [agegg-contracts](<url>)
-    > - [agegg-bot](<url>)
+    > - [wine-black-frontend](<url>)
+    > - [wine-black-contracts](<url>)
+    > - [wine-black-bot](<url>)
     ```
   - Archive the repository in GitHub settings (Settings → Danger Zone → Archive)
   - Acceptance: monorepo is read-only; notice is visible on the repo homepage

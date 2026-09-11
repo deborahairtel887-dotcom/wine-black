@@ -1,0 +1,42 @@
+name: Good First Issue
+description: Tag a task as suitable for first-time contributors
+labels: ["good first issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to flag tasks that are well-scoped and friendly for new contributors.
+        Include enough context so someone unfamiliar with the codebase can get started independently.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What needs to be done?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Background context
+      description: Which files, components, or routes are involved?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Estimated difficulty
+      options:
+        - "Small (< 1 hour)"
+        - "Medium (1–4 hours)"
+        - "Large (4+ hours)"
+    validations:
+      required: true

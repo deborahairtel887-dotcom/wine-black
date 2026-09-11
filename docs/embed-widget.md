@@ -1,12 +1,12 @@
 # Pool Embed Widget
 
-Any public Predinex pool can be embedded on external sites using an `<iframe>`.
+Any public Wine Black pool can be embedded on external sites using an `<iframe>`.
 
 ## Basic usage
 
 ```html
 <iframe
-  src="https://predinex.app/embed/pool/POOL_ID"
+  src="https://Wine Black.app/embed/pool/POOL_ID"
   style="border:0;width:100%;max-width:420px;height:500px"
   loading="lazy"
   referrerpolicy="no-referrer-when-downgrade"
@@ -41,17 +41,17 @@ The widget dispatches these events to the parent page:
 
 ```ts
 // Widget is ready / pool data loaded
-{ type: 'predinex:pool-embed:ready', poolId: string, height: number }
+{ type: 'Wine Black:pool-embed:ready', poolId: string, height: number }
 
 // User placed (or attempted) a bet
-{ type: 'predinex:pool-embed:bet', poolId: string, outcomeId: number, amount: string }
+{ type: 'Wine Black:pool-embed:bet', poolId: string, outcomeId: number, amount: string }
 ```
 
 Listen in the parent:
 
 ```js
 window.addEventListener('message', (event) => {
-  if (event.data?.type === 'predinex:pool-embed:ready') {
+  if (event.data?.type === 'Wine Black:pool-embed:ready') {
     // optionally resize the iframe to event.data.height
   }
 });

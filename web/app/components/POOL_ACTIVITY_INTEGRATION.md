@@ -64,7 +64,7 @@ Once you have Soroban event decoding ready:
 const fetchPoolActivity = useCallback(
   async (id: number, limit: number): Promise<PoolActivityEvent[]> => {
     // Call your contract adapter
-    const events = await predinexReadApi.getPoolActivity(id, limit);
+    const events = await wineBlackReadApi.getPoolActivity(id, limit);
     
     // Transform to PoolActivityEvent format
     return events.map(event => ({
@@ -107,7 +107,7 @@ duration_extended      →  'duration-extended'
 import { use } from 'react';
 import Navbar from '@/components/Navbar';
 import PoolActivityTimeline from '../../components/PoolActivityTimeline';
-import { predinexReadApi } from '../../lib/adapters/predinex-read-api';
+import { wineBlackReadApi } from '../../lib/adapters/wine-black-read-api';
 import type { Pool } from '../../lib/adapters/types';
 import { useState, useEffect } from 'react';
 
@@ -121,7 +121,7 @@ export default function PoolDetails({ params }: { params: Promise<{ id: string }
   useEffect(() => {
     const loadPool = async () => {
       try {
-        const data = await predinexReadApi.getPool(poolId);
+        const data = await wineBlackReadApi.getPool(poolId);
         setPool(data);
       } catch (error) {
         console.error('Failed to load pool:', error);

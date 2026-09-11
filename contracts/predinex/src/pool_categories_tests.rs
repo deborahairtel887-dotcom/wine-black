@@ -5,11 +5,11 @@ extern crate std;
 use super::*;
 use soroban_sdk::{testutils::Address as _, Address, Env, String, Vec};
 
-fn setup() -> (Env, Address, PredinexContractClient<'static>) {
+fn setup() -> (Env, Address, WineBlackContractClient<'static>) {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -19,7 +19,7 @@ fn setup() -> (Env, Address, PredinexContractClient<'static>) {
     (env, admin, client)
 }
 
-fn create_test_pool(env: &Env, client: &PredinexContractClient<'_>, creator: &Address) -> u32 {
+fn create_test_pool(env: &Env, client: &WineBlackContractClient<'_>, creator: &Address) -> u32 {
     client.create_pool(
         creator,
         &String::from_str(env, "Will BTC hit 100k?"),

@@ -84,8 +84,8 @@ vi.mock('next/dynamic', () => ({
   },
 }));
 
-vi.mock('../../app/lib/adapters/predinex-contract', () => ({
-  predinexContract: {
+vi.mock('../../app/lib/adapters/wine-black-contract', () => ({
+  wineBlackContract: {
     placeBet: mockPlaceBet,
     claimWinningsSoroban: mockClaimWinnings,
     createPool: vi.fn(),

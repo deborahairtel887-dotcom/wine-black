@@ -1,6 +1,6 @@
 import re
 
-test_rs = "contracts/predinex/src/test.rs"
+test_rs = "contracts/wine-black/src/test.rs"
 with open(test_rs, "r") as f:
     content = f.read()
 
@@ -13,8 +13,8 @@ tests_to_add = """
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_create_pool_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.create_pool(
         &Address::generate(&env),
@@ -30,8 +30,8 @@ fn test_create_pool_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_place_bet_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.place_bet(&Address::generate(&env), &1, &0, &100, &None);
 }
@@ -40,8 +40,8 @@ fn test_place_bet_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_settle_pool_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.settle_pool(&Address::generate(&env), &1, &0);
 }
@@ -50,8 +50,8 @@ fn test_settle_pool_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_claim_winnings_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.claim_winnings(&Address::generate(&env), &1);
 }
@@ -60,8 +60,8 @@ fn test_claim_winnings_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_get_pool_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.get_pool(&1);
 }
@@ -70,8 +70,8 @@ fn test_get_pool_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_get_user_bet_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.get_user_bet(&1, &Address::generate(&env));
 }
@@ -80,8 +80,8 @@ fn test_get_user_bet_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_get_pool_count_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.get_pool_count();
 }

@@ -22,8 +22,8 @@ fn test_create_pool() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(
         &Address::generate(&env),
         &Address::generate(&env),
@@ -60,8 +60,8 @@ fn test_create_pool_rejects_duration_above_maximum() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let creator = Address::generate(&env);
     client.create_pool(
@@ -81,8 +81,8 @@ fn test_create_pool_accepts_duration_just_below_maximum() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(
         &Address::generate(&env),
         &Address::generate(&env),
@@ -114,8 +114,8 @@ fn test_large_pool_payouts_with_checked_arithmetic() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -167,8 +167,8 @@ fn test_place_bet_rejects_pool_total_overflow() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -214,8 +214,8 @@ fn test_place_bet() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -259,8 +259,8 @@ fn test_fee_config_is_applied_to_bets_and_transferred_to_recipient() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -306,8 +306,8 @@ fn test_fee_config_requires_admin() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -334,8 +334,8 @@ fn test_settle_and_claim() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -398,8 +398,8 @@ fn test_duplicate_claim_rejected() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -460,8 +460,8 @@ fn test_initialize_succeeds_once() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -500,8 +500,8 @@ fn test_initialize_twice_panics() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -527,8 +527,8 @@ fn test_initialize_idempotency_preserves_original_token() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -586,8 +586,8 @@ fn test_settle_pool_before_expiry_rejected() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -622,8 +622,8 @@ fn test_settle_pool_after_expiry_succeeds() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -681,8 +681,8 @@ fn test_settle_pool_unauthorized_caller_rejected() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -724,8 +724,8 @@ fn test_settle_pool_unauthorized_then_authorized_succeeds() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -783,8 +783,8 @@ fn test_get_user_bet_returns_correct_amounts() {
         .register_stellar_asset_contract_v2(admin.clone())
         .address();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token, &admin, &admin);
 
@@ -837,8 +837,8 @@ fn test_get_user_bet_returns_none_for_user_with_no_bet() {
         .register_stellar_asset_contract_v2(admin.clone())
         .address();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token, &admin, &admin);
 
@@ -865,7 +865,7 @@ fn test_get_user_bet_returns_none_for_user_with_no_bet() {
 // invalid outcome inputs tests
 struct TestEnv<'a> {
     env: Env,
-    client: PredinexContractClient<'a>,
+    client: WineBlackContractClient<'a>,
     admin: Address,
     user: Address,
     token: Address,
@@ -883,8 +883,8 @@ fn setup() -> TestEnv<'static> {
         .register_stellar_asset_contract_v2(admin.clone())
         .address();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token, &admin, &admin);
 
@@ -1290,8 +1290,8 @@ fn e1_get_pools_batch_returns_correct_slice() {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -1333,8 +1333,8 @@ fn e2_get_pools_batch_handles_partial_pages() {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -1368,8 +1368,8 @@ fn e3_get_pools_batch_empty_when_start_exceeds_count() {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -1418,8 +1418,8 @@ fn e4_get_pools_batch_caps_count_at_100() {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -1452,8 +1452,8 @@ fn e5_get_pools_batch_handles_gaps() {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -1597,8 +1597,8 @@ fn g1_treasury_recipient_can_be_rotated() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -1634,8 +1634,8 @@ fn g2_unauthorized_cannot_rotate_treasury_recipient() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -1659,8 +1659,8 @@ fn g3_after_rotation_only_new_recipient_can_withdraw() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -1734,8 +1734,8 @@ fn g4_rotation_emits_event_with_old_and_new_addresses() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -1764,8 +1764,8 @@ fn g5_multiple_rotations_work_correctly() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -1808,8 +1808,8 @@ fn h1_successful_withdrawal_emits_event() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -1869,8 +1869,8 @@ fn h2_failed_withdrawal_does_not_emit_event() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -1893,8 +1893,8 @@ fn h3_unauthorized_withdrawal_does_not_emit_event() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -1917,8 +1917,8 @@ fn h4_multiple_withdrawals_emit_separate_events() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -1981,8 +1981,8 @@ fn h5_withdrawal_event_includes_caller_and_recipient() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2045,8 +2045,8 @@ fn test_settle_pool_event_includes_totals_and_fee() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2110,8 +2110,8 @@ fn test_settle_pool_event_outcome_b_totals() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2169,8 +2169,8 @@ fn test_create_pool_with_fee_transfers_correctly() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2224,8 +2224,8 @@ fn test_create_pool_no_fee_succeeds() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin);
@@ -2264,8 +2264,8 @@ fn test_set_creation_fee_unauthorized_rejected() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin);
@@ -2289,8 +2289,8 @@ fn test_set_creation_fee_negative_rejected() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin);
@@ -2311,8 +2311,8 @@ fn test_creation_fee_exemption_skips_fee() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2361,8 +2361,8 @@ fn test_creation_fee_exemption_revoked_charges_again() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2412,8 +2412,8 @@ fn test_set_creation_fee_exemption_unauthorized_rejected() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin);
@@ -2440,8 +2440,8 @@ fn test_cumulative_volume_tracking() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2515,8 +2515,8 @@ fn test_get_pool_volume_unknown_pool_is_zero() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2533,7 +2533,7 @@ fn test_get_pool_volume_unknown_pool_is_zero() {
 /// the ledger past the pool's expiry before settling.
 fn tiered_pool_fee_and_payout(
     env: &Env,
-    client: &PredinexContractClient,
+    client: &WineBlackContractClient,
     token_admin_client: &token::StellarAssetClient,
     winner_amt: i128,
     loser_amt: i128,
@@ -2576,8 +2576,8 @@ fn test_volume_fee_tiers_resolution() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2624,8 +2624,8 @@ fn test_volume_fee_tiers_unconfigured_is_flat_fee() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2646,8 +2646,8 @@ fn test_set_volume_fee_tiers_event_and_clear() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -2685,8 +2685,8 @@ fn test_set_volume_fee_tiers_event_and_clear() {
 fn test_set_volume_fee_tiers_too_many_rejected() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     client.initialize(&token_id.address(), &token_admin, &token_admin);
@@ -2729,8 +2729,8 @@ fn test_set_volume_fee_tiers_too_many_rejected() {
 fn test_set_volume_fee_tiers_non_ascending_rejected() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     client.initialize(&token_id.address(), &token_admin, &token_admin);
@@ -2757,8 +2757,8 @@ fn test_set_volume_fee_tiers_non_ascending_rejected() {
 fn test_set_volume_fee_tiers_fee_out_of_bounds_rejected() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     client.initialize(&token_id.address(), &token_admin, &token_admin);
@@ -2779,8 +2779,8 @@ fn test_set_volume_fee_tiers_fee_out_of_bounds_rejected() {
 fn test_set_volume_fee_tiers_unauthorized_rejected() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     client.initialize(&token_id.address(), &token_admin, &token_admin);
@@ -2801,15 +2801,15 @@ fn test_set_volume_fee_tiers_unauthorized_rejected() {
 /// Build a clean contract and return (env, client, treasury_recipient, mint).
 fn min_participants_setup() -> (
     Env,
-    PredinexContractClient<'static>,
+    WineBlackContractClient<'static>,
     Address,
     token::StellarAssetClient<'static>,
 ) {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -3352,8 +3352,8 @@ fn j5_get_user_pools_caps_count_at_100() {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -3518,8 +3518,8 @@ fn l3_loser_claim_leaves_balances_unchanged() {
     let token = token::Client::new(&env, &token_id.address());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -3592,8 +3592,8 @@ fn l4_successful_claim_reconciles_treasury_and_balances() {
     let token = token::Client::new(&env, &token_id.address());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -3666,8 +3666,8 @@ fn l5_claim_winnings_emits_claim_event() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin_addr.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -3758,8 +3758,8 @@ fn i1_get_config_returns_all_values() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -3781,8 +3781,8 @@ fn i2_get_config_reflects_updates() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
@@ -4472,8 +4472,8 @@ fn test_list_pools_empty_returns_empty() {
     // No pools created — any start should return empty.
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(
         &Address::generate(&env),
         &Address::generate(&env),
@@ -4523,8 +4523,8 @@ fn test_list_pools_partial_page_at_boundary() {
 fn test_list_pools_limit_capped_at_20() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     client.initialize(&token_id.address(), &token_admin, &token_admin);
@@ -4807,8 +4807,8 @@ fn h1_double_fee_fix_treasury_correct_with_multiple_winners() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
     let creator = Address::generate(&env);
@@ -4865,8 +4865,8 @@ fn m1_create_pool_emits_pool_created_event() {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -4929,8 +4929,8 @@ fn m2_place_bet_emits_bet_placed_event() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -5000,8 +5000,8 @@ fn m3_settle_pool_emits_settle_pool_event() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -5075,8 +5075,8 @@ fn m4_claim_winnings_emits_claim_event() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -5154,8 +5154,8 @@ fn m5_cancel_bet_emits_bet_cancelled_event() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -5227,8 +5227,8 @@ fn m6_extend_pool_duration_emits_pool_duration_extended_event() {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -5299,8 +5299,8 @@ fn m7_place_bet_with_referrer_emits_referral_bet_event() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -5371,8 +5371,8 @@ fn m8_claim_referral_rewards_emits_referral_reward_claimed_event() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -5446,8 +5446,8 @@ fn m9_update_twap_emits_twap_updated_event() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury_recipient = Address::generate(&env);
     client.initialize(
@@ -5523,8 +5523,8 @@ fn m9_update_twap_emits_twap_updated_event() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_create_pool_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.create_pool(
         &Address::generate(&env),
@@ -5542,8 +5542,8 @@ fn test_create_pool_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_place_bet_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.place_bet(&Address::generate(&env), &1, &0, &100, &None);
 }
@@ -5552,8 +5552,8 @@ fn test_place_bet_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_settle_pool_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.settle_pool(&Address::generate(&env), &1, &0);
 }
@@ -5562,8 +5562,8 @@ fn test_settle_pool_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_claim_winnings_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.claim_winnings(&Address::generate(&env), &1);
 }
@@ -5572,8 +5572,8 @@ fn test_claim_winnings_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_get_pool_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.get_pool(&1);
 }
@@ -5582,8 +5582,8 @@ fn test_get_pool_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_get_user_bet_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.get_user_bet(&1, &Address::generate(&env));
 }
@@ -5592,8 +5592,8 @@ fn test_get_user_bet_not_initialized() {
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_get_pool_count_not_initialized() {
     let env = Env::default();
-    let contract_id = env.register_contract(None, PredinexContract);
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register_contract(None, WineBlackContract);
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.get_pool_count();
 }
@@ -5611,8 +5611,8 @@ fn n1_get_total_user_claims_tracks_cumulative_winnings() {
     let token = token::Client::new(&env, &token_id.address());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -5682,8 +5682,8 @@ fn n2_get_total_user_claims_zero_for_no_claims() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -5704,8 +5704,8 @@ fn n3_get_user_claim_history_returns_correct_entries() {
     let token = token::Client::new(&env, &token_id.address());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -5755,8 +5755,8 @@ fn n4_get_user_claim_history_pagination() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -5814,8 +5814,8 @@ fn n5_get_user_claim_history_empty_for_no_claims() {
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
 
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
@@ -5830,7 +5830,7 @@ fn n5_get_user_claim_history_empty_for_no_claims() {
 /// exchange rate for the alt token, and return all handles needed by the tests.
 struct MultiAssetSetup {
     env: Env,
-    client: PredinexContractClient<'static>,
+    client: WineBlackContractClient<'static>,
     proto_token: token::Client<'static>,
     proto_admin_client: token::StellarAssetClient<'static>,
     alt_token: token::Client<'static>,
@@ -5855,8 +5855,8 @@ fn multi_asset_setup() -> MultiAssetSetup {
     let alt_token = token::Client::new(&env, &alt_id.address());
     let alt_admin_client = token::StellarAssetClient::new(&env, &alt_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
 
     let treasury = Address::generate(&env);
     client.initialize(&proto_id.address(), &treasury, &treasury);
@@ -6598,8 +6598,8 @@ fn issue559_all_bettors_on_winning_side_no_division_by_zero() {
     let token = token::Client::new(&env, &token_id.address());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
     let creator = Address::generate(&env);
@@ -6644,8 +6644,8 @@ fn issue559_winning_outcome_with_no_bets_returns_no_winning_bets() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
     let creator = Address::generate(&env);
@@ -6687,8 +6687,8 @@ fn issue559_loser_only_bet_cannot_claim() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
     let creator = Address::generate(&env);
@@ -6730,8 +6730,8 @@ fn issue559_preview_unclaimable_when_no_bets_on_winning_side() {
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&token_id.address(), &token_admin, &token_admin);
 
     let creator = Address::generate(&env);
@@ -6771,8 +6771,8 @@ fn issue559_preview_unclaimable_when_no_bets_on_winning_side() {
 fn test_bet_after_expiry_rejected() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
@@ -6799,8 +6799,8 @@ fn test_bet_after_expiry_rejected() {
 fn test_multiple_bettors_proportional_reward() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
@@ -6845,8 +6845,8 @@ fn test_multiple_bettors_proportional_reward() {
 fn test_fee_calculation_verification() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
@@ -6884,8 +6884,8 @@ fn test_fee_calculation_verification() {
 fn test_zero_value_bet_rejected() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
@@ -6912,8 +6912,8 @@ fn test_zero_value_bet_rejected() {
 fn test_settle_expired_pool_success() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());
@@ -6948,8 +6948,8 @@ fn test_settle_expired_pool_success() {
 fn test_empty_winning_pool_handling() {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client = WineBlackContractClient::new(&env, &contract_id);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
     let token_admin_client = token::StellarAssetClient::new(&env, &token_id.address());

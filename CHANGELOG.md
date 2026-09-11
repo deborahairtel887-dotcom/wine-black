@@ -1,5 +1,5 @@
 
-All notable changes to AGEGG Stellar are documented here.
+All notable changes to wine-black Stellar are documented here.
 Entries are grouped by delivery area so each stakeholder can scan the section relevant to them.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).

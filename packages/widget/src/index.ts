@@ -1,2 +1,2 @@
-export { PredinexWidget } from './PredinexWidget';
-export type { PredinexWidgetProps, WidgetPool, WidgetTheme } from './types';
+export { Wine BlackWidget } from './Wine BlackWidget';
+export type { Wine BlackWidgetProps, WidgetPool, WidgetTheme } from './types';

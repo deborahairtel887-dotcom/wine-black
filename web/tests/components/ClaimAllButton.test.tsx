@@ -5,15 +5,15 @@ import userEvent from '@testing-library/user-event';
 import ClaimAllButton, { type ClaimablePool } from '../../components/ClaimAllButton';
 import { renderWithProviders } from '../helpers/renderWithProviders';
 import { useWallet } from '@/components/WalletAdapterProvider';
-import { predinexContract } from '../../app/lib/adapters/predinex-contract';
+import { wineBlackContract } from '../../app/lib/adapters/wine-black-contract';
 
 vi.mock('@/components/WalletAdapterProvider', () => ({
   useWallet: vi.fn(),
   WalletAdapterProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 
-vi.mock('../../app/lib/adapters/predinex-contract', () => ({
-  predinexContract: {
+vi.mock('../../app/lib/adapters/wine-black-contract', () => ({
+  wineBlackContract: {
     claimAllWinningsSoroban: vi.fn(),
   },
 }));
@@ -27,7 +27,7 @@ vi.mock('../../app/lib/cache-invalidation', () => ({
 }));
 
 const mockUseWallet = vi.mocked(useWallet);
-const mockClaimAll = vi.mocked(predinexContract.claimAllWinningsSoroban);
+const mockClaimAll = vi.mocked(wineBlackContract.claimAllWinningsSoroban);
 
 function createDeferred<T>() {
   let resolve!: (value: T | PromiseLike<T>) => void;

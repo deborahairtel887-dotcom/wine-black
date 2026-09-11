@@ -6,8 +6,8 @@
     "app/lib/soroban-transaction-service.ts",
     "app/lib/soroban-event-service.ts",
     "app/lib/contract-utils.ts",
-    "app/lib/adapters/predinex-read-api.ts",
-    "app/lib/adapters/predinex-contract.ts",
+    "app/lib/adapters/wine-black-read-api.ts",
+    "app/lib/adapters/wine-black-contract.ts",
     "app/lib/market-types.ts",
     "app/lib/freighter-adapter.ts",
     "app/lib/wallet-adapter.ts"
@@ -15,7 +15,7 @@
   "out": "../docs/api",
   "exclude": ["**/*.test.ts", "**/node_modules/**", "**/fixtures/**"],
   "includeVersion": true,
-  "name": "AGEGG Stellar SDK Client",
+  "name": "Wine Black Stellar SDK Client",
   "readme": "none",
   "skipErrorChecking": true,
   "excludePrivate": true

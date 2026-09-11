@@ -11,7 +11,7 @@
  *
  * AppKit does not currently ship a first-party Stellar adapter, so these
  * objects are plain CAIP-network descriptors. They are intentionally free of
- * any Stacks chain ids — AGEGG is a Stellar/Soroban app, and routing the
+ * any Stacks chain ids — Wine Black is a Stellar/Soroban app, and routing the
  * provider through `stacks:*` ids would put the wallet UI on the wrong network
  * (see issue #210).
  */
@@ -101,8 +101,8 @@ export const SUPPORTED_NETWORK_IDS = [
 export type SupportedNetworkId = (typeof SUPPORTED_NETWORK_IDS)[number];
 
 export const appKitMetadata = {
-  name: 'AGEGG',
+  name: 'Wine Black',
   description: 'Decentralized Prediction Markets on Stellar',
-  url: 'https://agegg.io',
+  url: 'https://wine-black.io',
   icons: ['https://avatars.githubusercontent.com/u/179229932'],
 };

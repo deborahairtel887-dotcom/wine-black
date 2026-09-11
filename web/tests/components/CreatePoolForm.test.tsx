@@ -26,8 +26,8 @@ vi.mock('@/components/RouteErrorBoundary', () => ({
 
 vi.mock('@/lib/contract', () => ({
   createPool: vi.fn(),
-  predinexContract: {},
-  predinexReadApi: {
+  wineBlackContract: {},
+  wineBlackReadApi: {
     getPoolCount: vi.fn(),
     getPool: vi.fn(),
   },

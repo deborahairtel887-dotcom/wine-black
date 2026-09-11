@@ -6,11 +6,11 @@ extern crate std;
 use super::*;
 use soroban_sdk::{testutils::Address as _, testutils::Ledger, Address, Env, String};
 
-fn setup() -> (Env, PredinexContractClient<'static>) {
+fn setup() -> (Env, WineBlackContractClient<'static>) {
     let env = Env::default();
     env.mock_all_auths();
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
     (env, client)
 }
 

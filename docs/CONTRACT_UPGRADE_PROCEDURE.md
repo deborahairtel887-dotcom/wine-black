@@ -1,13 +1,13 @@
 # Contract Upgrade Procedure
 
-This document describes how Predinex upgrades the Soroban contract safely.
+This document describes how Wine Black upgrades the Soroban contract safely.
 It is the operational companion to the contract versioning notes and focuses on
 state compatibility, migration planning, and release coordination.
 
 ## Current state version
 
 The contract currently stores its state compatibility marker in
-[`contracts/predinex/src/lib.rs`](../contracts/predinex/src/lib.rs) as:
+[`contracts/Wine Black/src/lib.rs`](../contracts/Wine Black/src/lib.rs) as:
 
 ```rust
 pub const CONTRACT_STATE_VERSION: &str = "v1";
@@ -50,7 +50,7 @@ is compatible with the current binary.
 
 ## 2. Storage namespace conventions
 
-Predinex keeps persistent data under the `DataKey` enum. Treat each variant as
+Wine Black keeps persistent data under the `DataKey` enum. Treat each variant as
 its own namespace.
 
 ### Rules
@@ -209,5 +209,5 @@ Before opening a PR for a contract upgrade, confirm:
 ## Related documentation
 
 - [Contract versioning and migration strategy](../web/docs/CONTRACT_VERSIONING.md)
-- [Contract state source](../contracts/predinex/src/lib.rs)
+- [Contract state source](../contracts/Wine Black/src/lib.rs)
 - [Contributing guide](../CONTRIBUTING.md)

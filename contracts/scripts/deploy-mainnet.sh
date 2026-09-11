@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# AGEGG Stellar — Mainnet Deployment Script
+# wine-black Stellar — Mainnet Deployment Script
 #
 # Builds the Soroban contract, deploys it to Stellar mainnet, and invokes
 # the initialize function with the configured admin and treasury addresses.
@@ -28,7 +28,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-CONTRACT_DIR="$REPO_ROOT/contracts/agegg"
+CONTRACT_DIR="$REPO_ROOT/contracts/wine-black"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -78,11 +78,11 @@ if [ -z "${SOROBAN_NETWORK_PASSPHRASE:-}" ]; then
     exit 1
 fi
 
-SOROBAN_WASM_PATH="${SOROBAN_WASM_PATH:-$CONTRACT_DIR/target/wasm32-unknown-unknown/release/agegg.optimized.wasm}"
+SOROBAN_WASM_PATH="${SOROBAN_WASM_PATH:-$CONTRACT_DIR/target/wasm32-unknown-unknown/release/wine-black.optimized.wasm}"
 
 echo ""
 echo "============================================"
-echo "  AGEGG — Mainnet Deployment"
+echo "  wine-black — Mainnet Deployment"
 echo "============================================"
 echo ""
 warn "This will deploy to Stellar MAINNET and use real XLM."
@@ -98,7 +98,7 @@ info "Contract built successfully."
 
 # ─── Step 2: Optimize WASM ───────────────────────────────────────────────────
 info "Step 2: Optimizing WASM..."
-WASM_SRC="$CONTRACT_DIR/target/wasm32-unknown-unknown/release/agegg.wasm"
+WASM_SRC="$CONTRACT_DIR/target/wasm32-unknown-unknown/release/wine-black.wasm"
 stellar contract optimize --wasm "$WASM_SRC"
 info "WASM optimized."
 

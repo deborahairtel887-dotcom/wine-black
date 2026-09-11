@@ -1,6 +1,6 @@
-# AGEGG Contract API Reference
+# wine-black Contract API Reference
 
-This document serves as the comprehensive API reference for the AGEGG Stellar/Soroban smart contract.
+This document serves as the comprehensive API reference for the wine-black Stellar/Soroban smart contract.
 
 ## Entrypoints
 
@@ -118,7 +118,7 @@ Claims winnings from a settled pool.
 ### Example
 ```json
 {
-  "topics": ["AGEGG", "place_bet"],
+  "topics": ["wine-black", "place_bet"],
   "data": { "user": "GB...", "pool_id": 1, "outcome": 0, "amount": 10000000 }
 }
 ```

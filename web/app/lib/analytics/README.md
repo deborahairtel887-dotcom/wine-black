@@ -1,6 +1,6 @@
 # Analytics Module
 
-Canonical analytics taxonomy for product instrumentation in Predinex.
+Canonical analytics taxonomy for product instrumentation in Wine Black.
 
 ## Overview
 

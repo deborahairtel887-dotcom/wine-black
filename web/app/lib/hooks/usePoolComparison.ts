@@ -3,7 +3,7 @@
 import { useCallback, useMemo } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
-export const POOL_COMPARISON_STORAGE_KEY = 'predinex:compare:v1';
+export const POOL_COMPARISON_STORAGE_KEY = 'Wine Black:compare:v1';
 export const POOL_COMPARISON_MAX = 4;
 
 function normalizeIds(ids: unknown): number[] {

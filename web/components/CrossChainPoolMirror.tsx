@@ -50,7 +50,7 @@ export default function CrossChainPoolMirror({
       setLoading(true);
       setError(null);
       // TODO: Call contract to create_pool_mirror
-      // const result = await predinexContract.createPoolMirrorSoroban({
+      // const result = await wineBlackContract.createPoolMirrorSoroban({
       //   wallet: freighterWallet,
       //   poolId,
       //   targetChain: selectedTargetChain,
@@ -70,7 +70,7 @@ export default function CrossChainPoolMirror({
     try {
       setLoading(true);
       // TODO: Call contract to cancel pending mirror
-      // const result = await predinexContract.cancelPoolMirrorSoroban({
+      // const result = await wineBlackContract.cancelPoolMirrorSoroban({
       //   wallet: freighterWallet,
       //   poolId: mirrorPoolId,
       // });

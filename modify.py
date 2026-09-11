@@ -1,6 +1,6 @@
 import re
 
-lib_rs = "contracts/predinex/src/lib.rs"
+lib_rs = "contracts/wine-black/src/lib.rs"
 with open(lib_rs, "r") as f:
     content = f.read()
 

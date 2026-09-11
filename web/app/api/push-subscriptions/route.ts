@@ -14,7 +14,7 @@ interface StoredPushSubscription {
   updatedAt: string;
 }
 
-const STORE_KEY = '__predinexPushSubscriptions';
+const STORE_KEY = '__Wine BlackPushSubscriptions';
 
 function getStore(): Map<string, StoredPushSubscription> {
   const globalStore = globalThis as typeof globalThis & {
@@ -82,7 +82,7 @@ function validateSubscription(value: unknown): WebPushSubscriptionPayload | null
 }
 
 function getAuthenticatedUserId(request: NextRequest, bodyUserId?: unknown): string | null {
-  const headerUserId = request.headers.get('x-predinex-wallet-address')?.trim();
+  const headerUserId = request.headers.get('x-Wine Black-wallet-address')?.trim();
   if (!headerUserId || typeof bodyUserId !== 'string') return null;
   const normalizedBodyUserId = bodyUserId.trim();
   if (!normalizedBodyUserId || headerUserId !== normalizedBodyUserId) return null;
@@ -94,7 +94,7 @@ function storeKey(userId: string, endpoint: string): string {
 }
 
 export async function GET(request: NextRequest) {
-  const userId = request.headers.get('x-predinex-wallet-address')?.trim();
+  const userId = request.headers.get('x-Wine Black-wallet-address')?.trim();
   if (!userId) return jsonError('Missing wallet identity.', 401);
 
   const subscriptions = [...getStore().values()].filter((entry) => entry.userId === userId);

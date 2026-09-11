@@ -1,7 +1,7 @@
 /**
  * Soroban Read API
  *
- * Canonical read-only contract calls for the Predinex Soroban contract.
+ * Canonical read-only contract calls for the Wine Black Soroban contract.
  * All pool and user data reads go through the Soroban RPC using simulateTransaction.
  *
  * This module provides the canonical Soroban read layer for:
@@ -581,7 +581,7 @@ function normalizeUserBet(raw: RawSorobanUserBet | null): UserBetData | null {
 /**
  * Reads a single pool from the Soroban contract via `get_pool`.
  *
- * @param poolId - Numeric pool identifier (1-based in the Predinex contract).
+ * @param poolId - Numeric pool identifier (1-based in the Wine Black contract).
  * @param config - Optional RPC/contract override; defaults to `getRuntimeConfig().soroban`.
  * @returns {@link PoolReadResult} with normalized pool data or an error message.
  *

@@ -111,7 +111,7 @@ export async function GET(req: NextRequest) {
   const paginated = filtered.slice(start, start + pageSize);
 
   const csv = itemsToCsv(paginated);
-  const filename = `predinex-transactions_${window.from}_${window.to}.csv`;
+  const filename = `Wine Black-transactions_${window.from}_${window.to}.csv`;
 
   return new NextResponse(csv, {
     status: 200,

@@ -14,7 +14,7 @@ contract-interface-artifact
 
 ### Downloading the Artifact
 
-1. Go to the [Actions tab](https://github.com/dimka90/predinex-stellar/actions/workflows/ci.yml).
+1. Go to the [Actions tab](https://github.com/dimka90/Wine Black-stellar/actions/workflows/ci.yml).
 2. Select the successful CI run on `main`.
 3. Scroll to the **Artifacts** section at the bottom of the run summary.
 4. Download `contract-interface-artifact`.

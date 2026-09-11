@@ -5,8 +5,8 @@ import Navbar from '@/components/Navbar';
 import AuthGuard from '@/components/AuthGuard';
 import { useWallet } from '@/components/WalletAdapterProvider';
 import { useToast } from '@/app/providers/ToastProvider';
-import { predinexReadApi } from '@/app/lib/adapters/predinex-read-api';
-import { predinexContract } from '@/app/lib/adapters/predinex-contract';
+import { wineBlackReadApi } from '@/app/lib/adapters/wine-black-read-api';
+import { wineBlackContract } from '@/app/lib/adapters/wine-black-contract';
 import { getPoolAdminActivityFromSoroban } from '@/app/lib/soroban-event-service';
 import { getRuntimeConfig } from '@/app/lib/runtime-config';
 import { TxStage } from '@/app/lib/soroban-transaction-service';
@@ -46,7 +46,7 @@ export default function AdminDisputes() {
       if (!wallet.isConnected || !wallet.address) return;
       setCheckingAccess(true);
       try {
-        const freezeAdmin = await predinexReadApi.getFreezeAdmin();
+        const freezeAdmin = await wineBlackReadApi.getFreezeAdmin();
         setIsAdmin(wallet.address === freezeAdmin);
       } catch (err) {
         console.error('Failed to get freeze admin', err);
@@ -138,21 +138,21 @@ export default function AdminDisputes() {
     setStage('idle');
     try {
       if (action === 'freeze') {
-        await predinexContract.freezePoolSoroban({
+        await wineBlackContract.freezePoolSoroban({
           wallet,
           poolId,
           onStageChange: setStage,
           onFeeEstimated: (fee) => new Promise((resolve) => setFeePrompt({ feeStroops: fee, resolve })),
         });
       } else if (action === 'dispute') {
-        await predinexContract.disputePoolSoroban({
+        await wineBlackContract.disputePoolSoroban({
           wallet,
           poolId,
           onStageChange: setStage,
           onFeeEstimated: (fee) => new Promise((resolve) => setFeePrompt({ feeStroops: fee, resolve })),
         });
       } else if (action === 'unfreeze') {
-        await predinexContract.unfreezePoolSoroban({
+        await wineBlackContract.unfreezePoolSoroban({
           wallet,
           poolId,
           onStageChange: setStage,

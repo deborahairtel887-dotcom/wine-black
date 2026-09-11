@@ -1,5 +1,5 @@
 /**
- * Predinex Settlement Bot — Entry Point
+ * Wine Black Settlement Bot — Entry Point
  *
  * Usage:
  *   node dist/index.js           # normal run
@@ -17,7 +17,7 @@ async function main(): Promise<void> {
   const config = loadConfig();
   setLogLevel(config.logLevel);
 
-  logger.info("Predinex Settlement Bot initialising", {
+  logger.info("Wine Black Settlement Bot initialising", {
     version: "1.0.0",
     network: config.network,
     contractId: config.contractId,

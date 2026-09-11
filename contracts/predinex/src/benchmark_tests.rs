@@ -70,7 +70,7 @@ fn bench<F: FnMut()>(operation: &'static str, iterations: u32, mut f: F) -> Benc
 
 struct BenchCtx {
     env: Env,
-    client: PredinexContractClient<'static>,
+    client: WineBlackContractClient<'static>,
     token_admin: Address,
     token_id: Address,
 }
@@ -79,9 +79,9 @@ impl BenchCtx {
     fn new() -> Self {
         let env = Env::default();
         env.mock_all_auths();
-        let contract_id = env.register(PredinexContract, ());
-        let client: PredinexContractClient<'static> =
-            PredinexContractClient::new(&env, &contract_id);
+        let contract_id = env.register(WineBlackContract, ());
+        let client: WineBlackContractClient<'static> =
+            WineBlackContractClient::new(&env, &contract_id);
         let token_admin = Address::generate(&env);
         let token_id = env.register_stellar_asset_contract_v2(token_admin.clone());
         client.initialize(&token_id.address(), &token_admin, &token_admin);

@@ -8,7 +8,7 @@ import { validateBetAmount } from '@/app/lib/validators';
 import type { Pool } from '@/app/lib/adapters/types';
 import { useWallet } from '@/components/WalletAdapterProvider';
 import { useToast } from '@/providers/ToastProvider';
-import { predinexContract } from '@/app/lib/adapters/predinex-contract';
+import { wineBlackContract } from '@/app/lib/adapters/wine-black-contract';
 import { invalidateOnPlaceBet } from '@/app/lib/cache-invalidation';
 import { toastMessages, showToastPayload } from '@/lib/toast-messages';
 import { TransactionFeeModal } from '@/components/TransactionFeeModal';
@@ -110,7 +110,7 @@ export default function BettingSection({ pool, poolId, onBetSuccess }: BettingSe
         setIsBetting(true);
 
         try {
-            await predinexContract.placeBetSoroban({
+            await wineBlackContract.placeBetSoroban({
                 wallet,
                 poolId,
                 outcome,

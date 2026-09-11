@@ -4,7 +4,7 @@ Shared, framework-agnostic helpers should live in [`../../lib`](../../lib) and
 be imported with `@/lib/...`. This directory is for App Router-specific data
 access, contract adapters, route state, and compatibility re-exports.
 
-This directory contains reusable utilities, hooks, and configurations for the Predinex frontend application.
+This directory contains reusable utilities, hooks, and configurations for the Wine Black frontend application.
 
 ## Files Overview
 
@@ -179,7 +179,7 @@ const [user, setUser, removeUser] = useLocalStorage('user', null);
 5. **Cache strategically** - Use appropriate TTL values for different data types
 6. **Validate early** - Validate user input before sending to contract
 
-To find oracle-management feature flag parsing visit [feature-flags.ts](file:///C:/Stellar%20Contributions/predinex-stellar/web/app/lib/feature-flags.ts).
+To find oracle-management feature flag parsing visit [feature-flags.ts](file:///C:/Stellar%20Contributions/Wine Black-stellar/web/app/lib/feature-flags.ts).
 
 ## Adding New Utilities
 

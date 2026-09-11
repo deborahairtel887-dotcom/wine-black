@@ -1,67 +1,25 @@
 ## Summary
 
-<!--
-Describe what this PR does and why. Link the relevant issue(s):
-  Closes #<issue>
--->
-
-Closes #
+<!-- What does this PR do? Reference related issues with Closes #<number> -->
 
 ## Type of change
 
-- [ ] `feat` — new feature
-- [ ] `fix` — bug fix
-- [ ] `refactor` — code change that neither fixes a bug nor adds a feature
-- [ ] `perf` — performance improvement
-- [ ] `test` — adding or updating tests
-- [ ] `docs` — documentation only
-- [ ] `ci` — CI / workflow changes
-- [ ] `chore` — dependency bump or tooling update
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Breaking change (contract state or API change)
+- [ ] Refactor / cleanup
+- [ ] Documentation
+- [ ] CI / tooling
 
-## Scope
+## Checklist
 
-- [ ] Contract (`contracts/`)
-- [ ] Frontend / Web (`web/`)
-- [ ] Docs (`docs/`)
-- [ ] CI / Ops (`.github/`)
+- [ ] `cargo fmt --check` passes
+- [ ] `cargo clippy -- -D warnings` passes
+- [ ] `cargo test` passes
+- [ ] If contract state changed: version bumped and migration documented
+- [ ] If public API changed: `docs/contract-api.md` updated
+- [ ] PR description references the issue with `Closes #<number>`
 
----
+## Testing notes
 
-## Contract changes (complete if scope includes `contracts/`)
-
-- [ ] New or changed public functions — ABI impact documented below
-- [ ] Storage layout changed — migration path described below
-- [ ] Tests added or updated for every changed function
-
-**ABI / storage notes:**
-<!-- Describe breaking changes or migration steps, or write "N/A". -->
-
----
-
-## Frontend changes (complete if scope includes `web/`)
-
-- [ ] UI tested in a browser on the happy path
-- [ ] Responsive layout verified (mobile / desktop)
-- [ ] No new `console.error` or TypeScript errors introduced
-
----
-
-## Testing
-
-- [ ] Existing tests still pass (`cargo test` / `npm run test`)
-- [ ] New tests added for new behaviour
-- [ ] Manual steps to verify this change:
-
-<!--
-1. …
-2. …
--->
-
-## Docs impact
-
-- [ ] README or docs updated (or N/A)
-- [ ] Changelog entry added (or N/A)
-
-## Additional notes
-
-<!-- Anything a reviewer should know: trade-offs, follow-up tickets, performance impact, etc. -->
+<!-- How was this tested? Any edge cases worth calling out? -->

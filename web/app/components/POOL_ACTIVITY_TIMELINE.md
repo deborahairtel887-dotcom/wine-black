@@ -103,7 +103,7 @@ Currently, `usePoolActivity` hook returns mock data. To integrate with your cont
 const fetchPoolActivity = useCallback(
   async (id: number, limit: number): Promise<PoolActivityEvent[]> => {
     // Call your API or contract adapter
-    const events = await predinexReadApi.getPoolActivity(id, limit);
+    const events = await wineBlackReadApi.getPoolActivity(id, limit);
     
     // Transform contract events to PoolActivityEvent format
     return events.map(event => ({

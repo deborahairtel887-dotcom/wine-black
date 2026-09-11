@@ -51,7 +51,7 @@ function normalizeTemplate(raw: RawOnChainTemplate): OnChainPoolTemplate | null 
 }
 
 /**
- * Simulate `get_public_templates` against the configured Predinex contract.
+ * Simulate `get_public_templates` against the configured Wine Black contract.
  */
 export async function getPublicTemplatesFromSoroban(): Promise<OnChainPoolTemplate[]> {
   const { soroban, network } = getRuntimeConfig();

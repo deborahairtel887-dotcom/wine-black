@@ -1,6 +1,6 @@
-# @predinex/widget — Integration Guide
+# @Wine Black/widget — Integration Guide
 
-Embed live Predinex prediction pools on any website in minutes.
+Embed live Wine Black prediction pools on any website in minutes.
 
 ---
 
@@ -9,13 +9,13 @@ Embed live Predinex prediction pools on any website in minutes.
 ### npm / pnpm / yarn
 
 ```bash
-npm install @predinex/widget
+npm install @Wine Black/widget
 ```
 
 ### Script tag (UMD build — no bundler needed)
 
 ```html
-<script src="https://unpkg.com/@predinex/widget/dist/index.js"></script>
+<script src="https://unpkg.com/@Wine Black/widget/dist/index.js"></script>
 <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
 ```
@@ -25,10 +25,10 @@ npm install @predinex/widget
 ## Quick start (React)
 
 ```tsx
-import { PredinexWidget } from '@predinex/widget';
+import { Wine BlackWidget } from '@Wine Black/widget';
 
 // You must supply fetchPool and placeBet — see "Data adapters" below.
-<PredinexWidget
+<Wine BlackWidget
   contractId="CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCN3"
   poolId={1}
   fetchPool={fetchPoolFromSoroban}
@@ -54,7 +54,7 @@ import { PredinexWidget } from '@predinex/widget';
 ## Theming
 
 ```tsx
-<PredinexWidget
+<Wine BlackWidget
   contractId="..."
   poolId={1}
   theme={{
@@ -111,10 +111,10 @@ export async function placeBetWithFreighter(
 For non-React sites, render into a div with the UMD build:
 
 ```html
-<div id="predinex-widget"></div>
+<div id="Wine Black-widget"></div>
 <script>
-  ReactDOM.createRoot(document.getElementById('predinex-widget')).render(
-    React.createElement(PredinexWidget.PredinexWidget, {
+  ReactDOM.createRoot(document.getElementById('Wine Black-widget')).render(
+    React.createElement(Wine BlackWidget.Wine BlackWidget, {
       contractId: 'CDLZFC3...',
       poolId: 1,
       fetchPool: myFetchPool,
@@ -128,12 +128,12 @@ Or wrap the widget URL in an `<iframe>` if you host the widget as a standalone p
 
 ```html
 <iframe
-  src="https://app.predinex.io/embed/pool/1"
+  src="https://app.wine-black.io/embed/pool/1"
   width="440"
   height="320"
   frameborder="0"
   sandbox="allow-scripts allow-same-origin allow-forms"
-  title="Predinex prediction pool"
+  title="Wine Black prediction pool"
 ></iframe>
 ```
 

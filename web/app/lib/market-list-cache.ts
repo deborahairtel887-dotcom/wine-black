@@ -19,15 +19,15 @@ import { processMarketData, fetchCurrentBlockHeightLive } from './market-utils';
  * - This cache is per-browser (and per-user), so it works regardless of server
  *   deployment model and still improves perceived first render time.
  */
-export const MARKET_LIST_CACHE_KEY = 'predinex_market_list_v2';
+export const MARKET_LIST_CACHE_KEY = 'Wine Black_market_list_v2';
 export const MARKET_LIST_CACHE_VERSION = 2;
 export const MARKET_LIST_CACHE_TTL_MS = 30_000;
 
-export const POOL_CACHE_KEY_PREFIX = 'predinex_pool_';
+export const POOL_CACHE_KEY_PREFIX = 'Wine Black_pool_';
 export const POOL_CACHE_VERSION = 1;
 export const POOL_CACHE_TTL_MS = 60_000;
 
-export const BLOCK_HEIGHT_WARNING_KEY = 'predinex_block_height_warning_v1';
+export const BLOCK_HEIGHT_WARNING_KEY = 'Wine Black_block_height_warning_v1';
 export const BLOCK_HEIGHT_WARNING_TTL_MS = MARKET_LIST_CACHE_TTL_MS;
 export type BlockHeightWarningPayload = {
   cachedAt: number;

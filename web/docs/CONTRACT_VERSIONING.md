@@ -1,6 +1,6 @@
 # Contract Versioning & Migration Strategy
 
-This document defines how the AGEGG smart contract evolves over time, how breaking changes are communicated, and the steps required to deploy and migrate to a new contract version.
+This document defines how the wine-black smart contract evolves over time, how breaking changes are communicated, and the steps required to deploy and migrate to a new contract version.
 
 > **Reference from contributor docs:** Developers making contract changes must consult this document before opening a PR. Frontend changes that depend on new or modified contract interfaces must be coordinated through the process described here.
 
@@ -8,11 +8,11 @@ This document defines how the AGEGG smart contract evolves over time, how breaki
 
 ## Versioning model
 
-AGEGG uses **semantic versioning** for the contract interface, tracked via the `version` field in the `Cargo.toml` of `contracts/agegg/`:
+wine-black uses **semantic versioning** for the contract interface, tracked via the `version` field in the `Cargo.toml` of `contracts/wine-black/`:
 
 ```toml
 [package]
-name = "agegg"
+name = "wine-black"
 version = "0.1.0"
 ```
 
@@ -59,26 +59,26 @@ All contract PRs must reference this document in the PR description and confirm 
 
 ```bash
 # From the repo root
-cd contracts/agegg
+cd contracts/wine-black
 cargo test
 cargo build --release --target wasm32-unknown-unknown
 ```
 
-The compiled WASM lives at `target/wasm32-unknown-unknown/release/agegg.wasm`.
+The compiled WASM lives at `target/wasm32-unknown-unknown/release/wine-black.wasm`.
 
 ### 2. Optimize (production builds only)
 
 ```bash
-stellar contract optimize --wasm target/wasm32-unknown-unknown/release/agegg.wasm
+stellar contract optimize --wasm target/wasm32-unknown-unknown/release/wine-black.wasm
 ```
 
-Output: `agegg.optimized.wasm`
+Output: `wine-black.optimized.wasm`
 
 ### 3. Deploy to testnet
 
 ```bash
 stellar contract deploy \
-  --wasm agegg.optimized.wasm \
+  --wasm wine-black.optimized.wasm \
   --network testnet \
   --source <deployer-account>
 ```
@@ -154,7 +154,7 @@ stellar contract invoke \
 
 ## Links
 
-- [Contract source](../../contracts/agegg/src/lib.rs)
+- [Contract source](../../contracts/wine-black/src/lib.rs)
 - [Event schemas](./CONTRACT_EVENTS.md)
 - [Development guide](../DEVELOPMENT.md)
 - [Release process](../../RELEASE.md)

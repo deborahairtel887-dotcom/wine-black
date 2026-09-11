@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./contracts/predinex
+        working-directory: ./contracts/wine-black
 
     steps:
       - uses: actions/checkout@v4
@@ -59,7 +59,7 @@ jobs:
         if: github.event_name == 'pull_request'
         id: bench_base
         continue-on-error: true
-        working-directory: ./base-branch/contracts/predinex
+        working-directory: ./base-branch/contracts/wine-black
         run: |
           mkdir -p "$RUNNER_TEMP/benchmarks"
           cargo test bench_ --features testutils -- --nocapture 2>&1 \

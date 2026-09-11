@@ -174,7 +174,7 @@ Use the Cloudflare Pages GitHub Action:
   with:
     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-    projectName: predinex
+    projectName: Wine Black
     directory: ./web/.next
 ```
 

@@ -46,7 +46,7 @@ jobs:
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
         with:
-          workspaces: contracts/predinex
+          workspaces: contracts/wine-black
 
       - name: Install Soroban CLI
         run: |
@@ -54,16 +54,16 @@ jobs:
           soroban version
 
       - name: Build contract from source
-        working-directory: contracts/predinex
+        working-directory: contracts/wine-black
         run: |
           cargo build --target wasm32-unknown-unknown --release
-          stellar contract optimize --wasm target/wasm32-unknown-unknown/release/predinex.wasm
+          stellar contract optimize --wasm target/wasm32-unknown-unknown/release/wine-black.wasm
           
           # Store the path for later
-          echo "SOURCE_WASM_PATH=target/wasm32-unknown-unknown/release/predinex.optimized.wasm" >> $GITHUB_ENV
+          echo "SOURCE_WASM_PATH=target/wasm32-unknown-unknown/release/wine-black.optimized.wasm" >> $GITHUB_ENV
           
           # Compute hash of source-built bytecode
-          SOURCE_HASH=$(sha256sum target/wasm32-unknown-unknown/release/predinex.optimized.wasm | cut -d' ' -f1)
+          SOURCE_HASH=$(sha256sum target/wasm32-unknown-unknown/release/wine-black.optimized.wasm | cut -d' ' -f1)
           echo "SOURCE_HASH=$SOURCE_HASH" >> $GITHUB_ENV
           echo "Source-built WASM hash: $SOURCE_HASH"
 

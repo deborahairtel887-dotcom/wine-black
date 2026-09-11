@@ -1,4 +1,4 @@
-# Predinex Contract Specification
+# Wine Black Contract Specification
 
 For a complete API reference, see [web/docs/CONTRACT_API.md](../web/docs/CONTRACT_API.md).
 

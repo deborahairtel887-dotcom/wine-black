@@ -8,8 +8,8 @@ import {
   type WebPushSubscriptionPayload,
 } from './push-notification-types';
 
-const STORAGE_KEY = 'predinex_push_notifications_v1';
-const PROMPT_SHOWN_KEY = 'predinex_push_permission_prompt_shown_v1';
+const STORAGE_KEY = 'Wine Black_push_notifications_v1';
+const PROMPT_SHOWN_KEY = 'Wine Black_push_permission_prompt_shown_v1';
 const DEFAULT_ICON = '/icons/icon-192.png';
 
 export type BrowserNotificationPermission = 'default' | 'granted' | 'denied';
@@ -102,7 +102,7 @@ async function ensureServiceWorkerRegistration(): Promise<ServiceWorkerRegistrat
   return navigator.serviceWorker.register('/sw.js');
 }
 
-export async function subscribeToPredinexPush({
+export async function subscribeToWineBlackPush({
   userId,
   preferences = DEFAULT_NOTIFICATION_PREFERENCES,
 }: {
@@ -141,7 +141,7 @@ export async function savePushSubscription({
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-predinex-wallet-address': userId,
+      'x-Wine Black-wallet-address': userId,
     },
     body: JSON.stringify({ userId, subscription, preferences }),
   });
@@ -163,7 +163,7 @@ export async function updatePushPreferences(userId: string, preferences: Notific
   });
 }
 
-export async function unsubscribeFromPredinexPush(userId?: string | null): Promise<void> {
+export async function unsubscribeFromWine BlackPush(userId?: string | null): Promise<void> {
   if (isWebPushSupported()) {
     const registration = await navigator.serviceWorker.getRegistration('/');
     const subscription = await registration?.pushManager.getSubscription();
@@ -176,7 +176,7 @@ export async function unsubscribeFromPredinexPush(userId?: string | null): Promi
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      'x-predinex-wallet-address': userId,
+      'x-Wine Black-wallet-address': userId,
     },
     body: JSON.stringify({ userId }),
   }).catch(() => undefined);
@@ -210,7 +210,7 @@ export function useBrowserNotifications(options: UseBrowserNotificationsOptions 
     setIsSaving(true);
     setError(null);
     try {
-      await subscribeToPredinexPush({ userId, preferences });
+      await subscribeToWineBlackPush({ userId, preferences });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save push subscription.');
     } finally {
@@ -242,15 +242,15 @@ export function useBrowserNotifications(options: UseBrowserNotificationsOptions 
   const disable = useCallback(() => {
     clearEnabled();
     setPermission(getPermission());
-    void unsubscribeFromPredinexPush(userId);
+    void unsubscribeFromWine BlackPush(userId);
   }, [clearEnabled, userId]);
 
   const sendTestNotification = useCallback(async () => {
     const nextPermission = permission === 'granted' ? permission : await requestPermission();
     if (nextPermission === 'granted') {
-      notifyBrowserEvent('Predinex alerts are enabled', {
+      notifyBrowserEvent('Wine Black alerts are enabled', {
         body: 'You will receive browser notifications for important market events.',
-        tag: 'predinex-test-notification',
+        tag: 'Wine Black-test-notification',
       });
     }
   }, [permission, requestPermission]);

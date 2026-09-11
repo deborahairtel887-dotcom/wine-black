@@ -9,11 +9,11 @@
 //! * Unsupported token and missing-exchange-rate error paths
 //!
 //! These tests exercise the full contract ABI end-to-end via
-//! `PredinexContractClient` and do NOT reach into internal helpers.
+//! `WineBlackContractClient` and do NOT reach into internal helpers.
 
 extern crate std;
 
-use agegg::{ContractError, PredinexContract, PredinexContractClient};
+use wine_black::{ContractError, WineBlackContract, WineBlackContractClient};
 use soroban_sdk::{
     testutils::{Address as _, Ledger},
     token, Address, Env, String, Vec,
@@ -25,7 +25,7 @@ use soroban_sdk::{
 
 struct MaCtx<'a> {
     env: Env,
-    client: PredinexContractClient<'a>,
+    client: WineBlackContractClient<'a>,
     base_token: Address,
     alt_token: Address,
     treasury: Address,
@@ -43,8 +43,8 @@ fn setup_ma() -> MaCtx<'static> {
     let base_asset = env.register_stellar_asset_contract_v2(treasury.clone());
     let alt_asset = env.register_stellar_asset_contract_v2(treasury.clone());
 
-    let contract_id = env.register(PredinexContract, ());
-    let client: PredinexContractClient<'static> = PredinexContractClient::new(&env, &contract_id);
+    let contract_id = env.register(WineBlackContract, ());
+    let client: WineBlackContractClient<'static> = WineBlackContractClient::new(&env, &contract_id);
     client.initialize(&base_asset.address(), &treasury, &treasury);
 
     let base_admin: token::StellarAssetClient<'static> =
