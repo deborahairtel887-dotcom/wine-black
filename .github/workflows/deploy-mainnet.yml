@@ -84,7 +84,7 @@ jobs:
 
       - name: Cache stellar-cli
         id: stellar-cli-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cargo/bin/stellar
           key: stellar-cli-v22-${{ runner.os }}
@@ -140,7 +140,7 @@ jobs:
           path: ./wasm
 
       - name: Cache stellar-cli
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cargo/bin/stellar
           key: stellar-cli-v22-${{ runner.os }}
@@ -276,7 +276,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Cache stellar-cli
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cargo/bin/stellar
           key: stellar-cli-v22-${{ runner.os }}
