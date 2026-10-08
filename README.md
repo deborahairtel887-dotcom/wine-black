@@ -4,7 +4,7 @@
 
 ![Status](https://img.shields.io/badge/Status-BETA-blue?style=for-the-badge)
 ![Commits](https://img.shields.io/badge/Project_Lifecycle-Initial_Implementation-green?style=for-the-badge)
- ![Rust](https://img.shields.io/badge/Language-Rust-brown?style=flat-square) ![Soroban](https://img.shields.io/badge/Platform-Soroban-black?style=flat-square) ![License](https://img.shields.io/badge/License-ISC-blue?style=flat-square)
+ ![Rust](https://img.shields.io/badge/Language-Rust-brown?style=flat-square) ![Soroban](https://img.shields.io/badge/Platform-Soroban-black?style=flat-square) ![License](https://img.shields.io/badge/License-ISC-blue?style=flat-square) [![Drips Wave](https://img.shields.io/badge/Drips_Wave-Stellar_Program-6366f1?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCA4YzAtNC40IDMuNi04IDgtOHM4IDMuNiA4IDgtMy42IDgtOCA4LTgtMy42LTgtOHoiLz48L3N2Zz4=)](https://www.drips.network/wave/stellar)
 
 ## 📁 Repository Structure
 
@@ -126,6 +126,24 @@ Wine Black Stellar follows a phased approach to bring a premium betting experien
 - 🔄 Stellar SDK integration.
 - 🔄 Wallet and network support are tracked in the canonical [wallet and network support page](./web/docs/WALLET_NETWORK_SUPPORT.md).
 - ⏳ Real-time market tracking on Stellar.
+
+## 🌊 Drips Wave Stellar Program
+
+This project participates in the **[Stellar Wave Program](https://www.drips.network/wave/stellar)** — a recurring monthly contribution sprint where open-source contributors earn rewards for meaningful work on the Stellar ecosystem.
+
+**Wave 10** runs **October 15–22, 2026** with a budget of **$75,000**.
+
+### Contributing via Wave
+
+If you arrived from [drips.network/wave/stellar](https://www.drips.network/wave/stellar):
+
+1. Browse **[`good first issue`](../../issues?q=is%3Aopen+label%3A%22good+first+issue%22)** tagged issues — each one has concrete acceptance criteria and test commands.
+2. Read the **[Wave Contributor Guide](./WAVE.md)** for a 15-minute quick-start.
+3. Follow the standard **[Contributing Guide](./CONTRIBUTING.md)** for PR workflow and checks.
+
+Wave-eligible contributions include bug fixes, new tests, oracle integrations, documentation corrections, and frontend features. See [WAVE.md](./WAVE.md) for details on what makes a strong Wave contribution.
+
+---
 
 ## 🤝 Contributing & Releases
 

@@ -1,0 +1,78 @@
+name: "Good First Issue: Add smoke test for a missing route"
+description: >
+  Add a smoke test to tests/routes/smoke.test.tsx for a route that currently
+  has no coverage. Ideal for contributors new to the project.
+labels: ["good first issue", "wave", "testing"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Context
+
+        `web/tests/routes/smoke.test.tsx` verifies that every top-level App Router page
+        mounts without crashing (broken imports, missing providers, etc.).
+
+        The file currently covers:
+        `/`, `/markets`, `/markets/[id]`, `/pools`, `/create`, `/dashboard`,
+        `/disputes`, `/rewards`, `/activity`, `/incentives`, `/analytics`,
+        `/leaderboard`, `/transactions`, `/favorites`
+
+        The routes below are **not yet covered** and need a smoke test entry:
+
+        | Route | File |
+        |-------|------|
+        | `/compare` | `web/app/compare/page.tsx` |
+        | `/settings` | `web/app/settings/page.tsx` |
+        | `/admin` | `web/app/admin/` |
+        | `/oracle-management` | `web/app/oracle-management/page.tsx` |
+        | `/embed/pool/[id]` | `web/app/embed/pool/[id]/page.tsx` |
+
+        Pick **one route** per PR.
+
+  - type: dropdown
+    id: route
+    attributes:
+      label: Which route are you adding?
+      options:
+        - "/compare"
+        - "/settings"
+        - "/admin"
+        - "/oracle-management"
+        - "/embed/pool/[id]"
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## How to implement
+
+        1. Open `web/tests/routes/smoke.test.tsx`.
+        2. Import the page component at the end of the **"Route imports"** block.
+        3. Add any mocks required for hooks specific to that route (follow the existing patterns above).
+        4. Add a `it('/<route> renders without crashing', ...)` test in the **"Smoke suite"** block.
+        5. Run `cd web && node_modules/.bin/vitest --run tests/routes/smoke.test.tsx` to verify your test passes.
+
+        A smoke test only needs to assert `expect(screen.getByRole('main')).toBeInTheDocument()`.
+        It should **not** test component logic — that belongs in `tests/components/`.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Acceptance criteria
+      options:
+        - label: "The new test passes with `vitest --run tests/routes/smoke.test.tsx`"
+          required: true
+        - label: "The existing 14 tests still pass (no regressions)"
+          required: true
+        - label: "Any new mocks needed for the route are added inside the shared mock section, not inside the test body"
+          required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Estimated difficulty
+      options:
+        - "Small (< 1 hour)"
+    validations:
+      required: true

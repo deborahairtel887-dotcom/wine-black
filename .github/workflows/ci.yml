@@ -20,7 +20,7 @@ jobs:
       WASM_SIZE_FAIL_PERCENT: 95
     defaults:
       run:
-        working-directory: ./contracts/wine-black
+        working-directory: ./contracts/predinex
     steps:
       - uses: actions/checkout@v4
 
@@ -46,7 +46,7 @@ jobs:
         working-directory: .
         run: |
           bash scripts/measure-contract-wasm-size.sh \
-            --manifest-path contracts/wine-black/Cargo.toml \
+            --manifest-path contracts/predinex/Cargo.toml \
             --report-path "$RUNNER_TEMP/wasm-size/head.json" \
             --out-dir "$RUNNER_TEMP/wasm-size/head-build"
 

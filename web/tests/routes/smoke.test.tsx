@@ -140,13 +140,21 @@ vi.mock('../../app/lib/hooks/useWalletConnect', () => ({
 }));
 
 vi.mock('../../app/lib/hooks/usePoolFavorites', () => ({
-  usePoolFavorites: vi.fn(() => ({ isFavorite: vi.fn(() => false), toggleFavorite: vi.fn() })),
+  usePoolFavorites: vi.fn(() => ({
+    favoritePoolIds: [],
+    isFavorite: vi.fn(() => false),
+    toggleFavorite: vi.fn(),
+    clearFavorites: vi.fn(),
+  })),
 }));
 
 vi.mock('../../app/lib/adapters/wine-black-read-api', () => ({
   wineBlackReadApi: {
     getPool: vi.fn(() => Promise.resolve(null)),
     getUserBet: vi.fn(() => Promise.resolve(null)),
+    getPublicTemplates: vi.fn(() => Promise.resolve([])),
+    getMarkets: vi.fn(() => Promise.resolve([])),
+    getTotalVolume: vi.fn(() => Promise.resolve(0)),
   },
 }));
 
@@ -266,6 +274,35 @@ vi.mock('@stacks/connect', () => ({
   showConnect: vi.fn(),
 }));
 
+// ── Analytics / Leaderboard / Transactions / Favorites mocks ─────────────────
+
+vi.mock('../../app/lib/hooks/useAnalytics', () => ({
+  useAnalytics: vi.fn(() => ({
+    metrics: null,
+    volumeHistory: [],
+    isLoading: false,
+    error: null,
+  })),
+}));
+
+vi.mock('recharts', () => ({
+  ResponsiveContainer: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  BarChart: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  LineChart: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  AreaChart: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  PieChart: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  Bar: () => null,
+  Line: () => null,
+  Area: () => null,
+  Pie: () => null,
+  Cell: () => null,
+  XAxis: () => null,
+  YAxis: () => null,
+  CartesianGrid: () => null,
+  Tooltip: () => null,
+  Legend: () => null,
+}));
+
 // ── Route imports ─────────────────────────────────────────────────────────────
 
 import HomePage from '../../app/page';
@@ -278,6 +315,10 @@ import DisputesPage from '../../app/disputes/page';
 import RewardsPage from '../../app/rewards/page';
 import ActivityPage from '../../app/activity/page';
 import IncentivesPage from '../../app/incentives/page';
+import AnalyticsPage from '../../app/analytics/page';
+import LeaderboardPage from '../../app/leaderboard/page';
+import TransactionsPage from '../../app/transactions/page';
+import FavoritesPage from '../../app/favorites/page';
 
 // ── Smoke suite ───────────────────────────────────────────────────────────────
 
@@ -349,10 +390,33 @@ describe('Route smoke tests', () => {
   });
 
   it('/markets/[id] renders without crashing (loading state)', async () => {
-    // Params resolve asynchronously; the page shows a loading skeleton first.
+    // The page uses React.use(params) which suspends until the promise resolves.
+    // Wrapping in Suspense ensures the loading skeleton renders.
     renderWithProviders(
-      <PoolDetailPage params={Promise.resolve({ id: '1' })} />
+      <React.Suspense fallback={<main data-testid="suspense-main" />}>
+        <PoolDetailPage params={Promise.resolve({ id: '1' })} />
+      </React.Suspense>
     );
     expect(await screen.findByRole('main')).toBeInTheDocument();
+  });
+
+  it('/analytics renders without crashing', () => {
+    renderWithProviders(<AnalyticsPage />);
+    expect(screen.getByRole('main')).toBeInTheDocument();
+  });
+
+  it('/leaderboard renders without crashing', () => {
+    renderWithProviders(<LeaderboardPage />);
+    expect(screen.getByRole('main')).toBeInTheDocument();
+  });
+
+  it('/transactions renders without crashing', () => {
+    renderWithProviders(<TransactionsPage />);
+    expect(screen.getByRole('main')).toBeInTheDocument();
+  });
+
+  it('/favorites renders without crashing', () => {
+    renderWithProviders(<FavoritesPage />);
+    expect(screen.getByRole('main')).toBeInTheDocument();
   });
 });

@@ -1,0 +1,85 @@
+name: "Good First Issue: Wire a real asset pair into the Horizon oracle"
+description: >
+  Extend the settlement bot's oracle hook to resolve outcomes for a specific
+  Stellar asset pair using the Horizon order-book API.
+labels: ["good first issue", "wave", "bot", "oracle"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Background
+
+        The settlement bot (`bot/src/poller.ts`) includes a `resolveWinningOutcome()` function
+        with a `fetchHorizonPrice()` helper that queries Stellar's Horizon API for live asset prices.
+
+        Strategy A (price threshold) already handles XLM/USDC pools, but the `assetToHorizon`
+        map only maps `XLM`. Other assets commonly used in prediction markets on Stellar are missing.
+
+        ## Task
+
+        Add **one** of the following asset pairs to the `assetToHorizon` map in `resolveWinningOutcome()`:
+
+        | Asset | Testnet issuer | Mainnet issuer |
+        |-------|---------------|---------------|
+        | AQUA | `GBNZILSTVQZ4R7IKQDGHYGY2QXL5QOFJYQMXPKWRRM5PAV7Y4M67AQUA` | `GBNZILSTVQZ4R7IKQDGHYGY2QXL5QOFJYQMXPKWRRM5PAV7Y4M67AQUA` |
+        | yXLM | `GARDNV3Q7YGT4AKSDF25LT32YSCCW4EV22Y2TV3I2PU2MMXJTEDL5T55` | same |
+        | BTC (wrapped) | Use [Stellar Expert](https://stellar.expert/explorer/testnet) to find the current issuer | |
+
+        Each PR should add exactly **one** asset.
+
+  - type: dropdown
+    id: asset
+    attributes:
+      label: Which asset are you adding?
+      options:
+        - "AQUA"
+        - "yXLM"
+        - "BTC (wrapped)"
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## How to implement
+
+        1. Open `bot/src/poller.ts`.
+        2. In the `assetToHorizon` map inside `resolveWinningOutcome()`, add your asset:
+           ```ts
+           AQUA: {
+             base: { type: "native" },               // XLM as base
+             counter: {
+               type: "credit_alphanum4",
+               code: "AQUA",
+               issuer: "GBNZILSTVQZ4R7IKQDGHYGY2QXL5QOFJYQMXPKWRRM5PAV7Y4M67AQUA",
+             },
+           },
+           ```
+        3. Add a unit test in `bot/src/oracle.test.ts` that mocks `fetch` and verifies
+           the correct outcome index is returned for a pool whose title matches your asset
+           (e.g., `"AQUA > 0.002"`).
+        4. Run `cd bot && node_modules/.bin/vitest --run` to verify all 32+ tests pass.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Acceptance criteria
+      options:
+        - label: "The new asset is added to `assetToHorizon` in `bot/src/poller.ts`"
+          required: true
+        - label: "A unit test in `bot/src/oracle.test.ts` verifies outcome 0 (Yes) when price > threshold and outcome 1 (No) when price ≤ threshold"
+          required: true
+        - label: "`cd bot && node_modules/.bin/vitest --run` passes with no failures"
+          required: true
+        - label: "Both testnet and mainnet issuer addresses are documented in comments"
+          required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Estimated difficulty
+      options:
+        - "Small (< 1 hour)"
+        - "Medium (1–4 hours)"
+    validations:
+      required: true

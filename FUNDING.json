@@ -1,0 +1,32 @@
+{
+  "$schema": "https://drips.network/schema/funding.json",
+  "drips": {
+    "gives": [
+      {
+        "weight": 40,
+        "address": "stellar.org",
+        "comment": "Stellar Development Foundation — the core protocol this contract runs on"
+      },
+      {
+        "weight": 30,
+        "address": "soroban-sdk",
+        "comment": "soroban-sdk — the Rust smart-contract SDK used throughout contracts/"
+      },
+      {
+        "weight": 20,
+        "address": "stellar-sdk",
+        "comment": "@stellar/stellar-sdk — TypeScript SDK used in web/ and bot/"
+      },
+      {
+        "weight": 10,
+        "address": "freighter-api",
+        "comment": "Freighter wallet API — primary wallet integration"
+      }
+    ]
+  },
+  "description": "Wine Black Stellar is an open-source prediction-market protocol built on Stellar/Soroban. This file participates in the Drips Wave Stellar program to fund the dependencies that make this project possible.",
+  "wave": {
+    "program": "stellar",
+    "url": "https://www.drips.network/wave/stellar"
+  }
+}

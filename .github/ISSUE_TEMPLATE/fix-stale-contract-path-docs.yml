@@ -1,0 +1,72 @@
+name: "Good First Issue: Fix stale 'contracts/wine-black' references in docs"
+description: >
+  The contract was renamed from `wine-black` to `predinex` but several
+  documentation files still reference the old path. Fix them.
+labels: ["good first issue", "wave", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Background
+
+        The Soroban smart contract was originally in `contracts/wine-black/` but
+        was refactored to `contracts/predinex/`. Most code was updated, but several
+        documentation files still contain the old path.
+
+        ## Files that need updating
+
+        Run this in the repo root to find all remaining occurrences:
+
+        ```bash
+        grep -r "contracts/wine-black" docs/ scripts/ --include="*.md" --include="*.sh" -l
+        ```
+
+        Known files (as of this issue being filed):
+
+        | File | What to change |
+        |------|----------------|
+        | `docs/local-runbook.md` | `contracts/wine-black` → `contracts/predinex` |
+        | `docs/deployment-guide.md` | `contracts/wine-black` → `contracts/predinex` |
+        | `docs/DEPLOYMENT_RUNBOOK.md` | `contracts/wine-black` → `contracts/predinex` |
+        | `scripts/bootstrap.sh` | Check if any path references are wrong |
+        | `scripts/rollback.sh` | Check if any path references are wrong |
+
+        Also check that WASM artifact names are correct:
+        - Old: `wine-black.wasm`
+        - New: `predinex.wasm` (the Cargo package name determines the output filename)
+
+  - type: markdown
+    attributes:
+      value: |
+        ## How to implement
+
+        1. Run `grep -r "contracts/wine-black" . --include="*.md" --include="*.sh" -l` to find all affected files.
+        2. For each file, replace `contracts/wine-black` with `contracts/predinex`.
+        3. Also replace `wine-black.wasm` with `predinex.wasm` where it appears.
+        4. Verify the docs still make sense after the substitution (paths, commands, etc.).
+        5. There is no automated test for this — the PR reviewer will check the diffs.
+
+        **Do not** modify `.rs`, `.ts`, or `.tsx` source files — only docs and scripts.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Acceptance criteria
+      options:
+        - label: "`grep -r 'contracts/wine-black' docs/ scripts/` returns no results after the fix"
+          required: true
+        - label: "`grep -r 'wine-black.wasm' docs/ scripts/` returns no results after the fix"
+          required: true
+        - label: "All modified shell scripts still have correct syntax (`bash -n script.sh` passes)"
+          required: true
+        - label: "PR description lists every file changed"
+          required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Estimated difficulty
+      options:
+        - "Small (< 1 hour)"
+    validations:
+      required: true

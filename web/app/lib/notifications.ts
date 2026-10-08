@@ -163,7 +163,7 @@ export async function updatePushPreferences(userId: string, preferences: Notific
   });
 }
 
-export async function unsubscribeFromWine BlackPush(userId?: string | null): Promise<void> {
+export async function unsubscribeFromWineBlackPush(userId?: string | null): Promise<void> {
   if (isWebPushSupported()) {
     const registration = await navigator.serviceWorker.getRegistration('/');
     const subscription = await registration?.pushManager.getSubscription();
@@ -242,7 +242,7 @@ export function useBrowserNotifications(options: UseBrowserNotificationsOptions 
   const disable = useCallback(() => {
     clearEnabled();
     setPermission(getPermission());
-    void unsubscribeFromWine BlackPush(userId);
+    void unsubscribeFromWineBlackPush(userId);
   }, [clearEnabled, userId]);
 
   const sendTestNotification = useCallback(async () => {

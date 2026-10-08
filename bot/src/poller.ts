@@ -40,34 +40,223 @@ import { Executor } from "./executor.js";
 import { logger } from "./logger.js";
 import { notify } from "./webhook.js";
 
+// ─── Horizon price-feed helper ────────────────────────────────────────────────
+
+/**
+ * Fetches the last trade price of an asset pair from Stellar Horizon.
+ *
+ * Uses the `/order_book` endpoint which is available on both testnet and pubnet
+ * without authentication.  Returns `null` when the order book has no trades or
+ * the request fails, so the caller can fall back gracefully.
+ *
+ * @param base     - Base asset.  Use `"native"` for XLM.
+ * @param counter  - Counter asset.  Use `"native"` for XLM.
+ * @param horizonUrl - Horizon base URL (e.g. `https://horizon-testnet.stellar.org`).
+ *
+ * @example
+ * // Fetch the XLM/USDC mid-price from testnet
+ * const price = await fetchHorizonPrice(
+ *   { type: "native" },
+ *   { type: "credit_alphanum4", code: "USDC", issuer: "GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN" },
+ *   "https://horizon-testnet.stellar.org"
+ * );
+ */
+export async function fetchHorizonPrice(
+  base: HorizonAsset,
+  counter: HorizonAsset,
+  horizonUrl = "https://horizon-testnet.stellar.org",
+): Promise<number | null> {
+  try {
+    const params = new URLSearchParams({
+      selling_asset_type: base.type,
+      ...(base.type !== "native" && {
+        selling_asset_code: (base as HorizonIssuedAsset).code,
+        selling_asset_issuer: (base as HorizonIssuedAsset).issuer,
+      }),
+      buying_asset_type: counter.type,
+      ...(counter.type !== "native" && {
+        buying_asset_code: (counter as HorizonIssuedAsset).code,
+        buying_asset_issuer: (counter as HorizonIssuedAsset).issuer,
+      }),
+      limit: "1",
+    });
+
+    const url = `${horizonUrl}/order_book?${params.toString()}`;
+    const response = await fetch(url, {
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(5_000),
+    });
+
+    if (!response.ok) {
+      logger.warn("Horizon order-book request failed", {
+        status: response.status,
+        url,
+      });
+      return null;
+    }
+
+    const data = (await response.json()) as HorizonOrderBook;
+
+    // Use the mid-price between best bid and ask when both sides are present;
+    // fall back to whichever side has a price.
+    const bid = parseFloat(data.bids?.[0]?.price ?? "0");
+    const ask = parseFloat(data.asks?.[0]?.price ?? "0");
+
+    if (bid > 0 && ask > 0) return (bid + ask) / 2;
+    if (ask > 0) return ask;
+    if (bid > 0) return bid;
+    return null;
+  } catch (err) {
+    logger.warn("fetchHorizonPrice error", { error: String(err) });
+    return null;
+  }
+}
+
+type HorizonNativeAsset = { type: "native" };
+type HorizonIssuedAsset = {
+  type: "credit_alphanum4" | "credit_alphanum12";
+  code: string;
+  issuer: string;
+};
+type HorizonAsset = HorizonNativeAsset | HorizonIssuedAsset;
+
+interface HorizonOrderBook {
+  bids?: Array<{ price: string; amount: string }>;
+  asks?: Array<{ price: string; amount: string }>;
+}
+
 // ─── Oracle hook ─────────────────────────────────────────────────────────────
 
 /**
  * Determine the winning outcome index for an expired pool.
  *
- * Override this function to plug in your own oracle, data source, or
- * decision logic. The default implementation returns config.defaultWinningOutcome.
+ * This function is the **single integration point** for external price/oracle
+ * data.  The implementation below shows three concrete strategies; pick the one
+ * that matches your pool design and delete the others.
  *
- * Return null to skip settling this pool (the bot will log it as needing
- * manual settlement).
+ * Return `null` to skip settling a pool — the bot will log it as needing manual
+ * settlement and will try again on the next cycle.
+ *
+ * Outcome index convention (matches the Soroban contract):
+ *   0 = outcome_a wins
+ *   1 = outcome_b wins
+ *
+ * ─── Strategy A: Horizon price threshold ────────────────────────────────────
+ *
+ * For pools whose title follows the pattern "XLM > $0.15" or "BTC > $50000",
+ * extract the threshold and compare against the live Horizon mid-price.
+ *
+ *   Pool title  : "Will XLM/USDC trade above $0.15 by end of month?"
+ *   outcome_a   : "Yes"   → outcome index 0
+ *   outcome_b   : "No"    → outcome index 1
+ *
+ * ─── Strategy B: Admin/operator manual key ──────────────────────────────────
+ *
+ * Keep AUTO_SETTLE_ENABLED=false and resolve via an authenticated endpoint that
+ * only the pool admin can write to.  The oracle fetches the admin's decision.
+ *
+ * ─── Strategy C: Default fallback ───────────────────────────────────────────
+ *
+ * Use DEFAULT_WINNING_OUTCOME for all pools.  Useful for protocol-controlled
+ * markets where outcome_a is always authoritative (e.g. test deployments).
  */
 async function resolveWinningOutcome(
   poolId: number,
   pool: Pool,
   config: BotConfig,
 ): Promise<number | null> {
-  // ── CUSTOM ORACLE LOGIC HERE ──────────────────────────────────────────────
+  // ── Strategy A: Stellar Horizon price-based resolution ───────────────────
   //
-  // Example: call an external API
-  //   const res = await fetch(`https://oracle.example.com/resolve/${poolId}`);
-  //   const { outcome } = await res.json();
-  //   return outcome;  // 0 or 1
+  // Detect price-threshold pools by checking pool.title for a pattern like
+  // "XLM > 0.15" or "BTC > 50000".  Adjust the regex to match your title
+  // convention.  Remove this block if you don't use price-threshold pools.
   //
-  // Example: check pool title for known patterns
-  //   if (pool.title.toLowerCase().includes("btc > 100k")) { ... }
-  //
-  // ─────────────────────────────────────────────────────────────────────────
+  const pricePattern = /\b(xlm|btc|eth)\s*[>＞]\s*\$?([\d,.]+)/i;
+  const match = pricePattern.exec(pool.title ?? "");
 
+  if (match) {
+    const asset = match[1]!.toUpperCase();
+    const threshold = parseFloat((match[2] ?? "0").replace(/,/g, ""));
+
+    // Map asset tickers to their Stellar representations.
+    // Extend this map with any additional assets your pools reference.
+    const USDC_ISSUER_TESTNET =
+      "GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN";
+
+    const assetToHorizon: Record<string, { base: HorizonAsset; counter: HorizonAsset }> = {
+      XLM: {
+        base: { type: "native" },
+        counter: {
+          type: "credit_alphanum4",
+          code: "USDC",
+          issuer: USDC_ISSUER_TESTNET,
+        },
+      },
+      // Add BTC, ETH, etc. when you have Stellar-wrapped issuers for them.
+    };
+
+    const pair = assetToHorizon[asset];
+    if (pair) {
+      const horizonUrl =
+        config.network === "mainnet"
+          ? "https://horizon.stellar.org"
+          : "https://horizon-testnet.stellar.org";
+
+      const currentPrice = await fetchHorizonPrice(
+        pair.base,
+        pair.counter,
+        horizonUrl,
+      );
+
+      if (currentPrice !== null) {
+        logger.info("Horizon price resolved for pool", {
+          poolId,
+          asset,
+          threshold,
+          currentPrice,
+          outcome: currentPrice > threshold ? "outcome_a (Yes)" : "outcome_b (No)",
+        });
+
+        // outcome index 0 = outcome_a = "Yes, the price exceeded the threshold"
+        // outcome index 1 = outcome_b = "No, the price did NOT exceed the threshold"
+        return currentPrice > threshold ? 0 : 1;
+      }
+
+      logger.warn("Could not fetch Horizon price — deferring to manual settlement", {
+        poolId,
+        asset,
+      });
+      return null; // defer to next cycle or manual resolution
+    }
+  }
+
+  // ── Strategy B: Custom external oracle endpoint ──────────────────────────
+  //
+  // Uncomment and adapt to call your own resolution service.
+  //
+  // const ORACLE_URL = process.env["ORACLE_ENDPOINT_URL"];
+  // if (ORACLE_URL) {
+  //   try {
+  //     const res = await fetch(`${ORACLE_URL}/resolve/${poolId}`, {
+  //       headers: { Authorization: `Bearer ${process.env["ORACLE_SECRET"]}` },
+  //       signal: AbortSignal.timeout(5_000),
+  //     });
+  //     if (res.ok) {
+  //       const { outcome } = (await res.json()) as { outcome: number | null };
+  //       if (outcome === 0 || outcome === 1) return outcome;
+  //     }
+  //   } catch (err) {
+  //     logger.warn("Oracle endpoint error", { poolId, error: String(err) });
+  //   }
+  //   return null; // defer when oracle is reachable but doesn't have an answer yet
+  // }
+
+  // ── Strategy C: Default fallback ─────────────────────────────────────────
+  //
+  // Falls through to DEFAULT_WINNING_OUTCOME when no other strategy matched.
+  // Remove this when you have a real oracle so pools don't get silently
+  // settled with the wrong outcome.
+  //
   void poolId;
   void pool;
 

@@ -134,7 +134,7 @@ function migrateLegacyDraft(raw: unknown): CreatePoolDraft {
 
 export function useCreateWizard(): UseCreateWizard {
   const [draft, setDraft, clearDraft] = useLocalStorage<CreatePoolDraft>(
-    CREATE_POOL_DRAFT_KEY,
+    CREATE_MARKET_DRAFT_KEY,
     EMPTY_DRAFT,
     migrateLegacyDraft
   );
