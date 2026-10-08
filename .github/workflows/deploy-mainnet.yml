@@ -70,7 +70,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.inputs.git_tag }}
 
@@ -129,7 +129,7 @@ jobs:
       init_tx: ${{ steps.deploy.outputs.init_tx }}
       treasury: ${{ steps.deployer.outputs.treasury }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.inputs.git_tag }}
 
@@ -273,7 +273,7 @@ jobs:
       settled: ${{ steps.run.outputs.settle }}
       claim_amount: ${{ steps.run.outputs.claim }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Cache stellar-cli
         uses: actions/cache@v4
@@ -445,7 +445,7 @@ jobs:
       pull-requests: write
       issues: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Download deployment manifest
         uses: actions/download-artifact@v4
