@@ -178,7 +178,7 @@ jobs:
 
       - name: Post PR comment
         if: always() && github.event_name == 'pull_request' && steps.compare.outputs.comment_path != ''
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           BENCHMARK_COMMENT_PATH: ${{ steps.compare.outputs.comment_path }}
         with:

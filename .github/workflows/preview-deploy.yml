@@ -76,7 +76,7 @@ jobs:
       # Post (or update) a comment on the PR with the live preview link.
       - name: Comment PR with Preview URL
         if: success()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const deploymentUrl = '${{ steps.deploy.outputs.url }}';
@@ -136,7 +136,7 @@ jobs:
       # Notify reviewers if the deployment step itself failed.
       - name: Comment PR on Deployment Failure
         if: failure()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const prNumber = context.issue.number;
@@ -184,7 +184,7 @@ jobs:
       # Create a GitHub commit status so the preview link appears in the PR
       # checks panel alongside CI results.
       - name: Set Commit Deployment Status
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         if: always()
         with:
           script: |
@@ -218,7 +218,7 @@ jobs:
 
     steps:
       - name: Update or close preview comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const prNumber = context.issue.number;
