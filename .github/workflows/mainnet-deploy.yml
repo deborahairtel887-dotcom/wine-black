@@ -77,7 +77,7 @@ jobs:
           "
 
       - name: Upload WASM artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: wine-black-wasm-${{ github.ref_name }}
           path: contracts/wine-black/target/wasm32-unknown-unknown/release/wine-black.optimized.wasm
@@ -160,7 +160,7 @@ jobs:
           cat deployments/${{ github.ref_name }}.json
 
       - name: Upload deployment artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: deployment-${{ github.ref_name }}
           path: deployments/${{ github.ref_name }}.json

@@ -47,7 +47,7 @@ jobs:
           stellar contract optimize --wasm "$UNOPTIMIZED"
 
       - name: Upload WASM artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: wine-black-wasm
           path: contracts/wine-black/target/wasm32v1-none/release/*.optimized.wasm
