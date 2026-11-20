@@ -75,7 +75,7 @@ jobs:
           ref: ${{ github.event.inputs.git_tag }}
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@v2
         with:
           toolchain: stable
 
@@ -146,7 +146,7 @@ jobs:
           key: stellar-cli-v22-${{ runner.os }}
 
       - name: Setup Rust (for stellar-cli reuse)
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@v2
         with:
           toolchain: stable
 
@@ -282,7 +282,7 @@ jobs:
           key: stellar-cli-v22-${{ runner.os }}
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@v2
         with:
           toolchain: stable
 
